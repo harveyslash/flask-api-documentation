@@ -1,0 +1,1066 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Beatest Core Documentation">
+      
+      
+        <link rel="canonical" href="http://beatest-docs.s3-website.ap-south-1.amazonaws.com/api-v0.1/FileUploads/index.html">
+      
+      
+        <meta name="author" content="Harshvardhan Gupta">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.1">
+    
+    
+      
+        <title>File Uploads - Beatest Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.78aab2dc.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../scss/customcss.css">
+    
+      <link rel="stylesheet" href="../../scss/uml.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#file-uploads" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://beatest-docs.s3-website.ap-south-1.amazonaws.com/" title="Beatest Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Beatest Docs
+              </span>
+              <span class="md-header-nav__topic">
+                File Uploads
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="General" class="md-tabs__link">
+        General
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../Guidelines/index.html" title="api-v0.1" class="md-tabs__link md-tabs__link--active">
+          api-v0.1
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../rex/index.html" title="Rex" class="md-tabs__link">
+          Rex
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../CASS/index.html" title="CASS" class="md-tabs__link">
+          CASS
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    Beatest Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" title="General" class="md-nav__link">
+      General
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      api-v0.1
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        api-v0.1
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Guidelines/index.html" title="Api Guidelines" class="md-nav__link">
+      Api Guidelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Database/index.html" title="Database" class="md-nav__link">
+      Database
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Colleges/index.html" title="Colleges" class="md-nav__link">
+      Colleges
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Captcha/index.html" title="Captcha" class="md-nav__link">
+      Captcha
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Courses/index.html" title="Courses" class="md-nav__link">
+      Courses
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Certificates/index.html" title="　 ↳ Certificates" class="md-nav__link">
+      　 ↳ Certificates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Instructors/index.html" title="　 ↳ Instructors" class="md-nav__link">
+      　 ↳ Instructors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Discourse/index.html" title="Discourse" class="md-nav__link">
+      Discourse
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        File Uploads
+      </label>
+    
+    <a href="index.html" title="File Uploads" class="md-nav__link md-nav__link--active">
+      File Uploads
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#file-database-table" title="File Database Table" class="md-nav__link">
+    File Database Table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-upload-process" title="File Upload Process" class="md-nav__link">
+    File Upload Process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-guidelines" title="Design Guidelines" class="md-nav__link">
+    Design Guidelines
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" title="Examples" class="md-nav__link">
+    Examples
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" title="Request" class="md-nav__link">
+    Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request_1" title="Request" class="md-nav__link">
+    Request
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Orders/index.html" title="Orders" class="md-nav__link">
+      Orders
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../PromoCodes/index.html" title="Promo Codes" class="md-nav__link">
+      Promo Codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Tests/index.html" title="Tests" class="md-nav__link">
+      Tests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Questions/index.html" title="　 ↳ Questions" class="md-nav__link">
+      　 ↳ Questions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QuestionAttempts/index.html" title="　 ↳ Question Attempts" class="md-nav__link">
+      　 ↳ Question Attempts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Sections/index.html" title="　 ↳ Sections" class="md-nav__link">
+      　 ↳ Sections
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../SectionAttempts/index.html" title="　 ↳ Section Attempts" class="md-nav__link">
+      　 ↳ Section Attempts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TestAttempts/index.html" title="　 ↳ Test Attempts" class="md-nav__link">
+      　 ↳ Test Attempts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TestAnalysis/index.html" title="　 ↳ Test Analysis" class="md-nav__link">
+      　 ↳ Test Analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TimeTrack(Pinger)/index.html" title="　 ↳ Time Track(Pinger)" class="md-nav__link">
+      　 ↳ Time Track(Pinger)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Users/index.html" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Misc/index.html" title="Miscellaneous" class="md-nav__link">
+      Miscellaneous
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Rex
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Rex
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rex/index.html" title="Welcome" class="md-nav__link">
+      Welcome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rex/TestAttempts/index.html" title="TestAttempts" class="md-nav__link">
+      TestAttempts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rex/Applications/index.html" title="Applications" class="md-nav__link">
+      Applications
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      CASS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        CASS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CASS/index.html" title="Welcome" class="md-nav__link">
+      Welcome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CASS/run/index.html" title="Run" class="md-nav__link">
+      Run
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#file-database-table" title="File Database Table" class="md-nav__link">
+    File Database Table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-upload-process" title="File Upload Process" class="md-nav__link">
+    File Upload Process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-guidelines" title="Design Guidelines" class="md-nav__link">
+    Design Guidelines
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" title="Examples" class="md-nav__link">
+    Examples
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" title="Request" class="md-nav__link">
+    Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request_1" title="Request" class="md-nav__link">
+    Request
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="file-uploads">File Uploads<a class="headerlink" href="#file-uploads" title="Permanent link">&para;</a></h1>
+<p>In order to support file uploads, we use AWS S3. All files uploaded by 
+users are stored S3. </p>
+<p>To prevent conflicts from system libraries, we name our files 'blobs'.
+These two terms may be used interchangebly.</p>
+<h2 id="file-database-table">File Database Table<a class="headerlink" href="#file-database-table" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Field Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code class="codehilite">int</code></td>
+<td>unique identifier for the file</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td><code class="codehilite">int FK to id in User Table</code></td>
+<td>the id of the User that uploaded the file<br> (<code class="codehilite">null</code> indicates file was uploaded by the system)</td>
+</tr>
+<tr>
+<td>s3_link</td>
+<td><code class="codehilite">varchar (512)</code></td>
+<td>the full s3 url for the file.</td>
+</tr>
+<tr>
+<td>mime_type</td>
+<td><code class="codehilite">varchar (255)</code></td>
+<td>MIME type of the file (E.g. <code class="codehilite">application/pdf</code>)</td>
+</tr>
+<tr>
+<td>created_date</td>
+<td><code class="codehilite">datetime</code></td>
+<td>time when the file was created</td>
+</tr>
+<tr>
+<td>updated_date</td>
+<td>`datetime</td>
+<td>time when the file was updated</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong></p>
+<p>The s3 link should not be returned to users directly. A signed url using cloudfront should be created and that url should be sent.
+Sending the s3 link directly will always give a permission denied error at the client.</p>
+<h2 id="file-upload-process">File Upload Process<a class="headerlink" href="#file-upload-process" title="Permanent link">&para;</a></h2>
+<p>The client uploads the files as a `Multipart request to Beatest. 
+The Beatest server verifies the file based on its mime type and if all validation 
+succeeds, it then uploads the file to aws s3. </p>
+<p>When this file is required in the future, only the s3 link is sent to the client. 
+The client needs to fetch the file from s3 directly. </p>
+<p><strong>Note</strong> This s3 link is a signed url with a timeout value. After some duration, 
+the file will not be accessible anymore.</p>
+<pre class="render-diagram"><code>sequenceDiagram
+participant client
+participant Beatest
+participant Database
+participant AWS
+
+client-&gt;&gt;Beatest:   Upload file along with other data
+Beatest-&gt;&gt;Database: Calculate amount &amp; Create New Order
+Beatest-&gt;&gt;AWS:      Upload file to s3
+Beatest-&gt;&gt;Database: Add row in Files Table with s3 link 
+Beatest--&gt;&gt;client:  return response</code></pre>
+
+<h2 id="design-guidelines">Design Guidelines<a class="headerlink" href="#design-guidelines" title="Permanent link">&para;</a></h2>
+<p>We exclusively use JSON to communicate between client and server.</p>
+<p>To make things consistent yet atomic , all requests that involve 
+files will be sent as <code class="codehilite">Multipart</code>.</p>
+<p>The various parts of the <code class="codehilite">Multipart</code> request are given below.</p>
+<ol>
+<li>
+<p>There will always be a <code class="codehilite">body</code> key.
+<br>Regardless whether additional metadata needs to be sent or not, there has to be 
+a part containing the <code class="codehilite">body</code> key. This key will contain <code class="codehilite">JSON</code> in string form and
+may contain various metadata about the file.</p>
+</li>
+<li>
+<p>There will always be a <code class="codehilite">file</code> key.
+The value of this key will contain the file itself. </p>
+</li>
+<li>
+<p>Under the <code class="codehilite">body</code> from 1. there will be one key with the value of <code class="codehilite">file</code>.<br>
+Note that this is the literal value 'file' and not the data of the file from 2.
+This reference will tell the server that that particular key references the file from 2.</p>
+</li>
+<li>
+<p>Additional files can also be present as additional parts. <br>
+They need to be in the form <code class="codehilite">file_1</code>,<code class="codehilite">file_2</code>... <code class="codehilite">file_N</code>. For each file , there
+must be one key which refers to that file.  </p>
+</li>
+</ol>
+<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
+<p>A single file upload.</p>
+<div class="admonition post_req">
+<p class="admonition-title"><code class="codehilite"><span class="err">POST /some_random_endpoint/thatdoesntexist</span></code></p>
+<h5 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h5>
+<p>Part 1</p>
+<p><strong>Note</strong> The value of body is actually a string.
+<div class="codehilite"><pre><span></span><span class="err">body</span> <span class="err">=</span> <span class="err">&#39;</span><span class="p">{</span>   <span class="nt">&quot;some_key&quot;</span> <span class="p">:</span> <span class="mi">23</span> <span class="p">,</span>
+            <span class="nt">&quot;some_other_kwy&quot;</span><span class="p">:</span> <span class="s2">&quot;string_value&quot;</span> <span class="p">,</span>
+            <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;file&quot;</span> 
+        <span class="p">}</span><span class="err">&#39;</span>
+</pre></div></p>
+<p>Part 2</p>
+<p><strong>Note</strong> 'file' is referred to this file in part 1
+<div class="codehilite"><pre><span></span><span class="err">file</span> <span class="err">=</span> <span class="err">&lt;the</span> <span class="err">file</span> <span class="err">from</span> <span class="err">the</span> <span class="err">client&gt;</span>
+</pre></div></p>
+</div>
+<p>Endpoints that have multiple uploads</p>
+<div class="admonition post_req">
+<p class="admonition-title"><code class="codehilite"><span class="err">POST /some_random_endpoint/thatdoesntexist</span></code></p>
+<h5 id="request_1">Request<a class="headerlink" href="#request_1" title="Permanent link">&para;</a></h5>
+<p>Part 1</p>
+<p><strong>Note</strong> The value of body is actually a string.
+<div class="codehilite"><pre><span></span><span class="err">body</span> <span class="err">=</span> <span class="err">&#39;</span><span class="p">{</span>   <span class="nt">&quot;some_key&quot;</span> <span class="p">:</span> <span class="mi">23</span> <span class="p">,</span>
+            <span class="nt">&quot;some_other_kwy&quot;</span><span class="p">:</span> <span class="s2">&quot;string_value&quot;</span> <span class="p">,</span>
+            <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;file&quot;</span> <span class="p">,</span>  <span class="err">#</span> <span class="err">first</span> <span class="err">file</span> <span class="err">still</span> <span class="err">named</span> <span class="err">&#39;file&#39;</span>
+            <span class="nt">&quot;video&quot;</span><span class="p">:</span> <span class="s2">&quot;file_1&quot;</span>  <span class="err">#</span> <span class="mi">2</span><span class="err">nd</span> <span class="err">file</span> <span class="err">starts</span> <span class="err">with</span> <span class="mi">1</span>
+        <span class="p">}</span><span class="err">&#39;</span>
+</pre></div></p>
+<p>Part 2</p>
+<div class="codehilite"><pre><span></span><span class="err">file</span>   <span class="err">=</span> <span class="err">&lt;the</span> <span class="err">first</span> <span class="err">file</span> <span class="err">from</span> <span class="err">the</span> <span class="err">client&gt;</span>
+</pre></div>
+
+<p>Part 3</p>
+<div class="codehilite"><pre><span></span><span class="err">file_</span><span class="mi">1</span> <span class="err">=</span> <span class="err">&lt;the</span> <span class="mi">2</span><span class="err">nd</span> <span class="err">file</span> <span class="err">from</span> <span class="err">the</span> <span class="err">client&gt;</span>
+</pre></div>
+
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+  <h2 id="__comments">Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://beatest-docs.s3-website.ap-south-1.amazonaws.com/api-v0.1/FileUploads/index.html";
+      this.page.identifier =
+        "api-v0.1/FileUploads/index.html";
+    };
+    (function() {
+      var d = document, s = d.createElement("script");
+      s.src = "//docs-beatest-in.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../Discourse/index.html" title="Discourse" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Discourse
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Orders/index.html" title="Orders" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Orders
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.8eb9be28.js"></script>
+      
+      <script>app.initialize({version:"0.17.3",url:{base:"../.."}})</script>
+      
+        <script src="https://unpkg.com/mermaid@8.0.0-beta.2/dist/mermaid.min.js"></script>
+      
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="../../js/uml-loader.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>

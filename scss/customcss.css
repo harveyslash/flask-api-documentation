@@ -1,0 +1,84 @@
+.md-typeset .admonition.download, .md-typeset details.download {
+    border-left: .4rem solid #a0f;
+}
+
+.md-typeset .admonition.download > .admonition-title, .md-typeset details.download > .admonition-title, .md-typeset details.download > summary {
+    border-bottom: .1rem solid #FFFDE7;
+    background-color: #FFFDE7;
+}
+
+.md-typeset .admonition.download > .admonition-title:before, .md-typeset details.download > .admonition-title:before, .md-typeset details.download > summary:before {
+    color: #a0f;
+    content: "arrow_upward"
+}
+
+.md-typeset .admonition.get_req, .md-typeset get_req.download {
+    border-left: .4rem solid #A5D6A7;
+}
+
+.md-typeset .admonition.get_req > .admonition-title, .md-typeset details.get_req > .admonition-title, .md-typeset details.get_req > summary {
+    border-bottom: .1rem solid #388E3C;
+    background-color: rgba(0, 170, 0, .1);
+}
+
+.md-typeset .admonition.get_req > .admonition-title:before, .md-typeset details.get_req > .admonition-title:before, .md-typeset details.get_req > summary:before {
+    color: #558B2F;
+    content: "arrow_downward"
+}
+
+.md-typeset .admonition.post_req, .md-typeset post_req.download {
+    border-left: .4rem solid #E1BEE7;
+}
+
+.md-typeset .admonition.post_req > .admonition-title, .md-typeset details.post_req > .admonition-title, .md-typeset details.post_req > summary {
+    border-bottom: .1rem solid #E1BEE7;
+    background-color: #E1BEE7;
+}
+
+.md-typeset .admonition.post_req > .admonition-title:before, .md-typeset details.post_req > .admonition-title:before, .md-typeset details.post_req > summary:before {
+    color: #4A148C;
+    content: "arrow_upward"
+}
+
+.md-typeset .admonition.custom_req, .md-typeset custom_req.download {
+    border-left: .4rem solid #6D4C41;
+}
+
+.md-typeset .admonition.custom_req > .admonition-title, .md-typeset details.custom_req > .admonition-title, .md-typeset details.custom_req > summary {
+    border-bottom: .1rem solid #6D4C41;
+    background-color: #A1887F;
+}
+
+.md-typeset .admonition.custom_req > .admonition-title:before, .md-typeset details.custom_req > .admonition-title:before, .md-typeset details.custom_req > summary:before {
+    color: #FAFAFA;
+    content: "code"
+}
+
+.md-typeset .admonition.del_req, .md-typeset del_req.download {
+    border-left: .4rem solid #EF5350;
+}
+
+.md-typeset .admonition.del_req > .admonition-title, .md-typeset details.del_req > .admonition-title, .md-typeset details.del_req > summary {
+    border-bottom: .1rem solid #FFCDD2;
+    background-color: #FF5252;
+}
+
+.md-typeset .admonition.del_req > .admonition-title:before, .md-typeset details.del_req > .admonition-title:before, .md-typeset details.del_req > summary:before {
+    color: #FAFAFA;
+    content: "delete_forever"
+}
+
+.md-typeset .admonition.put_req, .md-typeset put_req.download {
+    border-left: .4rem solid #00B0FF;
+}
+
+.md-typeset .admonition.put_req > .admonition-title, .md-typeset details.put_req > .admonition-title, .md-typeset details.put_req > summary {
+    border-bottom: .1rem solid #FFCDD2;
+    background-color: #80D8FF;
+}
+
+.md-typeset .admonition.put_req > .admonition-title:before, .md-typeset details.put_req > .admonition-title:before, .md-typeset details.put_req > summary:before {
+    color: #212121;
+    content: "refresh"
+}
+

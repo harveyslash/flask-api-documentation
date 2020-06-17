@@ -1,0 +1,1199 @@
+{
+    "docs": [
+        {
+            "location": "/index.html", 
+            "text": "Beatest Documentation\n\n\nThis is a developer oriented resource to understand and document the core Beatest system\n\n\nRendering the the docs\n\n\nThis uses MkDocs \nhttps://github.com/squidfunk/mkdocs-material\n\n\nBefore rendering , install the following dependencies using \npip\n like so\n\n\npip install mkdocs-material\npip install pymdown-extensions\n\n\n\n\nThen you can render by going to the \ndocs\n directory in the source repo, and run \n\nmkdocs serve\n\n\n\nThis should run a local server on port \n8000\n , which you can access by visiting \nhttp://localhost:8000\n\n\nThis is the most updated documentation.", 
+            "title": "General"
+        }, 
+        {
+            "location": "/index.html#beatest-documentation", 
+            "text": "This is a developer oriented resource to understand and document the core Beatest system", 
+            "title": "Beatest Documentation"
+        }, 
+        {
+            "location": "/index.html#rendering-the-the-docs", 
+            "text": "This uses MkDocs  https://github.com/squidfunk/mkdocs-material  Before rendering , install the following dependencies using  pip  like so  pip install mkdocs-material\npip install pymdown-extensions  Then you can render by going to the  docs  directory in the source repo, and run  mkdocs serve  This should run a local server on port  8000  , which you can access by visiting  http://localhost:8000  This is the most updated documentation.", 
+            "title": "Rendering the the docs"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html", 
+            "text": "Welcome to API Design Guidelines\n\n\nWe will follow the general naming conventions of REST. We will not follow all the standards of REST. \nTo get REST information , visit \nhttps://restfulapi.net\n\n\nAPI Versioning and Namespacing\n\n\nAll Apis should be under their version number, and throughout these docs, that will be \nomitted\n. \nBut it is be assumed that correct versioning is required in order to get expected results. \n\n\nE.g. When the docs refer to an api such as \n/test/\n, the client has to visit \n\n\n/api/v\n0.0\n/test\n\n\n\n\n\nAPI Naming Convention\n\n\nIn general , the REST verbs (GET, POST, DELETE) should be used , if unambiguity is possible.\n\n\nError Messages\n\n\nWhenever possible, HTTP Level status codes must be used to signifiy the problem (E.g \n403\n for unauthorized access)\nAdditionally, we define our own error message structure so that all clients can expect a unified response. \n\n\n{\n\n    \nmessage\n:\n \nNo tests left\n,\n   \n#\n \ndescription\n \nof\n \nerror.\n \nCan\n \nbe\n \ndisplayed\n \nto\n \nthe\n \nUI\n \ndirectly\n\n    \nerror_code\n:\n \n23408\n,\n          \n#\n \nunique\n \nidentifier\n \nof\n \nthe\n \nerror\n \n(optional)\n\n    \nadditional\n:\n \n{},\n             \n#\n \nplaceholder\n \nfor\n \nextra\n \ndata\n \n(optional)\n\n\n}\n\n\n\n\n\nExamples\n\n\nGet a list of all tests\n\n\n\n\nGET /test\n\n\nResponse\n\n\n{\n\n    \nid\n:\n \n12\n,\n\n    \nname\n:\n \ntest1\n\n\n}\n\n\n\n\n\n\n\nAdd a test\n\n\n\n\nPOST /tests\n\n\nResponse\n\n\n{\n\n    \nid\n:\n \n32\n\n\n}\n\n\n\n\n\n\n\n\n\nWe did NOT use\n\n\nGET /test/add\n\n\nBecause it was possible to do the same by using the \nPOST\n verb. \n\n\n\n\n\n\nUnder NO circumstances should \nGET\n verb be used to perform any operation that modifies data\n\n\nIt is only meant for operations that fetch data\n\n\nThis is to prevent issues that CSRF attacks can create\n\n\nRead about CSRF attacks here \nhttps://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF\n)\n\n\n\n\nCustom Endpoints\n\n\nIf the action to be performed is not a simple CRUD (Create,Read,Update,Delete), the following convention must be followed: \n\n\nPOST /resource/sub-resource/action_name\n\n\nTo activate a user\n\n\n\n\nPOST /user/activate/32\n\n\nResponse\n\n\n{\n\n    \nsuccess:\n \nTrue\n\n\n}\n\n\n\n\n\n\n\nStatus Codes\n\n\nThe HTTP status code should be used. HTTP code standards will be utilized to convey the status of request. \nRead about them at \nhttps://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html\n \n\n\nBlank requests or responses\n\n\nIf there is no additional information to be conveyed from a particular request's body, or from the response data, they will be \nomitted from the api blocks. \n\n\nE.g. \n\n\nTo get tests\n\n\nThe request was omitted\n\n\n\n\nPOST /user/activate/32\n\n\nResponse\n\n\n{\n\n    \nid\n:\n21\n,\n\n    \nname\n:\nsome\n \nname\n\n\n}\n\n\n\n\n\n\n\nTo activate a user\n\n\nThe request as well as response was omitted\n\n\n\n\nPOST /user/32/activate\n\n\n\n\n\n\nCreating Resources in \nPOST\n calls\n\n\nMost of the time, when a resource is created using a \nPOST\n call, \nthe database creates an ID for that resource. \n\n\nRemember to send that ID back , if the client may require it in the future\n\n\n\n\nFile Uploads\n\n\nWe follow a specific pattern to handle endpoints that need require \nfile uploads. See \nFile Uploads\n \n\n\nAdmin Tasks\n\n\nIf there is any endpoint that is supposed to be accessible only by an admin (E.g. adding a test),\nit should be namespaced by \nadmin\n. \n\nIt is assumed that all endpoints namespaced by \nadmin\n will fail unless the user issuing that request\nis a verified admin.\n\n\nExample\n\n\nAdd a promo code\n\n\n\n\nPOST /admin/promo_codes/\n\n\nResponse\n\n\n{\n\n    \nid\n:\n32\n\n\n}", 
+            "title": "Api Guidelines"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#welcome-to-api-design-guidelines", 
+            "text": "We will follow the general naming conventions of REST. We will not follow all the standards of REST. \nTo get REST information , visit  https://restfulapi.net", 
+            "title": "Welcome to API Design Guidelines"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#api-versioning-and-namespacing", 
+            "text": "All Apis should be under their version number, and throughout these docs, that will be  omitted . \nBut it is be assumed that correct versioning is required in order to get expected results.   E.g. When the docs refer to an api such as  /test/ , the client has to visit   /api/v 0.0 /test", 
+            "title": "API Versioning and Namespacing"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#api-naming-convention", 
+            "text": "In general , the REST verbs (GET, POST, DELETE) should be used , if unambiguity is possible.", 
+            "title": "API Naming Convention"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#error-messages", 
+            "text": "Whenever possible, HTTP Level status codes must be used to signifiy the problem (E.g  403  for unauthorized access)\nAdditionally, we define our own error message structure so that all clients can expect a unified response.   { \n     message :   No tests left ,     #   description   of   error.   Can   be   displayed   to   the   UI   directly \n     error_code :   23408 ,            #   unique   identifier   of   the   error   (optional) \n     additional :   {},               #   placeholder   for   extra   data   (optional)  }", 
+            "title": "Error Messages"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#examples", 
+            "text": "", 
+            "title": "Examples"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#get-a-list-of-all-tests", 
+            "text": "GET /test", 
+            "title": "Get a list of all tests"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#response", 
+            "text": "{ \n     id :   12 , \n     name :   test1  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#add-a-test", 
+            "text": "POST /tests", 
+            "title": "Add a test"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#response_1", 
+            "text": "{ \n     id :   32  }     We did NOT use  GET /test/add  Because it was possible to do the same by using the  POST  verb.     Under NO circumstances should  GET  verb be used to perform any operation that modifies data  It is only meant for operations that fetch data  This is to prevent issues that CSRF attacks can create  Read about CSRF attacks here  https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF )", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#custom-endpoints", 
+            "text": "If the action to be performed is not a simple CRUD (Create,Read,Update,Delete), the following convention must be followed:   POST /resource/sub-resource/action_name", 
+            "title": "Custom Endpoints"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#to-activate-a-user", 
+            "text": "POST /user/activate/32", 
+            "title": "To activate a user"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#response_2", 
+            "text": "{ \n     success:   True  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#status-codes", 
+            "text": "The HTTP status code should be used. HTTP code standards will be utilized to convey the status of request. \nRead about them at  https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html", 
+            "title": "Status Codes"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#blank-requests-or-responses", 
+            "text": "If there is no additional information to be conveyed from a particular request's body, or from the response data, they will be \nomitted from the api blocks.   E.g.", 
+            "title": "Blank requests or responses"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#to-get-tests", 
+            "text": "The request was omitted   POST /user/activate/32", 
+            "title": "To get tests"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#response_3", 
+            "text": "{ \n     id : 21 , \n     name : some   name  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#to-activate-a-user_1", 
+            "text": "The request as well as response was omitted   POST /user/32/activate    Creating Resources in  POST  calls  Most of the time, when a resource is created using a  POST  call, \nthe database creates an ID for that resource.   Remember to send that ID back , if the client may require it in the future", 
+            "title": "To activate a user"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#file-uploads", 
+            "text": "We follow a specific pattern to handle endpoints that need require \nfile uploads. See  File Uploads", 
+            "title": "File Uploads"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#admin-tasks", 
+            "text": "If there is any endpoint that is supposed to be accessible only by an admin (E.g. adding a test),\nit should be namespaced by  admin .  It is assumed that all endpoints namespaced by  admin  will fail unless the user issuing that request\nis a verified admin.  Example", 
+            "title": "Admin Tasks"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#add-a-promo-code", 
+            "text": "POST /admin/promo_codes/", 
+            "title": "Add a promo code"
+        }, 
+        {
+            "location": "/api-v0.1/Guidelines/index.html#response_4", 
+            "text": "{ \n     id : 32  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Database/index.html", 
+            "text": "Database\n\n\nThis page documents current database structure , best practices, and examples.\n\n\n\n\nView UML in Full Screen", 
+            "title": "Database"
+        }, 
+        {
+            "location": "/api-v0.1/Database/index.html#database", 
+            "text": "This page documents current database structure , best practices, and examples.   View UML in Full Screen", 
+            "title": "Database"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html", 
+            "text": "Colleges APIs\n\n\nWe mantain college specific tests that is displayed on the users'\n\"college profile\". See the college profile endpoint below for more details.\n\n\nDatabase Table\n\n\nColleges will be represented in the database like below\n\n\n\n\n\n\n\n\nField Name\n\n\nData Type\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nid\n\n\nint (PK)\n\n\nUnique Identifier for College\n\n\n\n\n\n\ncollege_name\n\n\nvarchar (100)\n\n\nCollege Name\n\n\n\n\n\n\ncollege_logo\n\n\nvarchar (100)\n\n\nCollege Picture S3 Link\n\n\n\n\n\n\n\n\nAPI Reference\n\n\nGet Colleges \n\n\nGet list of Colleges registered with Beatest\n\n\n\n\nGET /colleges\n\n\nResponse\n\n\n[\n\n    \n{\n\n        \nid\n:\n \n3\n,\n\n        \ncollege_name\n:\n \nBeatest Institute\n,\n\n    \n},\n\n    \n{\n\n        \nid\n:\n \n4\n,\n\n        \ncollege_name\n:\n \nBeatest Institute\n,\n\n    \n}\n\n\n]\n\n\n\n\n\n\n\nList Tests for College \n\n\nGet all \nTests\n that are part of a College.\n\n\nThis endpoint is supposed to find the Test ids only \n(actual Test details can only be accessed after purchase)\n\n\n\n\nGET /colleges/\ncollegeID\n/tests\n\n\nid\n \n identifier for the college \n\n\nResponse\n\n\nAn array of Test objects.\n\n[\n\n    \n{\n\n        \nid\n:\n \n3\n,\n\n    \n},\n\n    \n{\n\n        \nid\n:\n \n4\n,\n\n    \n}\n\n\n]\n\n\n\n\n\n\nCreate College \n\n\nRegister a College with Beatest\n\n\n\n\nPOST /admin/colleges\n\n\nRequest\n\n\n{\n\n    \ncollege_name\n:\n \nBeatest Institution\n,\n\n    \ncollege_logo\n:\n \nhttps://mybucket.s3.amazonaws.com/myfolder/afile.jpg\n\n\n}\n\n\n\n\n\nResponse\n\n\n{\n\n    \nid\n:\n \n10\n,\n\n    \ncollege_name\n:\n \nBeatest Institution\n,\n\n    \ncollege_logo\n:\n \nhttps://mybucket.s3.amazonaws.com/myfolder/afile.jpg\n\n\n}\n\n\n\n\n\n\n\nUpdate College \n\n\nUpdate a College with Beatest\n\n\n\n\nPUT /admin/colleges\n\n\nRequest\n\n\n{\n\n    \ncollege_name\n:\n \nBeatest Institution\n,\n\n    \ncollege_logo\n:\n \nhttps://mybucket.s3.amazonaws.com/myfolder/afile.jpg\n\n\n}\n\n\n\n\n\nResponse\n\n\nHTTP 200\n Update Successful \n\n\nHTTP 400\n Update failed due to Bad Parameters\n\n\n\n\nCollege Profile Tests \n\n\nReturn a list of tests to be displayed in the users college profile.\n\n\n\n\nIf the user is not logged in , all tests with \ncollege_id\n ==\nNULL\n (in the \ncollege_test\n table) will be returned. \n\n\nIf the user is logged in but has \ncollege_id\n set to null, then all tests with \ncollege_id\n == \nNULL\n will be returned (same as above).\n\n\nIf the user is logged in and has a college_id , then all tests with that \ncollege_id\n will be returned.\n\n\n\n\nThe output of this endpoint is exactly the same as the \nGet Tests endpoint\n\n\n\n\nGET /colleges/tests\n\n\n\n\nDanger\n\n\nSee the output of \nGet Tests endpoint", 
+            "title": "Colleges"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#colleges-apis", 
+            "text": "We mantain college specific tests that is displayed on the users'\n\"college profile\". See the college profile endpoint below for more details.", 
+            "title": "Colleges APIs"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#database-table", 
+            "text": "Colleges will be represented in the database like below     Field Name  Data Type  Description      id  int (PK)  Unique Identifier for College    college_name  varchar (100)  College Name    college_logo  varchar (100)  College Picture S3 Link", 
+            "title": "Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#get-colleges", 
+            "text": "Get list of Colleges registered with Beatest   GET /colleges", 
+            "title": "Get Colleges"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#response", 
+            "text": "[ \n     { \n         id :   3 , \n         college_name :   Beatest Institute , \n     }, \n     { \n         id :   4 , \n         college_name :   Beatest Institute , \n     }  ]", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#list-tests-for-college", 
+            "text": "Get all  Tests  that are part of a College.  This endpoint is supposed to find the Test ids only \n(actual Test details can only be accessed after purchase)   GET /colleges/ collegeID /tests  id    identifier for the college", 
+            "title": "List Tests for College"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#response_1", 
+            "text": "An array of Test objects. [ \n     { \n         id :   3 , \n     }, \n     { \n         id :   4 , \n     }  ]", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#create-college", 
+            "text": "Register a College with Beatest   POST /admin/colleges", 
+            "title": "Create College"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#request", 
+            "text": "{ \n     college_name :   Beatest Institution , \n     college_logo :   https://mybucket.s3.amazonaws.com/myfolder/afile.jpg  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#response_2", 
+            "text": "{ \n     id :   10 , \n     college_name :   Beatest Institution , \n     college_logo :   https://mybucket.s3.amazonaws.com/myfolder/afile.jpg  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#update-college", 
+            "text": "Update a College with Beatest   PUT /admin/colleges", 
+            "title": "Update College"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#request_1", 
+            "text": "{ \n     college_name :   Beatest Institution , \n     college_logo :   https://mybucket.s3.amazonaws.com/myfolder/afile.jpg  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#response_3", 
+            "text": "HTTP 200  Update Successful   HTTP 400  Update failed due to Bad Parameters", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Colleges/index.html#college-profile-tests", 
+            "text": "Return a list of tests to be displayed in the users college profile.   If the user is not logged in , all tests with  college_id  == NULL  (in the  college_test  table) will be returned.   If the user is logged in but has  college_id  set to null, then all tests with  college_id  ==  NULL  will be returned (same as above).  If the user is logged in and has a college_id , then all tests with that  college_id  will be returned.   The output of this endpoint is exactly the same as the  Get Tests endpoint   GET /colleges/tests   Danger  See the output of  Get Tests endpoint", 
+            "title": "College Profile Tests"
+        }, 
+        {
+            "location": "/api-v0.1/Captcha/index.html", 
+            "text": "Publicly accessible endpoints that perform expensive tasks (such as sending mail)\nneed to be protected from malicious automated attacks.\n\n\nIn order to allow this , we use \nReCAPTCHA\n\n\nReCAPTCHA Validation Flow\n\n\nAlong with the data required by the endpoint itself, \nthe token received by calling \ngrecaptcha.getResponse()\n should also be sent to \nBeatest.\n\n\nThe ReCAPTCHA Flow is as follows:\n\n\nsequenceDiagram\nparticipant Client\nparticipant Beatest\nparticipant ReCAPTCHA Server\n\nClient-\nBeatest:  Send ReCAPTCHA token along with other data\n\nBeatest-\nReCAPTCHA Server:  Request verification status\nReCAPTCHA Server--\nBeatest: Return verification status\nNote over Beatest:           if status is 'valid'\nBeatest-\nBeatest :          Continue with Endpoint Logic\nBeatest--\nClient:           return endpoint response\nNote over Beatest:           else\nBeatest--\nClient:           return Error \n\n\n\nCaptcha Standards\n\n\nFor ALL endpoints that require captcha , the token must be sent under the key \n\ncaptcha_token\n. The endpoint that require captcha will fail if this key is not\npresent.\n\n\nEndpoints Using ReCAPTCHA:\n\n\n\n\nUser Signup\n \n\n\nForgot Password\n \n\n\nResend Activation Mail\n \n\n\nContact Us", 
+            "title": "Captcha"
+        }, 
+        {
+            "location": "/api-v0.1/Captcha/index.html#recaptcha-validation-flow", 
+            "text": "Along with the data required by the endpoint itself, \nthe token received by calling  grecaptcha.getResponse()  should also be sent to \nBeatest.  The ReCAPTCHA Flow is as follows:  sequenceDiagram\nparticipant Client\nparticipant Beatest\nparticipant ReCAPTCHA Server\n\nClient- Beatest:  Send ReCAPTCHA token along with other data\n\nBeatest- ReCAPTCHA Server:  Request verification status\nReCAPTCHA Server-- Beatest: Return verification status\nNote over Beatest:           if status is 'valid'\nBeatest- Beatest :          Continue with Endpoint Logic\nBeatest-- Client:           return endpoint response\nNote over Beatest:           else\nBeatest-- Client:           return Error", 
+            "title": "ReCAPTCHA Validation Flow"
+        }, 
+        {
+            "location": "/api-v0.1/Captcha/index.html#captcha-standards", 
+            "text": "For ALL endpoints that require captcha , the token must be sent under the key  captcha_token . The endpoint that require captcha will fail if this key is not\npresent.  Endpoints Using ReCAPTCHA:   User Signup    Forgot Password    Resend Activation Mail    Contact Us", 
+            "title": "Captcha Standards"
+        }, 
+        {
+            "location": "/api-v0.1/Courses/index.html", 
+            "text": "Course APIs\n\n\nCourses are products that are offered by Beatest. A user can buy courses using our website.\nThe course is accessible via some 3\nrd\n party software. Beatest server provides the mechanism\nto allow a user to Purchase the course.\n\n\nDatabase Table \n\n\n\n\n\n\n\n\nField Name\n\n\nData Type\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nid\n\n\nint (PK)\n\n\nUnique identifier for Course\n\n\n\n\n\n\nname\n\n\nvarchar (50)\n\n\nName of Course\n\n\n\n\n\n\nis_active\n\n\ntinyint(1)\n\n\nIs the Course active\n\n\n\n\n\n\nprice\n\n\nint(11)\n\n\nPrice of a Course\n\n\n\n\n\n\ncreated_date\n\n\ndatetime\n\n\nWhen it was created (by the admin)\n\n\n\n\n\n\nupdated_date\n\n\ndatetime\n\n\nWhen it was updated (by the admin)\n\n\n\n\n\n\n\n\nAPI Reference\n\n\nGet List of Courses \n\n\nGet information about all Courses in the system. \nIf User has purchased some courses, this endpoint will also \nspecify that.\n\n\nThis will only list active courses\n\n\n\n\nGET /tests\n\n\nif the user has purchased a Course , \nis_purchased\n \nwill be true for that course.\n\n\nis_purchased\n will be \nfalse\n for not logged in Users\n\n\nResponse\n\n\n[\n\n    \n{\n\n        \nid\n:\n \n12\n,\n                      \n#\n \ntest\n \nid\n \nis\n \nglobally\n \nunique\n\n        \nname\n:\n \nWeb Development 1\n,\n   \n#\n \nname\n \nof\n \nthe\n \ncourse\n\n        \nis_purchased\n:\n \nfalse\n,\n         \n#\n \nwhether\n \nor\n \nnot\n \nthe\n \nuser\n \nhas\n \npurchased\n \nthis\n \ntest\n \n                                       \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n \n        \nprice\n:\n \n99\n,\n\n    \n},\n\n    \n{\n\n        \nid\n:\n \n12\n,\n                      \n#\n \ntest\n \nid\n \nis\n \nglobally\n \nunique\n\n        \nname\n:\n \nBig Data\n,\n            \n#\n \nname\n \nof\n \nthe\n \ncourse\n\n        \nis_purchased\n:\n \ntrue\n,\n          \n#\n \nwhether\n \nor\n \nnot\n \nthe\n \nuser\n \nhas\n \npurchased\n \nthis\n \ntest\n \n                                       \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n \n        \nprice\n:\n \n99\n,\n\n    \n},\n\n\n]", 
+            "title": "Courses"
+        }, 
+        {
+            "location": "/api-v0.1/Courses/index.html#course-apis", 
+            "text": "Courses are products that are offered by Beatest. A user can buy courses using our website.\nThe course is accessible via some 3 rd  party software. Beatest server provides the mechanism\nto allow a user to Purchase the course.", 
+            "title": "Course APIs"
+        }, 
+        {
+            "location": "/api-v0.1/Courses/index.html#database-table", 
+            "text": "Field Name  Data Type  Description      id  int (PK)  Unique identifier for Course    name  varchar (50)  Name of Course    is_active  tinyint(1)  Is the Course active    price  int(11)  Price of a Course    created_date  datetime  When it was created (by the admin)    updated_date  datetime  When it was updated (by the admin)", 
+            "title": "Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/Courses/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/Courses/index.html#get-list-of-courses", 
+            "text": "Get information about all Courses in the system. \nIf User has purchased some courses, this endpoint will also \nspecify that.  This will only list active courses   GET /tests  if the user has purchased a Course ,  is_purchased  \nwill be true for that course.  is_purchased  will be  false  for not logged in Users", 
+            "title": "Get List of Courses"
+        }, 
+        {
+            "location": "/api-v0.1/Courses/index.html#response", 
+            "text": "[ \n     { \n         id :   12 ,                        #   test   id   is   globally   unique \n         name :   Web Development 1 ,     #   name   of   the   course \n         is_purchased :   false ,           #   whether   or   not   the   user   has   purchased   this   test  \n                                        #   (this   is   an   artificially   generated   field)  \n         price :   99 , \n     }, \n     { \n         id :   12 ,                        #   test   id   is   globally   unique \n         name :   Big Data ,              #   name   of   the   course \n         is_purchased :   true ,            #   whether   or   not   the   user   has   purchased   this   test  \n                                        #   (this   is   an   artificially   generated   field)  \n         price :   99 , \n     },  ]", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Certificates/index.html", 
+            "text": "", 
+            "title": "\u3000 \u21b3 Certificates"
+        }, 
+        {
+            "location": "/api-v0.1/Instructors/index.html", 
+            "text": "Course APIs\n\n\nCourses are products that are offered by Beatest. A user can buy courses using our website.\nThe course is accessible via some 3\nrd\n party software. Beatest server provides the mechanism\nto allow a user to Purchase the course.\n\n\n(Incomplete)\n\n\nDatabase Table \n\n\n\n\n\n\n\n\nField Name\n\n\nData Type\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nid\n\n\nint (PK)\n\n\nUnique identifier for Course\n\n\n\n\n\n\nname\n\n\nvarchar (50)\n\n\nName of Course\n\n\n\n\n\n\nis_active\n\n\ntinyint(1)\n\n\nIs the Course active\n\n\n\n\n\n\nprice\n\n\nint(11)\n\n\nPrice of a Course\n\n\n\n\n\n\ncreated_date\n\n\ndatetime\n\n\nWhen it was created (by the admin)\n\n\n\n\n\n\nupdated_date\n\n\ndatetime\n\n\nWhen it was updated (by the admin)\n\n\n\n\n\n\n\n\nAPI Reference\n\n\nGet List of Courses \n\n\nGet information about all Courses in the system. \nIf User has purchased some courses, this endpoint will also \nspecify that.\n\n\nThis will only list active courses\n\n\n\n\nGET /tests\n\n\nif the user has purchased a Course , \nis_purchased\n \nwill be true for that course.\n\n\nis_purchased\n will be \nfalse\n for not logged in Users\n\n\nResponse\n\n\n[\n\n    \n{\n\n        \nid\n:\n \n12\n,\n                      \n#\n \ntest\n \nid\n \nis\n \nglobally\n \nunique\n\n        \nname\n:\n \nWeb Development 1\n,\n   \n#\n \nname\n \nof\n \nthe\n \ncourse\n\n        \nis_purchased\n:\n \nfalse\n,\n         \n#\n \nwhether\n \nor\n \nnot\n \nthe\n \nuser\n \nhas\n \npurchased\n \nthis\n \ntest\n \n                                       \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n \n        \nprice\n:\n \n99\n,\n\n    \n},\n\n    \n{\n\n        \nid\n:\n \n12\n,\n                      \n#\n \ntest\n \nid\n \nis\n \nglobally\n \nunique\n\n        \nname\n:\n \nBig Data\n,\n            \n#\n \nname\n \nof\n \nthe\n \ncourse\n\n        \nis_purchased\n:\n \ntrue\n,\n          \n#\n \nwhether\n \nor\n \nnot\n \nthe\n \nuser\n \nhas\n \npurchased\n \nthis\n \ntest\n \n                                       \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n \n        \nprice\n:\n \n99\n,\n\n    \n},\n\n\n]", 
+            "title": "\u3000 \u21b3 Instructors"
+        }, 
+        {
+            "location": "/api-v0.1/Instructors/index.html#course-apis", 
+            "text": "Courses are products that are offered by Beatest. A user can buy courses using our website.\nThe course is accessible via some 3 rd  party software. Beatest server provides the mechanism\nto allow a user to Purchase the course.", 
+            "title": "Course APIs"
+        }, 
+        {
+            "location": "/api-v0.1/Instructors/index.html#incomplete", 
+            "text": "", 
+            "title": "(Incomplete)"
+        }, 
+        {
+            "location": "/api-v0.1/Instructors/index.html#database-table", 
+            "text": "Field Name  Data Type  Description      id  int (PK)  Unique identifier for Course    name  varchar (50)  Name of Course    is_active  tinyint(1)  Is the Course active    price  int(11)  Price of a Course    created_date  datetime  When it was created (by the admin)    updated_date  datetime  When it was updated (by the admin)", 
+            "title": "Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/Instructors/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/Instructors/index.html#get-list-of-courses", 
+            "text": "Get information about all Courses in the system. \nIf User has purchased some courses, this endpoint will also \nspecify that.  This will only list active courses   GET /tests  if the user has purchased a Course ,  is_purchased  \nwill be true for that course.  is_purchased  will be  false  for not logged in Users", 
+            "title": "Get List of Courses"
+        }, 
+        {
+            "location": "/api-v0.1/Instructors/index.html#response", 
+            "text": "[ \n     { \n         id :   12 ,                        #   test   id   is   globally   unique \n         name :   Web Development 1 ,     #   name   of   the   course \n         is_purchased :   false ,           #   whether   or   not   the   user   has   purchased   this   test  \n                                        #   (this   is   an   artificially   generated   field)  \n         price :   99 , \n     }, \n     { \n         id :   12 ,                        #   test   id   is   globally   unique \n         name :   Big Data ,              #   name   of   the   course \n         is_purchased :   true ,            #   whether   or   not   the   user   has   purchased   this   test  \n                                        #   (this   is   an   artificially   generated   field)  \n         price :   99 , \n     },  ]", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Discourse/index.html", 
+            "text": "Discourse APIs\n\n\nIn order to have community discussions, we use \nDiscourse\n.\n\n\nWe use Discourse SSO (Single Sign On) to use discourse while only allowing \nusers to sign in via Beatest.\n\n\nDiscourse SSO Flow\n\n\nIn order to allow a user access to restricted content on Discourse, we need to first\nauthenticate him on Beatest. \n\n\nThe SSO flow is as follows:\n\n\nsequenceDiagram\nparticipant Discourse\nparticipant Client\nparticipant Beatest\n\nDiscourse-\nClient:  Redirect to Client's SSO page with query params\nClient-\nClient:     If User not logged in, prompt for details and log in\n\nClient-\nBeatest:    forward query parameters to beatest SSO endpoint \nBeatest-\nDatabase:  verify user and check for course access\nBeatest-\nClient:    return URL with signed payload\nClient--\nDiscourse: redirect user to returned URL\n\n\n\nIntegration with Discourse\n\n\nIn order to sync data between Discourse and Beatest, we currently use the\nfollowing Discourse hooks/APIs.\n\n\n\n\nSSO Login (See Below)\n\n\nAdd User to Group.\n\nPUT https://forums.beatest.in/groups/{group_id}/members.json\n\nThere are forum subcategories that require a User to purchase certain items. \nWhen the purchase is made, the api is used to allow the user access to that\nsubcategory.\n\n\n\n\nDiscourse API Reference\n\n\nSSO Login \n\n\nIn order to verify that a User has access to restricted groups, and also \nverify if he has an account on Beatest, a special SSO endpoint exists. \n\n\n\n\nPOST /discourse_sso\n\n\nRequest\n\n\nDuring redirect from Discourse to the Webpage, query parameters with \nsigned data will be sent. \nThese query parameters will need to be forwarded to this endpoint \nwithout any tampering. \n\n\nResponse\n\n\n{\n\n    \nurl\n:\n \nhttps://forums.beatest.in/session/sso_login?...\n  \n#\n \nA\n \nlong\n \nURL\n\n\n}\n\n\n\n\n\n\n\nAfter the URL is returned from this endpoint, the Client must redirect to that URL. \nThis will take him to the forum and give him access to the contents that he paid for.", 
+            "title": "Discourse"
+        }, 
+        {
+            "location": "/api-v0.1/Discourse/index.html#discourse-apis", 
+            "text": "In order to have community discussions, we use  Discourse .  We use Discourse SSO (Single Sign On) to use discourse while only allowing \nusers to sign in via Beatest.", 
+            "title": "Discourse APIs"
+        }, 
+        {
+            "location": "/api-v0.1/Discourse/index.html#discourse-sso-flow", 
+            "text": "In order to allow a user access to restricted content on Discourse, we need to first\nauthenticate him on Beatest.   The SSO flow is as follows:  sequenceDiagram\nparticipant Discourse\nparticipant Client\nparticipant Beatest\n\nDiscourse- Client:  Redirect to Client's SSO page with query params\nClient- Client:     If User not logged in, prompt for details and log in\n\nClient- Beatest:    forward query parameters to beatest SSO endpoint \nBeatest- Database:  verify user and check for course access\nBeatest- Client:    return URL with signed payload\nClient-- Discourse: redirect user to returned URL", 
+            "title": "Discourse SSO Flow"
+        }, 
+        {
+            "location": "/api-v0.1/Discourse/index.html#integration-with-discourse", 
+            "text": "In order to sync data between Discourse and Beatest, we currently use the\nfollowing Discourse hooks/APIs.   SSO Login (See Below)  Add User to Group. PUT https://forums.beatest.in/groups/{group_id}/members.json \nThere are forum subcategories that require a User to purchase certain items. \nWhen the purchase is made, the api is used to allow the user access to that\nsubcategory.", 
+            "title": "Integration with Discourse"
+        }, 
+        {
+            "location": "/api-v0.1/Discourse/index.html#discourse-api-reference", 
+            "text": "", 
+            "title": "Discourse API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/Discourse/index.html#sso-login", 
+            "text": "In order to verify that a User has access to restricted groups, and also \nverify if he has an account on Beatest, a special SSO endpoint exists.    POST /discourse_sso", 
+            "title": "SSO Login"
+        }, 
+        {
+            "location": "/api-v0.1/Discourse/index.html#request", 
+            "text": "During redirect from Discourse to the Webpage, query parameters with \nsigned data will be sent. \nThese query parameters will need to be forwarded to this endpoint \nwithout any tampering.", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Discourse/index.html#response", 
+            "text": "{ \n     url :   https://forums.beatest.in/session/sso_login?...    #   A   long   URL  }    After the URL is returned from this endpoint, the Client must redirect to that URL. \nThis will take him to the forum and give him access to the contents that he paid for.", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/FileUploads/index.html", 
+            "text": "File Uploads\n\n\nIn order to support file uploads, we use AWS S3. All files uploaded by \nusers are stored S3. \n\n\nTo prevent conflicts from system libraries, we name our files 'blobs'.\nThese two terms may be used interchangebly.\n\n\nFile Database Table\n\n\n\n\n\n\n\n\nField Name\n\n\nField Type\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nid\n\n\nint\n\n\nunique identifier for the file\n\n\n\n\n\n\nuser_id\n\n\nint FK to id in User Table\n\n\nthe id of the User that uploaded the file\n (\nnull\n indicates file was uploaded by the system)\n\n\n\n\n\n\ns3_link\n\n\nvarchar (512)\n\n\nthe full s3 url for the file.\n\n\n\n\n\n\nmime_type\n\n\nvarchar (255)\n\n\nMIME type of the file (E.g. \napplication/pdf\n)\n\n\n\n\n\n\ncreated_date\n\n\ndatetime\n\n\ntime when the file was created\n\n\n\n\n\n\nupdated_date\n\n\n`datetime\n\n\ntime when the file was updated\n\n\n\n\n\n\n\n\nNotes\n\n\nThe s3 link should not be returned to users directly. A signed url using cloudfront should be created and that url should be sent.\nSending the s3 link directly will always give a permission denied error at the client.\n\n\nFile Upload Process\n\n\nThe client uploads the files as a `Multipart request to Beatest. \nThe Beatest server verifies the file based on its mime type and if all validation \nsucceeds, it then uploads the file to aws s3. \n\n\nWhen this file is required in the future, only the s3 link is sent to the client. \nThe client needs to fetch the file from s3 directly. \n\n\nNote\n This s3 link is a signed url with a timeout value. After some duration, \nthe file will not be accessible anymore.\n\n\nsequenceDiagram\nparticipant client\nparticipant Beatest\nparticipant Database\nparticipant AWS\n\nclient-\nBeatest:   Upload file along with other data\nBeatest-\nDatabase: Calculate amount \n Create New Order\nBeatest-\nAWS:      Upload file to s3\nBeatest-\nDatabase: Add row in Files Table with s3 link \nBeatest--\nclient:  return response\n\n\n\nDesign Guidelines\n\n\nWe exclusively use JSON to communicate between client and server.\n\n\nTo make things consistent yet atomic , all requests that involve \nfiles will be sent as \nMultipart\n.\n\n\nThe various parts of the \nMultipart\n request are given below.\n\n\n\n\n\n\nThere will always be a \nbody\n key.\n\nRegardless whether additional metadata needs to be sent or not, there has to be \na part containing the \nbody\n key. This key will contain \nJSON\n in string form and\nmay contain various metadata about the file.\n\n\n\n\n\n\nThere will always be a \nfile\n key.\nThe value of this key will contain the file itself. \n\n\n\n\n\n\nUnder the \nbody\n from 1. there will be one key with the value of \nfile\n.\n\nNote that this is the literal value 'file' and not the data of the file from 2.\nThis reference will tell the server that that particular key references the file from 2.\n\n\n\n\n\n\nAdditional files can also be present as additional parts. \n\nThey need to be in the form \nfile_1\n,\nfile_2\n... \nfile_N\n. For each file , there\nmust be one key which refers to that file.  \n\n\n\n\n\n\nExamples\n\n\nA single file upload.\n\n\n\n\nPOST /some_random_endpoint/thatdoesntexist\n\n\nRequest\n\n\nPart 1\n\n\nNote\n The value of body is actually a string.\n\nbody\n \n=\n \n{\n   \nsome_key\n \n:\n \n23\n \n,\n\n            \nsome_other_kwy\n:\n \nstring_value\n \n,\n\n            \nimage\n:\n \nfile\n \n        \n}\n\n\n\n\nPart 2\n\n\nNote\n 'file' is referred to this file in part 1\n\nfile\n \n=\n \nthe\n \nfile\n \nfrom\n \nthe\n \nclient\n\n\n\n\n\n\nEndpoints that have multiple uploads\n\n\n\n\nPOST /some_random_endpoint/thatdoesntexist\n\n\nRequest\n\n\nPart 1\n\n\nNote\n The value of body is actually a string.\n\nbody\n \n=\n \n{\n   \nsome_key\n \n:\n \n23\n \n,\n\n            \nsome_other_kwy\n:\n \nstring_value\n \n,\n\n            \nimage\n:\n \nfile\n \n,\n  \n#\n \nfirst\n \nfile\n \nstill\n \nnamed\n \nfile\n\n            \nvideo\n:\n \nfile_1\n  \n#\n \n2\nnd\n \nfile\n \nstarts\n \nwith\n \n1\n\n        \n}\n\n\n\n\nPart 2\n\n\nfile\n   \n=\n \nthe\n \nfirst\n \nfile\n \nfrom\n \nthe\n \nclient\n\n\n\n\n\nPart 3\n\n\nfile_\n1\n \n=\n \nthe\n \n2\nnd\n \nfile\n \nfrom\n \nthe\n \nclient", 
+            "title": "File Uploads"
+        }, 
+        {
+            "location": "/api-v0.1/FileUploads/index.html#file-uploads", 
+            "text": "In order to support file uploads, we use AWS S3. All files uploaded by \nusers are stored S3.   To prevent conflicts from system libraries, we name our files 'blobs'.\nThese two terms may be used interchangebly.", 
+            "title": "File Uploads"
+        }, 
+        {
+            "location": "/api-v0.1/FileUploads/index.html#file-database-table", 
+            "text": "Field Name  Field Type  Description      id  int  unique identifier for the file    user_id  int FK to id in User Table  the id of the User that uploaded the file  ( null  indicates file was uploaded by the system)    s3_link  varchar (512)  the full s3 url for the file.    mime_type  varchar (255)  MIME type of the file (E.g.  application/pdf )    created_date  datetime  time when the file was created    updated_date  `datetime  time when the file was updated     Notes  The s3 link should not be returned to users directly. A signed url using cloudfront should be created and that url should be sent.\nSending the s3 link directly will always give a permission denied error at the client.", 
+            "title": "File Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/FileUploads/index.html#file-upload-process", 
+            "text": "The client uploads the files as a `Multipart request to Beatest. \nThe Beatest server verifies the file based on its mime type and if all validation \nsucceeds, it then uploads the file to aws s3.   When this file is required in the future, only the s3 link is sent to the client. \nThe client needs to fetch the file from s3 directly.   Note  This s3 link is a signed url with a timeout value. After some duration, \nthe file will not be accessible anymore.  sequenceDiagram\nparticipant client\nparticipant Beatest\nparticipant Database\nparticipant AWS\n\nclient- Beatest:   Upload file along with other data\nBeatest- Database: Calculate amount   Create New Order\nBeatest- AWS:      Upload file to s3\nBeatest- Database: Add row in Files Table with s3 link \nBeatest-- client:  return response", 
+            "title": "File Upload Process"
+        }, 
+        {
+            "location": "/api-v0.1/FileUploads/index.html#design-guidelines", 
+            "text": "We exclusively use JSON to communicate between client and server.  To make things consistent yet atomic , all requests that involve \nfiles will be sent as  Multipart .  The various parts of the  Multipart  request are given below.    There will always be a  body  key. Regardless whether additional metadata needs to be sent or not, there has to be \na part containing the  body  key. This key will contain  JSON  in string form and\nmay contain various metadata about the file.    There will always be a  file  key.\nThe value of this key will contain the file itself.     Under the  body  from 1. there will be one key with the value of  file . \nNote that this is the literal value 'file' and not the data of the file from 2.\nThis reference will tell the server that that particular key references the file from 2.    Additional files can also be present as additional parts.  \nThey need to be in the form  file_1 , file_2 ...  file_N . For each file , there\nmust be one key which refers to that file.", 
+            "title": "Design Guidelines"
+        }, 
+        {
+            "location": "/api-v0.1/FileUploads/index.html#examples", 
+            "text": "A single file upload.   POST /some_random_endpoint/thatdoesntexist", 
+            "title": "Examples"
+        }, 
+        {
+            "location": "/api-v0.1/FileUploads/index.html#request", 
+            "text": "Part 1  Note  The value of body is actually a string. body   =   {     some_key   :   23   , \n             some_other_kwy :   string_value   , \n             image :   file  \n         }   Part 2  Note  'file' is referred to this file in part 1 file   =   the   file   from   the   client    Endpoints that have multiple uploads   POST /some_random_endpoint/thatdoesntexist", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/FileUploads/index.html#request_1", 
+            "text": "Part 1  Note  The value of body is actually a string. body   =   {     some_key   :   23   , \n             some_other_kwy :   string_value   , \n             image :   file   ,    #   first   file   still   named   file \n             video :   file_1    #   2 nd   file   starts   with   1 \n         }   Part 2  file     =   the   first   file   from   the   client   Part 3  file_ 1   =   the   2 nd   file   from   the   client", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html", 
+            "text": "Orders APIs\n\n\nAn Order is the fundamental method with which a User can buy products from \nBeatest. We use Razorpay as our Payment provider.\n\n\nDatabase Table\n\n\nColleges will be represented in the database like below\n\n\n\n\n\n\n\n\nField Name\n\n\nData Type\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nid\n\n\nint (PK)\n\n\nUnique Identifier for Order\n\n\n\n\n\n\nrp_order_id\n\n\nstring, Unique\n\n\nRazorpay Order ID\n\n\n\n\n\n\nstatus\n\n\n(Enum)\n\n\nRazorpay Order Status\n\n\n\n\n\n\namount\n\n\nFloat\n\n\nOrder Amount (After promo code was applied)\n\n\n\n\n\n\npromo_code_id\n\n\nint\n\n\nFK to id in Promo Code table\n\n\n\n\n\n\nuser_id\n\n\nint\n\n\nFK to id in User table\n\n\n\n\n\n\ncreated_date\n\n\ndatetime\n\n\nOrder Creation date\n\n\n\n\n\n\nupdated_date\n\n\ndatetime\n\n\nOrder Update date (Status changes)\n\n\n\n\n\n\n\n\nStatus Type\n\n\n\n\n\n\n\n\nValue\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\ncreated\n\n\nOrder has been freshly created\n\n\n\n\n\n\nattempted\n\n\nPayment was attempted, but did not succeed\n\n\n\n\n\n\npaid\n\n\nPayment successfully fulfilled\n\n\n\n\n\n\ncancelled\n\n\nPayment was cancelled (Can only be cancelled if not Paid)\n\n\n\n\n\n\n\n\nOrder Process\n\n\nOrdering a collection of Items involves Two steps: Order Creation and Status Update. \nThe Order Creation step is as follows. \n\nsequenceDiagram\nparticipant client\nparticipant Beatest\nparticipant Database\nparticipant RazorPay\n\nclient-\nBeatest:    Request new Order\nBeatest-\nDatabase:  Calculate amount \n Create New Order\nBeatest-\nRazorPay:  Request new Razorpay Order\nRazorPay--\nBeatest: Get Unique Razorpay Order id\nBeatest-\nDatabase:  Update Order with  Razorpay Order id\nBeatest--\nclient:  Return Order Id \n Razorpay Order id\nclient-\nRazorPay: Make payment using Razorpay Order id\n\nAfter making an Order, the User needs to inform Beatest that he has made a Payment.\nBeatest will then check if that is true (if money was successfully transferred).\n\n\nIf it is true, then the Order status will be set to paid.\n\n\nThe Order Status update step is as follows:\n\nsequenceDiagram\nparticipant client\nparticipant Beatest\nparticipant Database\nparticipant RazorPay\n\nclient-\nBeatest: Request Order Status Update\nBeatest-\nRazorPay: Request Order status Update\nRazorPay--\nBeatest: Return Order Status\nBeatest-\nDatabase: Update new Order status\n\nBeatest--\nclient: Return new Order Status\n\n\n\nAPI Reference\n\n\nGet User Orders \n\n\nGet list of Orders for a User. Status based filter is allowed.\n\n\n\n\nGET /orders\n\n\nSupported Query Params\n\n\n\n\n\n\n\n\nKey\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nstatus\n\n\nstring\n Order's Payment status\n\n\n\n\n\n\n\n\nResponse\n\n\nThe response structure is the same as \n\nGET /orders/:id\n. The difference is that in this case, an array of orders\nwill be returned.\n\n[\n\n    \n{\n\n        \nid\n:\n \n3\n,\n\n        \nrp_order_id\n:\n \norder_1928393\n,\n\n        \nstatus\n:\n \ncreated\n,\n\n        \namount\n:\n \n100.00\n,\n\n        \ncreated_date\n:\n \n23/02/2018\n,\n\n        \ntests\n:\n \n[\n\n                     \n{\n \nid\n:\n21\n \n},\n\n                     \n{\n \nid\n:\n81\n}\n\n                 \n],\n\n        \ncourses\n:\n \n[]\n\n    \n},\n\n    \n{\n\n        \nid\n:\n \n31\n,\n\n        \nrp_order_id\n:\n \norder_19281293\n,\n\n        \nstatus\n:\n \ncreated\n,\n\n        \namount\n:\n \n100.00\n,\n\n        \ncreated_date\n:\n \n23/02/2018\n,\n\n        \ntests\n:\n \n[\n\n                     \n{\n \nid\n:\n21\n \n},\n\n                     \n{\n \nid\n:\n81\n}\n\n                 \n],\n\n        \ncourses\n:\n \n[]\n\n    \n}\n\n\n]\n\n\n\n\n\n\nGet User Order \n\n\nGet Details for a single User.\n\n\n\n\nGET /orders/:id\n\n\nid\n \n identifier for the order \n\n\nResponse\n\n\nApart from standard keys , the response will also contain\n\ntests\n and \ncourses\n. If the order had no tests or courses,\nthat particular key will have an empty array.\nThe keys will be an array of objects, with only the \nid\n key of each object\npresent.\n\n{\n\n    \nid\n:\n \n3\n,\n\n    \nrp_order_id\n:\n \norder_1928393\n,\n\n    \nstatus\n:\n \npaid\n,\n\n    \namount\n:\n \n100.00\n,\n\n    \npromo_code_id\n:\n \n1\n,\n\n    \nuser_id\n:\n \n137\n,\n\n    \ncreated_date\n:\n \n23/02/2018\n,\n\n    \nupdated_date\n:\n \n24/02/2018\n,\n\n    \ntests\n:\n \n[\n\n                  \n{\n \nid\n:\n21\n \n},\n\n                  \n{\n \nid\n:\n81\n}\n\n              \n],\n\n    \ncourses\n:\n \n[]\n\n\n}\n\n\n\n\n\n\nCreate User Order \n\n\nOrder creation will do the following:\n\n\n\n\nCalculate Total Amount of Items (Tests, Courses, etc.)\n\n\nIf \npromo code\n is provided, validate it, and subtract the amount\nassociated with it.\n\n\nCreate Razorpay Order ID and Insert Order\n\n\nStore Order ID and Item ID in the respective Item Order table\n\n\n\n\ne.g., Test IDs will be stored in OrderTest table against the generated Order ID\n\n\n\n\nPOST /orders\n\n\nInfo\n\n\nOrder will be created with Razorpay and passed back to Client. This will be\nused by Client to accept User's payment. Once paid, below endpoint will be\ncalled by Client to notify server about payment \n to do verification.\n\n\nRequest\n\n\nThe request requires either the \ntests\n or \ncourses\n (or both) to be present.\nIf they are present, they must be a list containing the ids for the item that \nthe user wants to purchase.\n\n\n{\n\n    \ntests\n:\n \n[\n1\n,\n2\n,\n3\n,\n5\n],\n\n    \npromo_code\n:\n \nBTT01\n\n\n}\n\n\n\n\n\nResponse\n\n\n{\n\n    \nid\n:\n \n1\n,\n\n    \nrp_order_id\n:\n \norder_1928393\n\n\n}\n\n\n\n\nHTTP 200\n Order created \n\n\nHTTP 400\n Order failed - Invalid PromoCode (any other reason?)\n\n\n\n\nCancel Order \n\n\nA user has the option to cancel an order that he has placed. \nHe can only cancel an Order if it is not marked as paid.\n\n\n\n\nPOST /orders/:id/cancel\n\n\n\n\nUpdate Order - Payment Status \n\n\nAfter the Order is created, the User proceeds to paying using his bank details.\nAfter successful payment , the User inform Beatest server that payment has been\nmade. Beatest server will then check if thats true , and if it is, the order\nstatus will be set to paid.\n\n\nInfo\n\n\nIf status of Order is paid then, User will be able to access all items that he\npaid for.\n\n\n\n\nPUT /orders/:rp_order_id/status\n\n\nrp_order_id\n -\n the razor pay order id that was received during order \ncreation\n\n\nResponse\n\n\n{\n\n    \nstatus\n:\n \npaid\n  \n#\n \nreturns\n \nthe\n \nupdated\n \nstatus\n\n\n}\n\n\n\n\n\n\n\nIf the new updated status is \npaid\n, a signal to \nDiscourse\n is sent to allow the user \naccess to all the course forums (if any).", 
+            "title": "Orders"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#orders-apis", 
+            "text": "An Order is the fundamental method with which a User can buy products from \nBeatest. We use Razorpay as our Payment provider.", 
+            "title": "Orders APIs"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#database-table", 
+            "text": "Colleges will be represented in the database like below     Field Name  Data Type  Description      id  int (PK)  Unique Identifier for Order    rp_order_id  string, Unique  Razorpay Order ID    status  (Enum)  Razorpay Order Status    amount  Float  Order Amount (After promo code was applied)    promo_code_id  int  FK to id in Promo Code table    user_id  int  FK to id in User table    created_date  datetime  Order Creation date    updated_date  datetime  Order Update date (Status changes)     Status Type     Value  Description      created  Order has been freshly created    attempted  Payment was attempted, but did not succeed    paid  Payment successfully fulfilled    cancelled  Payment was cancelled (Can only be cancelled if not Paid)", 
+            "title": "Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#order-process", 
+            "text": "Ordering a collection of Items involves Two steps: Order Creation and Status Update. \nThe Order Creation step is as follows.  sequenceDiagram\nparticipant client\nparticipant Beatest\nparticipant Database\nparticipant RazorPay\n\nclient- Beatest:    Request new Order\nBeatest- Database:  Calculate amount   Create New Order\nBeatest- RazorPay:  Request new Razorpay Order\nRazorPay-- Beatest: Get Unique Razorpay Order id\nBeatest- Database:  Update Order with  Razorpay Order id\nBeatest-- client:  Return Order Id   Razorpay Order id\nclient- RazorPay: Make payment using Razorpay Order id \nAfter making an Order, the User needs to inform Beatest that he has made a Payment.\nBeatest will then check if that is true (if money was successfully transferred).  If it is true, then the Order status will be set to paid.  The Order Status update step is as follows: sequenceDiagram\nparticipant client\nparticipant Beatest\nparticipant Database\nparticipant RazorPay\n\nclient- Beatest: Request Order Status Update\nBeatest- RazorPay: Request Order status Update\nRazorPay-- Beatest: Return Order Status\nBeatest- Database: Update new Order status\n\nBeatest-- client: Return new Order Status", 
+            "title": "Order Process"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#get-user-orders", 
+            "text": "Get list of Orders for a User. Status based filter is allowed.   GET /orders", 
+            "title": "Get User Orders"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#supported-query-params", 
+            "text": "Key  Description      status  string  Order's Payment status", 
+            "title": "Supported Query Params"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#response", 
+            "text": "The response structure is the same as  GET /orders/:id . The difference is that in this case, an array of orders\nwill be returned. [ \n     { \n         id :   3 , \n         rp_order_id :   order_1928393 , \n         status :   created , \n         amount :   100.00 , \n         created_date :   23/02/2018 , \n         tests :   [ \n                      {   id : 21   }, \n                      {   id : 81 } \n                  ], \n         courses :   [] \n     }, \n     { \n         id :   31 , \n         rp_order_id :   order_19281293 , \n         status :   created , \n         amount :   100.00 , \n         created_date :   23/02/2018 , \n         tests :   [ \n                      {   id : 21   }, \n                      {   id : 81 } \n                  ], \n         courses :   [] \n     }  ]", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#get-user-order", 
+            "text": "Get Details for a single User.   GET /orders/:id  id    identifier for the order", 
+            "title": "Get User Order"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#response_1", 
+            "text": "Apart from standard keys , the response will also contain tests  and  courses . If the order had no tests or courses,\nthat particular key will have an empty array.\nThe keys will be an array of objects, with only the  id  key of each object\npresent. { \n     id :   3 , \n     rp_order_id :   order_1928393 , \n     status :   paid , \n     amount :   100.00 , \n     promo_code_id :   1 , \n     user_id :   137 , \n     created_date :   23/02/2018 , \n     updated_date :   24/02/2018 , \n     tests :   [ \n                   {   id : 21   }, \n                   {   id : 81 } \n               ], \n     courses :   []  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#create-user-order", 
+            "text": "Order creation will do the following:   Calculate Total Amount of Items (Tests, Courses, etc.)  If  promo code  is provided, validate it, and subtract the amount\nassociated with it.  Create Razorpay Order ID and Insert Order  Store Order ID and Item ID in the respective Item Order table   e.g., Test IDs will be stored in OrderTest table against the generated Order ID   POST /orders", 
+            "title": "Create User Order"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#info", 
+            "text": "Order will be created with Razorpay and passed back to Client. This will be\nused by Client to accept User's payment. Once paid, below endpoint will be\ncalled by Client to notify server about payment   to do verification.", 
+            "title": "Info"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#request", 
+            "text": "The request requires either the  tests  or  courses  (or both) to be present.\nIf they are present, they must be a list containing the ids for the item that \nthe user wants to purchase.  { \n     tests :   [ 1 , 2 , 3 , 5 ], \n     promo_code :   BTT01  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#response_2", 
+            "text": "{ \n     id :   1 , \n     rp_order_id :   order_1928393  }   HTTP 200  Order created   HTTP 400  Order failed - Invalid PromoCode (any other reason?)", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#cancel-order", 
+            "text": "A user has the option to cancel an order that he has placed. \nHe can only cancel an Order if it is not marked as paid.   POST /orders/:id/cancel", 
+            "title": "Cancel Order"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#update-order-payment-status", 
+            "text": "After the Order is created, the User proceeds to paying using his bank details.\nAfter successful payment , the User inform Beatest server that payment has been\nmade. Beatest server will then check if thats true , and if it is, the order\nstatus will be set to paid.", 
+            "title": "Update Order - Payment Status"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#info_1", 
+            "text": "If status of Order is paid then, User will be able to access all items that he\npaid for.   PUT /orders/:rp_order_id/status  rp_order_id  -  the razor pay order id that was received during order \ncreation", 
+            "title": "Info"
+        }, 
+        {
+            "location": "/api-v0.1/Orders/index.html#response_3", 
+            "text": "{ \n     status :   paid    #   returns   the   updated   status  }    If the new updated status is  paid , a signal to  Discourse  is sent to allow the user \naccess to all the course forums (if any).", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html", 
+            "text": "Promo Code APIs\n\n\nFor marketing purposes, items can be purchased at discounted rates.\nTo allow for this, we support PromoCodes. \n\n\nA promo code is supposed to be hidden , that is why all promo codes should not be \nlistable openly.\n\n\nA particular PromoCode can only be used once by any particular user.\n\n\nUsing a PromoCode during checkout   will reduce the \nOrder\n amount \nby the value associated with the promocode.\n\n\nDatabase Table\n\n\nPromo Codes are currently represented in the database like below\n\n\n\n\n\n\n\n\nField Name\n\n\nData Type\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nid\n\n\nint (PK)\n\n\nUnique identifier for Promo Code\n\n\n\n\n\n\npromo_code\n\n\nvarchar(50)\n\n\nPromo Code Name\n\n\n\n\n\n\npromo_value\n\n\nvarchar(50)\n\n\nMonetary Value of Promo Code\n\n\n\n\n\n\npromo_used\n\n\nint\n\n\nCount of Promo Code usage\n\n\n\n\n\n\npromo_max_usage\n\n\nint\n\n\nMaximum Usage Count allowed\n\n\n\n\n\n\npromo_valid\n\n\ntinyint(1)\n\n\nIf Promo Code is Valid\n\n\n\n\n\n\npromo_multiple_use\n\n\ntinyint(1)\n\n\nAllows multiple usage of Promo Code by a User\n\n\n\n\n\n\n\n\nAPI Reference\n\n\nValidate Promo Code \n\n\nChecks validity of Promo Code by checking if it is active, hasn't already been used by the User and hasn't exceeded the Max usage.\n\n\n\n\nPOST /promo_codes/:promoId/validate\n\n\npromoID\n:\n \nstring\n: the Id of the promo code to Update.\n\n\nResponse [1]\n\n\nIf promo code can be used, an \nHTTP 200\n response with \nthe value of the promo code will be returned.\n\n{\n\n    \npromo_value\n:\n \n20\n,\n    \n#\n \nmonetary\n \nvalue\n \nfor\n \nthe\n \npromo\n \ncode\n\n\n}\n\n\n\n\nResponse [2]\n\n\nIf promo code cannot be used, an \nHTTP 400\n (Error Object) will be returned\n\n{\n\n    \nmessage\n:\n \nInvalid Promo Code\n\n\n}\n\n\n\n\n\n\nAdmin \n Get Promo Code Details \n\n\nGet details of a particular promo code  by ID\n\n\n\n\nGET /promo_codes/:promoId\n\n\npromoID\n:\n \nstring\n: the Id of the promo code to get details for.\nThis id is a globally unique identifier for that promo code. \n\n\nResponse\n\n\n{\n\n    \npromo_code\n:\n \nBTT012\n,\n       \n#\n \nthe\n \nid\n \nthat\n \nwas\n \nqueried\n \nfor\n\n    \npromo_value\n:\n \n20\n,\n            \n#\n \nmonetary\n \nvalue\n \nfor\n \nthat\n \npromo\n \ncode\n\n    \npromo_used\n:\n \n12\n,\n             \n#\n \ncount\n \nof\n \npromo\n \ncode\n \nusage\n\n    \npromo_max_usage\n:\n \n50\n,\n        \n#\n \nmaximum\n \ncount\n \nof\n \npromo\n \ncode\n \nusage\n\n    \npromo_valid\n:\n \nTrue\n,\n          \n#\n \nwhether\n \npromo\n \ncode\n \nis\n \nactive\n\n    \npromo_multiple_usage\n:\n \nFalse\n \n#\n \nwhether\n \npromo\n \ncode\n \ncan\n \nbe\n \nused\n \nmore\n \nthan\n \nonce\n \nby\n \na\n \nuser\n\n\n}\n\n\n\n\n\n\n\nAdmin \n Create PromoCode \n\n\nRegister a promo code offer by giving the details.\n\n\n\n\nPOST /admin/promo_codes\n\n\nRequest\n\n\n{\n\n    \npromo_code\n:\n \nBTT012\n,\n       \n#\n \nthe\n \nid\n \nfor\n \nthe\n \npromo\n \ncode.\n \nHas\n \nto\n \nbe\n \na\n \nnew\n \nid\n\n    \npromo_value\n:\n \n20\n,\n            \n#\n \nmonetary\n \nvalue\n \nfor\n \nthat\n \npromo\n \ncode\n\n    \npromo_used\n:\n \n12\n,\n             \n#\n \ncount\n \nof\n \npromo\n \ncode\n \nusage\n\n    \npromo_max_usage\n:\n \n50\n,\n        \n#\n \nmaximum\n \ncount\n \nof\n \npromo\n \ncode\n \nusage\n\n    \npromo_valid\n:\n \nTrue\n,\n          \n#\n \nwhether\n \npromo\n \ncode\n \nis\n \nactive\n\n    \npromo_multiple_usage\n:\n \nFalse\n \n#\n \nwhether\n \npromo\n \ncode\n \ncan\n \nbe\n \nused\n \nmore\n \nthan\n \nonce\n \nby\n \na\n \nuser\n\n\n}\n\n\n\n\n\n\n\nAdmin \n Update Promo Code \n\n\nUpdate the values of an existing promo code \n\n\n\n\nPUT /admin/promo_codes/:promoId\n\n\npromoID\n:\n \nstring\n: the Id of the promo code to Update.\n    This id is a globally unique identifier for that promo code. \n\n\nRequest\n\n\n{\n\n    \npromo_value\n:\n \n20\n,\n            \n#\n \nmonetary\n \nvalue\n \nfor\n \nthat\n \npromo\n \ncode\n\n    \npromo_max_usage\n:\n \n50\n,\n        \n#\n \nmaximum\n \ncount\n \nof\n \npromo\n \ncode\n \nusage\n\n    \npromo_valid\n:\n \nTrue\n,\n          \n#\n \nwhether\n \npromo\n \ncode\n \nis\n \nactive\n\n    \npromo_multiple_usage\n:\n \nFalse\n \n#\n \nwhether\n \npromo\n \ncode\n \ncan\n \nbe\n \nused\n \nmore\n \nthan\n \nonce\n \nby\n \na\n \nuser\n\n\n}", 
+            "title": "Promo Codes"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html#promo-code-apis", 
+            "text": "For marketing purposes, items can be purchased at discounted rates.\nTo allow for this, we support PromoCodes.   A promo code is supposed to be hidden , that is why all promo codes should not be \nlistable openly.  A particular PromoCode can only be used once by any particular user.  Using a PromoCode during checkout   will reduce the  Order  amount \nby the value associated with the promocode.", 
+            "title": "Promo Code APIs"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html#database-table", 
+            "text": "Promo Codes are currently represented in the database like below     Field Name  Data Type  Description      id  int (PK)  Unique identifier for Promo Code    promo_code  varchar(50)  Promo Code Name    promo_value  varchar(50)  Monetary Value of Promo Code    promo_used  int  Count of Promo Code usage    promo_max_usage  int  Maximum Usage Count allowed    promo_valid  tinyint(1)  If Promo Code is Valid    promo_multiple_use  tinyint(1)  Allows multiple usage of Promo Code by a User", 
+            "title": "Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html#validate-promo-code", 
+            "text": "Checks validity of Promo Code by checking if it is active, hasn't already been used by the User and hasn't exceeded the Max usage.   POST /promo_codes/:promoId/validate  promoID :   string : the Id of the promo code to Update.", 
+            "title": "Validate Promo Code"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html#response-1", 
+            "text": "If promo code can be used, an  HTTP 200  response with \nthe value of the promo code will be returned. { \n     promo_value :   20 ,      #   monetary   value   for   the   promo   code  }", 
+            "title": "Response [1]"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html#response-2", 
+            "text": "If promo code cannot be used, an  HTTP 400  (Error Object) will be returned { \n     message :   Invalid Promo Code  }", 
+            "title": "Response [2]"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html#admin-get-promo-code-details", 
+            "text": "Get details of a particular promo code  by ID   GET /promo_codes/:promoId  promoID :   string : the Id of the promo code to get details for.\nThis id is a globally unique identifier for that promo code.", 
+            "title": "Admin --&gt; Get Promo Code Details"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html#response", 
+            "text": "{ \n     promo_code :   BTT012 ,         #   the   id   that   was   queried   for \n     promo_value :   20 ,              #   monetary   value   for   that   promo   code \n     promo_used :   12 ,               #   count   of   promo   code   usage \n     promo_max_usage :   50 ,          #   maximum   count   of   promo   code   usage \n     promo_valid :   True ,            #   whether   promo   code   is   active \n     promo_multiple_usage :   False   #   whether   promo   code   can   be   used   more   than   once   by   a   user  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html#admin-create-promocode", 
+            "text": "Register a promo code offer by giving the details.   POST /admin/promo_codes", 
+            "title": "Admin --&gt; Create PromoCode"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html#request", 
+            "text": "{ \n     promo_code :   BTT012 ,         #   the   id   for   the   promo   code.   Has   to   be   a   new   id \n     promo_value :   20 ,              #   monetary   value   for   that   promo   code \n     promo_used :   12 ,               #   count   of   promo   code   usage \n     promo_max_usage :   50 ,          #   maximum   count   of   promo   code   usage \n     promo_valid :   True ,            #   whether   promo   code   is   active \n     promo_multiple_usage :   False   #   whether   promo   code   can   be   used   more   than   once   by   a   user  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html#admin-update-promo-code", 
+            "text": "Update the values of an existing promo code    PUT /admin/promo_codes/:promoId  promoID :   string : the Id of the promo code to Update.\n    This id is a globally unique identifier for that promo code.", 
+            "title": "Admin --&gt; Update Promo Code"
+        }, 
+        {
+            "location": "/api-v0.1/PromoCodes/index.html#request_1", 
+            "text": "{ \n     promo_value :   20 ,              #   monetary   value   for   that   promo   code \n     promo_max_usage :   50 ,          #   maximum   count   of   promo   code   usage \n     promo_valid :   True ,            #   whether   promo   code   is   active \n     promo_multiple_usage :   False   #   whether   promo   code   can   be   used   more   than   once   by   a   user  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html", 
+            "text": "Tests\n\n\nTests make up the core unit of Beatest. They need to be purchased by the user. \nEach test can have many \nSections\n, and each sections can have many \nQuestions\n.\n\n\nA user may have multiple attempts on the same test, but at any given point \nin time, there can be at \nat most 1\n active test. \n\n\nAn active test is a test for which the \nis_complete\n attribute is \nfalse\n.\nIf there are multiple test attempts by the same user for the same test,\n   the \nis_complete\n attribute of all but 1 must be \ntrue\n.\n\n\nDatabase Table\n\n\nTests are currently represented in the database like below\n\n\n\n\n\n\n\n\nField Name\n\n\nData Type\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nid\n\n\nint (PK)\n\n\nUnique identifier for test\n\n\n\n\n\n\nleaderboard_id\n\n\nint (FK to id in leaderboard table)\n\n\nNOT SURE\n\n\n\n\n\n\nname\n\n\nvarchar (50)\n\n\nName of test\n\n\n\n\n\n\ncreated_date\n\n\ndatetime\n\n\nWhen it was created (by the admin)\n\n\n\n\n\n\nis_active\n\n\ntinyint(1)\n\n\nIs the test active\n\n\n\n\n\n\ntype\n\n\nvarchar(50)\n\n\nIf possible to jump between sections(See below)\n\n\n\n\n\n\ncharacter\n\n\nvarchar(50)\n\n\nMock or Topic type test (See below)\n\n\n\n\n\n\nprice\n\n\nint(11)\n\n\nPrice of a test\n\n\n\n\n\n\ninstruction_html\n\n\nlongtext\n\n\nThe instruction html associated with the test\n\n\n\n\n\n\n\n\nTest Types\n\n\nA Test 'type', can be \nCAT\n , \nCollege\n or \nIBPS\n. \n\n\nIt is possible to jump between sections in any non \nCAT\n types exams. There\nis also no section time limit for these tests.\n\n\nFor \nCAT\n, the current section is locked once the time is up (each section has its own time limit), or when the user submits that section. It will not be\naccessible after that.\n\n\nTest Character\n\n\nA Test can have one of two 'characters' : \nMock\n and \nTopic\n. \n\n\nActive/Inactive Tests\n\n\nA Test can be active or inactive. If it is Inactive, a user cannot take the test. It will also not show up to the user. \n\n\nAPI Reference\n\n\nGet List of Tests \n\n\nGet information about all tests in the system. \nNote that this does NOT return Sections or Questions.\nIt is meant to return general information about tests so that it can be 'browsed' from UI.\n\n\nThis will only list active tests\n\n\n\n\nGET /tests\n\n\nSupported Query Params\n\n\n\n\n\n\n\n\nKey\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\ntype\n\n\nstring\n the \ntype\n of the test to filter by\n\n\n\n\n\n\ncharacter\n\n\nstring\n the \ncharacter\n of the test to filter by\n\n\n\n\n\n\n\n\nis_purchased\n will be \nfalse\n for not logged in Users\n\n\nResponse\n\n\n[\n\n    \n{\n\n        \nid\n:\n \n12\n,\n                 \n#\n \ntest\n \nid\n \nis\n \nglobally\n \nunique\n\n        \nname\n:\n \ntest1\n,\n          \n#\n \nname\n \nof\n \nthe\n \ntest\n\n        \ntype\n:\n \nCAT\n,\n   \n        \nis_purchased\n:\n \nfalse\n,\n    \n#\n \nwhether\n \nor\n \nnot\n \nthe\n \nuser\n \nhas\n \npurchased\n \nthis\n \ntest\n \n                                  \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n \n\n        \nis_complete\n:\n \nfalse\n,\n     \n#\n \nwhether\n \nor\n \nnot\n \nthe\n \nuser\n \nhas\n \ncompleted\n \nthe\n \ntest\n\n                                  \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n \n        \ncharacter\n:\n \nMock\n,\n      \n#\n \ncan\n \nbe\n \nmock\n \nor\n \ntopic\n \n        \nprice\n:\n \n99\n,\n\n        \ntotal_time\n:\n \n18000\n,\n      \n#\n \ntotal\n \ntime\n \nof\n \ntest\n \nin\n \nseconds\n\n                                  \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n\n        \nsection_count\n:\n \n3\n,\n       \n#\n \nnumber\n \nof\n \nsections\n \nin\n \ntest\n\n        \nquesiton_count\n:\n \n38\n,\n      \n#\n \nnumber\n \nof\n \nquestions\n \nin\n \ntest\n\n                                  \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n\n    \n},\n\n    \n{\n\n        \nid\n:\n \n14\n,\n                 \n#\n \ntest\n \nid\n \nis\n \nglobally\n \nunique\n\n        \nname\n:\n \ntest2\n,\n          \n#\n \nname\n \nof\n \nthe\n \ntest\n\n        \ntype\n:\n \nCAT\n,\n\n        \nis_purchased\n:\n \ntrue\n,\n     \n#\n \nwhether\n \nor\n \nnot\n \nthe\n \nuser\n \nhas\n \npurchased\n \nthis\n \ntest\n \n                                  \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n \n\n        \nis_complete\n:\n \ntrue\n,\n     \n#\n \nwhether\n \nor\n \nnot\n \nthe\n \nuser\n \nhas\n \ncompleted\n \nthe\n \ntest\n\n                                  \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n \n        \ncharacter\n:\n \nMock\n,\n      \n#\n \ncan\n \nbe\n \nmock\n \nor\n \ntopic\n \n        \nprice\n:\n \n99\n,\n\n        \ntotal_time\n:\n \n18000\n,\n      \n#\n \ntotal\n \ntime\n \nof\n \ntest\n \nin\n \nseconds\n\n                                  \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n\n        \nsection_count\n:\n \n3\n,\n       \n#\n \nnumber\n \nof\n \nsections\n \nin\n \ntest\n\n        \nquesiton_count\n:\n \n81\n,\n      \n#\n \nnumber\n \nof\n \nquestions\n \nin\n \ntest\n\n                                  \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n\n    \n}\n\n\n]\n\n\n\n\n\n\n\nGet College Tests :white_check_mark\n\n\nGet information about all tests specific to colleges in the system. \nNote that this does NOT return Sections or Questions.\nIt is meant to return general information about tests so that it can be 'browsed' from UI.\n\n\nIf the user is not mapped to a college, all the tests of type COLLEGE from the \ntest table will be returned. The conditions for access to those tests are same as other tests. \n\n\nIf the user is mapped to a college, all the tests that are listed for his college only will be\ndisplayed. \nThe user may access that college if: \n1. That test is free (price = 0)\n2. That test is free for his college \n3. A payment has been made for that test for the user. \n\n\n\n\nGET /tests/college\n\n\nis_purchased\n will be \nfalse\n for not logged in Users\n\n\nResponse\n\n\n[\n\n    \n{\n\n        \nid\n:\n \n12\n,\n                 \n#\n \ntest\n \nid\n \nis\n \nglobally\n \nunique\n\n        \nname\n:\n \ntest1\n,\n          \n#\n \nname\n \nof\n \nthe\n \ntest\n\n        \ntype\n:\n \nCAT\n,\n   \n        \nis_purchased\n:\n \nfalse\n,\n    \n#\n \nwhether\n \nor\n \nnot\n \nthe\n \nuser\n \nhas\n \npurchased\n \nthis\n \ntest\n \n                                  \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n \n\n        \nis_complete\n:\n \nfalse\n,\n     \n#\n \nwhether\n \nor\n \nnot\n \nthe\n \nuser\n \nhas\n \ncompleted\n \nthe\n \ntest\n\n                                  \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n \n        \ncharacter\n:\n \nMock\n,\n      \n#\n \ncan\n \nbe\n \nmock\n \nor\n \ntopic\n \n        \nprice\n:\n \n99\n,\n\n    \n},\n\n    \n{\n\n        \nid\n:\n \n14\n,\n                 \n#\n \ntest\n \nid\n \nis\n \nglobally\n \nunique\n\n        \nname\n:\n \ntest2\n,\n          \n#\n \nname\n \nof\n \nthe\n \ntest\n\n        \ntype\n:\n \nCAT\n,\n\n        \nis_purchased\n:\n \ntrue\n,\n     \n#\n \nwhether\n \nor\n \nnot\n \nthe\n \nuser\n \nhas\n \npurchased\n \nthis\n \ntest\n \n                                  \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n \n\n        \nis_complete\n:\n \ntrue\n,\n      \n#\n \nwhether\n \nor\n \nnot\n \nthe\n \nuser\n \nhas\n \ncompleted\n \nthe\n \ntest\n\n                                  \n#\n \n(this\n \nis\n \nan\n \nartificially\n \ngenerated\n \nfield)\n \n        \ncharacter\n:\n \nMock\n,\n      \n#\n \ncan\n \nbe\n \nmock\n \nor\n \ntopic\n \n        \nprice\n:\n \n99\n,\n\n    \n}\n\n\n]\n\n\n\n\n\n\n\nGet Details of one test \n\n\nGet information about a single test. \nThis returns all the information (including \ninstruction_html\n) for the test id.\n\n\nThis requires the user to be logged in and have access to the Test.\n\n\n\n\nGET /tests/:testID\n\n\ntestID\n The id of the test.\n\n\nResponse\n\n\n    \n{\n\n        \nid\n:\n \n12\n,\n                 \n#\n \ntest\n \nid\n \nis\n \nglobally\n \nunique\n\n        \nname\n:\n \ntest1\n,\n          \n#\n \nname\n \nof\n \nthe\n \ntest\n\n        \ntype\n:\n \nCAT\n,\n   \n        \ninstruction_html\n:\n \nhtml\n/html\n \n#\n \nlong\n \nhtml\n \nof\n \nthe\n \ntest\n\n\n        \ncharacter\n:\n \nMock\n,\n      \n#\n \ncan\n \nbe\n \nmock\n \nor\n \ntopic\n \n        \nprice\n:\n \n99\n,\n\n    \n}\n\n\n\n\n\n\n\nAdmin \u2192 Add a Test\n\n\nAdd a Test to the system. Only to be performed by an admin. \n\n\nBy adding a Test, it only creates a row in the Test database, so \nsections belonging to the test (and questions belonging to those sections)\nshould be added after calling this endpoint.\n\n\n\n\nPOST /admin/tests\n\n\nRequest\n\n\n{\n\n    \nname\n:\n \ntest1\n,\n                      \n#\n \nname\n \nof\n \nthe\n \ntest\n\n    \ntype\n:\n \nCAT\n,\n\n    \ncharacter\n:\n \nMock\n,\n                  \n#\n \ncan\n \nbe\n \nmock\n \nor\n \ntopic\n\n    \nprice\n:\n \n99\n,\n\n    \nis_active\n:\n \ntrue\n,\n\n    \ninstruction_html\n:\n \nlong_html\n\n\n}\n\n\n\n\nNote:\n The \ncreated_date\n will be added automatically by the system\n\n\nResponse\n\n\n{\n\n    \nid\n:\n \n12\n\n\n}\n\n\n\n\n\n\n\nAdmin \u2192 Update a Test\n\n\nUpdate a Test to the system. Only to be performed by an admin.\n\n\nBy updating a Test, it updates the row in the Test database, so\nsections belonging to the test (and questions belonging to those sections)\ncan't be modified using this endpoint.\n\n\n\n\nPUT /admin/tests/:testId\n\n\nRequest\n\n\n{\n\n    \nname\n:\n \ntest1\n,\n                      \n#\n \nname\n \nof\n \nthe\n \ntest\n\n    \ntype\n:\n \nCAT\n,\n\n    \ncharacter\n:\n \nMock\n,\n                  \n#\n \ncan\n \nbe\n \nmock\n \nor\n \ntopic\n\n    \nprice\n:\n \n99\n,\n\n    \nis_active\n:\n \ntrue\n,\n\n    \ninstruction_html\n:\n \nlong_html\n\n\n}\n\n\n\n\n\n\n\nAdmin \u2192 Delete a Test\n\n\nDelete a Test to the system. Only to be performed by an admin.\n\n\nBy deleting a Test, it deletes the row in the Test database, and\n\nall the sections (and all the questions of each section) associated\nwith that test.\n\n\nIt is very unlikely that this this endpoint will be called. \n\n\n\n\nDELETE /admin/tests/:testId", 
+            "title": "Tests"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#tests", 
+            "text": "Tests make up the core unit of Beatest. They need to be purchased by the user. \nEach test can have many  Sections , and each sections can have many  Questions .  A user may have multiple attempts on the same test, but at any given point \nin time, there can be at  at most 1  active test.   An active test is a test for which the  is_complete  attribute is  false .\nIf there are multiple test attempts by the same user for the same test,\n   the  is_complete  attribute of all but 1 must be  true .", 
+            "title": "Tests"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#database-table", 
+            "text": "Tests are currently represented in the database like below     Field Name  Data Type  Description      id  int (PK)  Unique identifier for test    leaderboard_id  int (FK to id in leaderboard table)  NOT SURE    name  varchar (50)  Name of test    created_date  datetime  When it was created (by the admin)    is_active  tinyint(1)  Is the test active    type  varchar(50)  If possible to jump between sections(See below)    character  varchar(50)  Mock or Topic type test (See below)    price  int(11)  Price of a test    instruction_html  longtext  The instruction html associated with the test", 
+            "title": "Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#test-types", 
+            "text": "A Test 'type', can be  CAT  ,  College  or  IBPS .   It is possible to jump between sections in any non  CAT  types exams. There\nis also no section time limit for these tests.  For  CAT , the current section is locked once the time is up (each section has its own time limit), or when the user submits that section. It will not be\naccessible after that.", 
+            "title": "Test Types"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#test-character", 
+            "text": "A Test can have one of two 'characters' :  Mock  and  Topic .", 
+            "title": "Test Character"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#activeinactive-tests", 
+            "text": "A Test can be active or inactive. If it is Inactive, a user cannot take the test. It will also not show up to the user.", 
+            "title": "Active/Inactive Tests"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#get-list-of-tests", 
+            "text": "Get information about all tests in the system. \nNote that this does NOT return Sections or Questions.\nIt is meant to return general information about tests so that it can be 'browsed' from UI.  This will only list active tests   GET /tests", 
+            "title": "Get List of Tests"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#supported-query-params", 
+            "text": "Key  Description      type  string  the  type  of the test to filter by    character  string  the  character  of the test to filter by     is_purchased  will be  false  for not logged in Users", 
+            "title": "Supported Query Params"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#response", 
+            "text": "[ \n     { \n         id :   12 ,                   #   test   id   is   globally   unique \n         name :   test1 ,            #   name   of   the   test \n         type :   CAT ,    \n         is_purchased :   false ,      #   whether   or   not   the   user   has   purchased   this   test  \n                                   #   (this   is   an   artificially   generated   field)  \n\n         is_complete :   false ,       #   whether   or   not   the   user   has   completed   the   test \n                                   #   (this   is   an   artificially   generated   field)  \n         character :   Mock ,        #   can   be   mock   or   topic  \n         price :   99 , \n         total_time :   18000 ,        #   total   time   of   test   in   seconds \n                                   #   (this   is   an   artificially   generated   field) \n         section_count :   3 ,         #   number   of   sections   in   test \n         quesiton_count :   38 ,        #   number   of   questions   in   test \n                                   #   (this   is   an   artificially   generated   field) \n     }, \n     { \n         id :   14 ,                   #   test   id   is   globally   unique \n         name :   test2 ,            #   name   of   the   test \n         type :   CAT , \n         is_purchased :   true ,       #   whether   or   not   the   user   has   purchased   this   test  \n                                   #   (this   is   an   artificially   generated   field)  \n\n         is_complete :   true ,       #   whether   or   not   the   user   has   completed   the   test \n                                   #   (this   is   an   artificially   generated   field)  \n         character :   Mock ,        #   can   be   mock   or   topic  \n         price :   99 , \n         total_time :   18000 ,        #   total   time   of   test   in   seconds \n                                   #   (this   is   an   artificially   generated   field) \n         section_count :   3 ,         #   number   of   sections   in   test \n         quesiton_count :   81 ,        #   number   of   questions   in   test \n                                   #   (this   is   an   artificially   generated   field) \n     }  ]", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#get-college-tests-white_check_mark", 
+            "text": "Get information about all tests specific to colleges in the system. \nNote that this does NOT return Sections or Questions.\nIt is meant to return general information about tests so that it can be 'browsed' from UI.  If the user is not mapped to a college, all the tests of type COLLEGE from the \ntest table will be returned. The conditions for access to those tests are same as other tests.   If the user is mapped to a college, all the tests that are listed for his college only will be\ndisplayed. \nThe user may access that college if: \n1. That test is free (price = 0)\n2. That test is free for his college \n3. A payment has been made for that test for the user.    GET /tests/college  is_purchased  will be  false  for not logged in Users", 
+            "title": "Get College Tests :white_check_mark"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#response_1", 
+            "text": "[ \n     { \n         id :   12 ,                   #   test   id   is   globally   unique \n         name :   test1 ,            #   name   of   the   test \n         type :   CAT ,    \n         is_purchased :   false ,      #   whether   or   not   the   user   has   purchased   this   test  \n                                   #   (this   is   an   artificially   generated   field)  \n\n         is_complete :   false ,       #   whether   or   not   the   user   has   completed   the   test \n                                   #   (this   is   an   artificially   generated   field)  \n         character :   Mock ,        #   can   be   mock   or   topic  \n         price :   99 , \n     }, \n     { \n         id :   14 ,                   #   test   id   is   globally   unique \n         name :   test2 ,            #   name   of   the   test \n         type :   CAT , \n         is_purchased :   true ,       #   whether   or   not   the   user   has   purchased   this   test  \n                                   #   (this   is   an   artificially   generated   field)  \n\n         is_complete :   true ,        #   whether   or   not   the   user   has   completed   the   test \n                                   #   (this   is   an   artificially   generated   field)  \n         character :   Mock ,        #   can   be   mock   or   topic  \n         price :   99 , \n     }  ]", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#get-details-of-one-test", 
+            "text": "Get information about a single test. \nThis returns all the information (including  instruction_html ) for the test id.  This requires the user to be logged in and have access to the Test.   GET /tests/:testID  testID  The id of the test.", 
+            "title": "Get Details of one test"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#response_2", 
+            "text": "{ \n         id :   12 ,                   #   test   id   is   globally   unique \n         name :   test1 ,            #   name   of   the   test \n         type :   CAT ,    \n         instruction_html :   html /html   #   long   html   of   the   test \n\n         character :   Mock ,        #   can   be   mock   or   topic  \n         price :   99 , \n     }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#admin-add-a-test", 
+            "text": "Add a Test to the system. Only to be performed by an admin.   By adding a Test, it only creates a row in the Test database, so \nsections belonging to the test (and questions belonging to those sections)\nshould be added after calling this endpoint.   POST /admin/tests", 
+            "title": "Admin \u2192 Add a Test"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#request", 
+            "text": "{ \n     name :   test1 ,                        #   name   of   the   test \n     type :   CAT , \n     character :   Mock ,                    #   can   be   mock   or   topic \n     price :   99 , \n     is_active :   true , \n     instruction_html :   long_html  }   Note:  The  created_date  will be added automatically by the system", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#response_3", 
+            "text": "{ \n     id :   12  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#admin-update-a-test", 
+            "text": "Update a Test to the system. Only to be performed by an admin.  By updating a Test, it updates the row in the Test database, so\nsections belonging to the test (and questions belonging to those sections)\ncan't be modified using this endpoint.   PUT /admin/tests/:testId", 
+            "title": "Admin \u2192 Update a Test"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#request_1", 
+            "text": "{ \n     name :   test1 ,                        #   name   of   the   test \n     type :   CAT , \n     character :   Mock ,                    #   can   be   mock   or   topic \n     price :   99 , \n     is_active :   true , \n     instruction_html :   long_html  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Tests/index.html#admin-delete-a-test", 
+            "text": "Delete a Test to the system. Only to be performed by an admin.  By deleting a Test, it deletes the row in the Test database, and all the sections (and all the questions of each section) associated\nwith that test.  It is very unlikely that this this endpoint will be called.    DELETE /admin/tests/:testId", 
+            "title": "Admin \u2192 Delete a Test"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html", 
+            "text": "Questions\n\n\nQuestions are part of \nSections\n , which means they are implicitly a part of \n\nTests\n.\nA Question belongs to exactly 1 Section. \n\n\nDatabase Table\n\n\nTests are currently represented in the database like below\n\n\n\n\n\n\n\n\nField Name\n\n\nData Type\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nid\n\n\nint (PK)\n\n\nUnique identifier for Question\n\n\n\n\n\n\nsection_id\n\n\nint (FK to id in\nSection\ntable)\n\n\nThe Section that this Question belongs to\n\n\n\n\n\n\nhtml\n\n\nlongtext\n\n\nThe contents of the question\n\n\n\n\n\n\npoints_correct\n\n\nfloat\n\n\nHow many points to be awarded for correct answer\n\n\n\n\n\n\npoints_wrong\n\n\nfloat\n\n\nHow many points to be deducted for incorrect answer\n\n\n\n\n\n\ntype\n\n\nvarchar(50)\n\n\nThe type of question (Read below for details)\n\n\n\n\n\n\ntita_answer\n\n\nlongtext\n\n\ntext for 'Type In The Answer' style questions\n\n\n\n\n\n\nrc_passage\n\n\nlongtext\n\n\nPassage for Reading Comprehension style questions\n\n\n\n\n\n\nlogic\n\n\nlongtext\n\n\nThe html that stores the process of solving this question\n\n\n\n\n\n\nlod\n\n\nvarchar(50)\n\n\nLevel of Difficulty\n\n\n\n\n\n\ntopic\n\n\nvarchar(50)\n\n\nThe topic of the question\n\n\n\n\n\n\n\n\nQuestion types\n\n\nA Question can be of 3 types: \nMCQ\n, \nRC\n , or \nTITA\n. Each Type is described below\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nMCQ\n\n\nStands for Multiple Choice Question. Can have one of several choices. All the choices will be displayed to the user,can select one of them.\n\n\n\n\n\n\nRC\n\n\nStands for Reading Comprehension. \nDEFINE\n\n\n\n\n\n\nTITA\n\n\nStands for Type In The Answer. Meant for answers with a numerical response\n\n\n\n\n\n\n\n\nDepending on the Question type, some fields in the row will be \nNULL\n. If the Question type is \nMCQ\n, then \ntita_answer\n  as well as \nrc_passage\n will be \nNULL\n. \nIf the Question type is \nRC\n , then \ntita_answer\n will be \nNULL\n. If the type is \ntita_answer\n, then \nrc_passage\n will be \nNULL\n.\n\n\nAPI Reference\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGet Question Details \n\n\nGet details of a single question. This endpoint returns information only \n\n\nNote\n This endpoint sends \nCache-Control\n Headers, which means it will be\ncached by browsers.\n\n\n\n\nGET /tests/:testID/sections/:sectionID/questions/\nquestionID\n\n\ntestID\n \u2192  the ID of the test that owns the Sections\n\n\nsectionID\n \u2192  the ID of the section that owns the Question\n\n\nquestionID\n \u2192 the ID for the question. \n\n\nIf the question is \nMCQ\n type, the choices will be returned as well\n(otherwise it will be an empty array)\n\n\nResponse [1]\n\n\nA Question object is returned along with the choices (if any).\n\n{\n\n    \nid\n:\n \n12\n,\n               \n#\n \nquestion\n \nid\n \n    \nsection_id\n \n:\n \n31\n,\n      \n#\n \nid\n \nof\n \nsection\n \n(will\n \nbe\n \nequal\n \nto\n \nthe\n \n:sectionID\n \nparam\n \nin\n \nurl)\n\n    \nhtml\n:\n \nlong_html\n  \n    \nchoices\n:\n  \n#\n \nempty\n \narray\n \nif\n \nthe\n \nquestion\n \nis\n \nnot\n \nmcq\n \nor\n \nRC\n\n              \n[\n\n                    \n{\n\n                    \nhtml\n:\nlong_html\n,\n\n                    \nid\n:\n1871\n\n                    \n},\n\n                    \n{\n\n                    \nhtml\n:\nlong_html\n,\n\n                    \nid\n:\n1874\n\n                    \n},\n\n                    \n{\n\n                    \nhtml\n:\nlong_html\n,\n\n                    \nid\n:\n1878\n\n                    \n},\n\n              \n]\n\n\nrc_passage\n \n:\n \nlong_html\n \n#\n \nnull\n \nif\n \nits\n \nnot\n \nan\n \nRC\n \ntype\n \nquestion\n\n\n\n}\n\n\n\n\nResponse [2]\n\n\nif there exists no test attempt that is active, this endpoint\nfails with \nHTTP Code 403\n  \n\n\n\n\nGet Question Solutions \n\n\nGet solutions of a single question.\nThis endpoint returns information only if the test is marked complete.\n\n\nNote\n This endpoint sends \nCache-Control\n Headers, which means it will be\ncached by browsers.\n\n\n\n\nGET /tests/:testID/sections/:sectionID/questions/\nquestionID\n\n\ntestID\n \u2192  the ID of the test that owns the Sections\n\n\nsectionID\n \u2192  the ID of the section that owns the Question\n\n\nquestionID\n \u2192 the ID for the question. \n\n\nIf the question is \nMCQ\n type, the choices will be returned as well\n(otherwise it will be an empty array)\n\n\nResponse [1]\n\n\nA Question object is returned along with the choices (if any).\n\n{\n\n    \nid\n:\n \n12\n,\n               \n#\n \nquestion\n \nid\n \n    \nsection_id\n \n:\n \n31\n,\n      \n#\n \nid\n \nof\n \nsection\n \n(will\n \nbe\n \nequal\n \nto\n \nthe\n \n:sectionID\n \nparam\n \nin\n \nurl)\n\n    \ntita_answer\n:\n \n1872\n,\n     \n#\n \ncorrect\n \nanswer\n \n(will\n \nbe\n \nnull\n \nif\n \nnot\n \ntita\n \ntype\n \nanswer)\n\n    \nlogic\n:\n \nlong_html\n  \n#\n  \nprocedure\n \nto\n \nsolve\n \nthe\n \nquestion\n\n    \nchoices\n:\n \n[\n#\n \nwill\n \nbe\n \nan\n \narray\n,\n \nbut\n \nshould\n \nonly\n \ncontain\n \n1\n \nelement\n \nif\n \nMCQ\n \nor\n \nRC\n \ntype\n \nquestion.\n \n                \n#will\n \nbe\n \nempty\n \nif\n \nTITA\n \ntype\n\n\n\n                    \n{\n\n                    \nid\n:\n1871\n \n#\n \nchoice\n \nid\n\n                    \nis_correct\n:\n \ntrue\n \n#\n \nif\n \nthe\n \nchoice\n \nis\n \nthe\n \ncorrect\n \none.\n\n                    \n},\n\n              \n]\n\n\n\n\n}\n\n\n\n\nResponse [2]\n\n\nif there exists no test attempt that is active, this endpoint\nfails with \nHTTP Code 403\n  \n\n\n\n\nAdmin \u2192 Add a Question\n\n\nAdd a Question to the system. Only to be performed by an admin. \n\n\nThis requires the associated Section to already have been created.  \n\n\n\n\nPOST /admin/tests/sections/:sectionID/questions\n\n\nsectionID\n the id for the test to add this question under\n\n\nRequest\n\n\nThe question type constraints mentioned above apply here. Depending on question type field, the system will just\n look for the associated key, and ignore other types (E.g. if type is RC, then only the \nrc_passage\n key will be selected.\n\n\n{\n\n    \nsection_id\n:\n \n213\n,\n                     \n    \nhtml\n:\n \nlong_html\n,\n\n    \npoints_correct\n:\n \n1\n,\n\n    \npoints_wrong\n:\n \n.\n25\n,\n\n    \ntype\n:\n \nRC\n,\n\n    \nrc_passage\n:\nlong_html\n,\n\n    \nlogic\n:\n \n **DONTKNOW** \n,\n  \n**DONT\n \nKNOW!!!!!!!!!!!!!!!**\n\n    \nlod\n:\neasy\n,\n\n    \ntopic\n:\nscience\n\n\n\n}\n\n\n\n\n\nResponse\n\n\n{\n\n    \nid\n:\n \n12\n    \n#\n \nthe\n \nnewly\n \ncreated\n \nid\n \nfor\n \nthe\n \nquestion\n\n\n}\n\n\n\n\n\n\n\nAdmin \u2192 Update a Section\n\n\nUpdate a Section to the system. Only to be performed by an admin.\n\n\n\n\nPUT /admin/tests/sections/questions/:questionID\n\n\nquestionID\n -- The id of the question to modify\n\n\nRequest\n\n\nThe question type constraints mentioned above apply here. Depending on question type field, the system will just\n look for the associated key, and ignore other types (E.g. if type is RC, then only the \nrc_passage\n key will be selected.\n\n\n{\n\n    \nsection_id\n:\n \n213\n,\n                     \n    \nhtml\n:\n \nlong_html\n,\n\n    \npoints_correct\n:\n \n1\n,\n\n    \npoints_wrong\n:\n \n.\n25\n,\n\n    \ntype\n:\n \nRC\n,\n\n    \nrc_passage\n:\nlong_html\n,\n\n    \nlogic\n:\n \n **DONTKNOW** \n,\n  \n**DONT\n \nKNOW!!!!!!!!!!!!!!!**\n\n    \nlod\n:\neasy\n,\n\n    \ntopic\n:\nscience\n\n\n\n}\n\n\n\n\nNote\n Remember to set rc_passage and tita_answer to \nNULL\n , as an update on question type may have both of them to be \nNOT NULL\n\n\n\n\nAdmin \u2192 Delete a Question\n\n\nDelete a Question in the system. Only to be performed by an admin.\n\n\nIt is very unlikely that this this endpoint will be called. \n\n\n\n\nDELETE /admin/tests/sections/questions/:questionID", 
+            "title": "\u3000 \u21b3 Questions"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#questions", 
+            "text": "Questions are part of  Sections  , which means they are implicitly a part of  Tests .\nA Question belongs to exactly 1 Section.", 
+            "title": "Questions"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#database-table", 
+            "text": "Tests are currently represented in the database like below     Field Name  Data Type  Description      id  int (PK)  Unique identifier for Question    section_id  int (FK to id in Section table)  The Section that this Question belongs to    html  longtext  The contents of the question    points_correct  float  How many points to be awarded for correct answer    points_wrong  float  How many points to be deducted for incorrect answer    type  varchar(50)  The type of question (Read below for details)    tita_answer  longtext  text for 'Type In The Answer' style questions    rc_passage  longtext  Passage for Reading Comprehension style questions    logic  longtext  The html that stores the process of solving this question    lod  varchar(50)  Level of Difficulty    topic  varchar(50)  The topic of the question", 
+            "title": "Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#question-types", 
+            "text": "A Question can be of 3 types:  MCQ ,  RC  , or  TITA . Each Type is described below     Type  Description      MCQ  Stands for Multiple Choice Question. Can have one of several choices. All the choices will be displayed to the user,can select one of them.    RC  Stands for Reading Comprehension.  DEFINE    TITA  Stands for Type In The Answer. Meant for answers with a numerical response     Depending on the Question type, some fields in the row will be  NULL . If the Question type is  MCQ , then  tita_answer   as well as  rc_passage  will be  NULL . \nIf the Question type is  RC  , then  tita_answer  will be  NULL . If the type is  tita_answer , then  rc_passage  will be  NULL .", 
+            "title": "Question types"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#get-question-details", 
+            "text": "Get details of a single question. This endpoint returns information only   Note  This endpoint sends  Cache-Control  Headers, which means it will be\ncached by browsers.   GET /tests/:testID/sections/:sectionID/questions/ questionID  testID  \u2192  the ID of the test that owns the Sections  sectionID  \u2192  the ID of the section that owns the Question  questionID  \u2192 the ID for the question.   If the question is  MCQ  type, the choices will be returned as well\n(otherwise it will be an empty array)", 
+            "title": "Get Question Details"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#response-1", 
+            "text": "A Question object is returned along with the choices (if any). { \n     id :   12 ,                 #   question   id  \n     section_id   :   31 ,        #   id   of   section   (will   be   equal   to   the   :sectionID   param   in   url) \n     html :   long_html   \n     choices :    #   empty   array   if   the   question   is   not   mcq   or   RC \n               [ \n                     { \n                     html : long_html , \n                     id : 1871 \n                     }, \n                     { \n                     html : long_html , \n                     id : 1874 \n                     }, \n                     { \n                     html : long_html , \n                     id : 1878 \n                     }, \n               ]  rc_passage   :   long_html   #   null   if   its   not   an   RC   type   question  }", 
+            "title": "Response [1]"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#response-2", 
+            "text": "if there exists no test attempt that is active, this endpoint\nfails with  HTTP Code 403", 
+            "title": "Response [2]"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#get-question-solutions", 
+            "text": "Get solutions of a single question.\nThis endpoint returns information only if the test is marked complete.  Note  This endpoint sends  Cache-Control  Headers, which means it will be\ncached by browsers.   GET /tests/:testID/sections/:sectionID/questions/ questionID  testID  \u2192  the ID of the test that owns the Sections  sectionID  \u2192  the ID of the section that owns the Question  questionID  \u2192 the ID for the question.   If the question is  MCQ  type, the choices will be returned as well\n(otherwise it will be an empty array)", 
+            "title": "Get Question Solutions"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#response-1_1", 
+            "text": "A Question object is returned along with the choices (if any). { \n     id :   12 ,                 #   question   id  \n     section_id   :   31 ,        #   id   of   section   (will   be   equal   to   the   :sectionID   param   in   url) \n     tita_answer :   1872 ,       #   correct   answer   (will   be   null   if   not   tita   type   answer) \n     logic :   long_html    #    procedure   to   solve   the   question \n     choices :   [ #   will   be   an   array ,   but   should   only   contain   1   element   if   MCQ   or   RC   type   question.  \n                 #will   be   empty   if   TITA   type \n\n\n                     { \n                     id : 1871   #   choice   id \n                     is_correct :   true   #   if   the   choice   is   the   correct   one. \n                     }, \n               ]  }", 
+            "title": "Response [1]"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#response-2_1", 
+            "text": "if there exists no test attempt that is active, this endpoint\nfails with  HTTP Code 403", 
+            "title": "Response [2]"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#admin-add-a-question", 
+            "text": "Add a Question to the system. Only to be performed by an admin.   This requires the associated Section to already have been created.     POST /admin/tests/sections/:sectionID/questions  sectionID  the id for the test to add this question under", 
+            "title": "Admin \u2192 Add a Question"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#request", 
+            "text": "The question type constraints mentioned above apply here. Depending on question type field, the system will just\n look for the associated key, and ignore other types (E.g. if type is RC, then only the  rc_passage  key will be selected.  { \n     section_id :   213 ,                      \n     html :   long_html , \n     points_correct :   1 , \n     points_wrong :   . 25 , \n     type :   RC , \n     rc_passage : long_html , \n     logic :    **DONTKNOW**  ,    **DONT   KNOW!!!!!!!!!!!!!!!** \n     lod : easy , \n     topic : science  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#response", 
+            "text": "{ \n     id :   12      #   the   newly   created   id   for   the   question  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#admin-update-a-section", 
+            "text": "Update a Section to the system. Only to be performed by an admin.   PUT /admin/tests/sections/questions/:questionID  questionID  -- The id of the question to modify", 
+            "title": "Admin \u2192 Update a Section"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#request_1", 
+            "text": "The question type constraints mentioned above apply here. Depending on question type field, the system will just\n look for the associated key, and ignore other types (E.g. if type is RC, then only the  rc_passage  key will be selected.  { \n     section_id :   213 ,                      \n     html :   long_html , \n     points_correct :   1 , \n     points_wrong :   . 25 , \n     type :   RC , \n     rc_passage : long_html , \n     logic :    **DONTKNOW**  ,    **DONT   KNOW!!!!!!!!!!!!!!!** \n     lod : easy , \n     topic : science  }   Note  Remember to set rc_passage and tita_answer to  NULL  , as an update on question type may have both of them to be  NOT NULL", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Questions/index.html#admin-delete-a-question", 
+            "text": "Delete a Question in the system. Only to be performed by an admin.  It is very unlikely that this this endpoint will be called.    DELETE /admin/tests/sections/questions/:questionID", 
+            "title": "Admin \u2192 Delete a Question"
+        }, 
+        {
+            "location": "/api-v0.1/QuestionAttempts/index.html", 
+            "text": "Question Attempts\n\n\nQuestion Attempts store the answer and related information\nabout a particular User on a particular Question. \n\n\nA Question attempt has 1 Question and 1 Section Attempt associated with it.\n\n\nDatabase Table\n\n\nTests are currently represented in the database like below\n\n\n| Field Name         | Data Type                                                                      | Description                                                                        |\n|--------------------|--------------------------------------------------------------------------------|---  (add-hook 'python-mode-hook' (lambda ()\n                                 (fci-mode 1)\n                                 (evil-close-folds)))\n---------------------------------------------------------------------------------|\n| section_attempt_id | \nint (FK to id in\nSection Attempt\ntable),(part of PK)\n | The section attempt that this question attempt is part of                          |\n| question_id        | \nint (FK to id in\nQuestion\ntable),(part of PK)\n              | The question for which this is an attempt                                          |\n| choice_id          | \nint(FK to id in\nChoice\ntable)\n                                | The choice of the user (in case of MCQ only ,otherwise \nNULL\n)                     |\n| tita_choice        | \nvarchar(50)\n                                                                  | The TITA answer of the user (in case of TITA question type only, otherwise \nNULL\n) |\n| attempt_status     | \nvarchar(50)\n                                                                  | See below\n| time_spent         | \nint\n                                                                          | Total time spent on the question                                                   |\n\n\nattempt_status\n types\n\n\n\n\n\n\n\n\nValue\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nnull\n\n\n(default) question was neither seen nor marked for review\n\n\n\n\n\n\nseen\n\n\nquestion was seen by the user\n\n\n\n\n\n\nreview\n\n\nquestion was marked for review\n\n\n\n\n\n\n\n\nThe 'attempt_status' is just used to store user's action. \nWhether or not the user has attempted a question depends on his \nchoice_id\n and \ntita_choice\n value. \nIf they are \nnull\n that question will be ignored during score calculation.\n\n\nAPI Reference\n\n\nAttempt a Question  \n Submit an attempt on a Question\n\n\nThis will overwrite any previous attempts made on that question.\n\n\nThis requires that the Section Attempt and Question Attempt for the Question \nto be already created\n\n\nIf the section attempt or test attempt of this question attempt is marked complete, \nthis endpoint will \nfail\n.\n\n\nIf the test type allows sectional jumps, then only the testID(it has to match the testID in the request URL) and time of last ping\nwill be checked from the cookie. If it does not allow sectional jumps, then section ID will also be checked.\n\n\n\n\n \nPUT /tests/\ntestID\n/sections/\nsectionID\n/questions/\nquestionID\n/attempts\n\n\ntestID\n \u2192 The ID of the test that the question belongs to\n\n\nsectionID\n \u2192 The ID of the section the question belongs to\n\n\nNote\n The above fields will be ignored. Instead, the data from \npinger's cookie\n will be used. \nThe above data is used for logging purposes.\n\n\nquestionID\n \u2192 The ID of the question to submit an attempt for \n\n\nRequest\n\n\nThis endpoint requires \n\n\n{\n\n    \nchoice_id\n:\n \n12\n,\n     \n#\n \nthe\n \nchoice\n \nid\n   \n(only\n \nfor\n \nMCQ\n \ntype\n \nquestions)\n\n    \ntita_choice\n:\n \n12\n    \n#\n \nthe\n \nTITA\n \nanswer\n \n(only\n \nfor\n \nTITA\n \ntype\n \nquestions)\n\n\n}", 
+            "title": "\u3000 \u21b3 Question Attempts"
+        }, 
+        {
+            "location": "/api-v0.1/QuestionAttempts/index.html#question-attempts", 
+            "text": "Question Attempts store the answer and related information\nabout a particular User on a particular Question.   A Question attempt has 1 Question and 1 Section Attempt associated with it.", 
+            "title": "Question Attempts"
+        }, 
+        {
+            "location": "/api-v0.1/QuestionAttempts/index.html#database-table", 
+            "text": "Tests are currently represented in the database like below  | Field Name         | Data Type                                                                      | Description                                                                        |\n|--------------------|--------------------------------------------------------------------------------|---  (add-hook 'python-mode-hook' (lambda ()\n                                 (fci-mode 1)\n                                 (evil-close-folds)))\n---------------------------------------------------------------------------------|\n| section_attempt_id |  int (FK to id in Section Attempt table),(part of PK)  | The section attempt that this question attempt is part of                          |\n| question_id        |  int (FK to id in Question table),(part of PK)               | The question for which this is an attempt                                          |\n| choice_id          |  int(FK to id in Choice table)                                 | The choice of the user (in case of MCQ only ,otherwise  NULL )                     |\n| tita_choice        |  varchar(50)                                                                   | The TITA answer of the user (in case of TITA question type only, otherwise  NULL ) |\n| attempt_status     |  varchar(50)                                                                   | See below\n| time_spent         |  int                                                                           | Total time spent on the question                                                   |  attempt_status  types     Value  Description      null  (default) question was neither seen nor marked for review    seen  question was seen by the user    review  question was marked for review     The 'attempt_status' is just used to store user's action. \nWhether or not the user has attempted a question depends on his  choice_id  and  tita_choice  value. \nIf they are  null  that question will be ignored during score calculation.", 
+            "title": "Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/QuestionAttempts/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/QuestionAttempts/index.html#attempt-a-question-submit-an-attempt-on-a-question", 
+            "text": "This will overwrite any previous attempts made on that question.  This requires that the Section Attempt and Question Attempt for the Question \nto be already created  If the section attempt or test attempt of this question attempt is marked complete, \nthis endpoint will  fail .  If the test type allows sectional jumps, then only the testID(it has to match the testID in the request URL) and time of last ping\nwill be checked from the cookie. If it does not allow sectional jumps, then section ID will also be checked.     PUT /tests/ testID /sections/ sectionID /questions/ questionID /attempts  testID  \u2192 The ID of the test that the question belongs to  sectionID  \u2192 The ID of the section the question belongs to  Note  The above fields will be ignored. Instead, the data from  pinger's cookie  will be used. \nThe above data is used for logging purposes.  questionID  \u2192 The ID of the question to submit an attempt for", 
+            "title": "Attempt a Question   Submit an attempt on a Question"
+        }, 
+        {
+            "location": "/api-v0.1/QuestionAttempts/index.html#request", 
+            "text": "This endpoint requires   { \n     choice_id :   12 ,       #   the   choice   id     (only   for   MCQ   type   questions) \n     tita_choice :   12      #   the   TITA   answer   (only   for   TITA   type   questions)  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html", 
+            "text": "Sections\n\n\nSections are part of tests. Each Section belongs to a \nTest\n, and has many \n\nQuestions\n.\n\n\nDatabase Table\n\n\nSections are currently represented in the database like below\n\n\n\n\n\n\n\n\nField Name\n\n\nData Type\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nid\n\n\nint (PK)\n\n\nUnique identifier for Section\n\n\n\n\n\n\ntest_id\n\n\nint (FK to id in\nTest\ntable)\n\n\nWhich test a section belongs to\n\n\n\n\n\n\nname\n\n\nvarchar (50)\n\n\nName of section\n\n\n\n\n\n\ncreated_date\n\n\ndatetime\n\n\nWhen it was created (by the admin)\n\n\n\n\n\n\ntotal_time\n\n\nint\n\n\nMaximum time allowed by the user in this section (in seconds)\n\n\n\n\n\n\n\n\nAPI Reference\n\n\nList Sections for Test \n\n\nGet Information about all the Sections under a particular Test.\n\n\nSections can only be listed if there exists a Test Attempt by a User\nwhich is not complete yet. \n\n\n\n\nGET /tests/:testID/sections\n\n\ntestID\n The id of the test to list sections of\n\n\nResponse [1]\n\n\n[\n\n    \n{\n\n      \ncreated_date\n:\n \n2017-03-27T18:10:56\n,\n\n      \nid\n:\n \n73\n,\n\n      \nname\n:\n \nLogical Reasoning\n,\n\n      \ntest_id\n:\n \n59\n,\n\n      \ntotal_time\n:\n \n3600\n\n    \n},\n\n    \n{\n\n      \ncreated_date\n:\n \n2017-03-27T18:15:41\n,\n\n      \nid\n:\n \n74\n,\n\n      \nname\n:\n \nQuantitative Aptitude\n,\n\n      \ntest_id\n:\n \n59\n,\n\n      \ntotal_time\n:\n \n3600\n\n    \n},\n\n    \n{\n\n      \ncreated_date\n:\n \n2017-03-27T18:16:04\n,\n\n      \nid\n:\n \n75\n,\n\n      \nname\n:\n \nEnglish Language\n,\n\n      \ntest_id\n:\n \n59\n,\n\n      \ntotal_time\n:\n \n3600\n\n    \n}\n\n\n]\n\n\n\n\n\nResponse [2]\n\n\nIf there is no test attempt for the test by the user, this endpoint returns an\nError with \nHTTP Code: 403\n\n\n\n\nAdmin \u2192 Add a Section\n\n\nAdd a Section to the system. Only to be performed by an admin. \n\n\nThis requires the associated Test to already have been created.  \n\n\nBy adding a Section, it only creates a row in the Section table, so \nquestions belonging to the section\nshould be added after calling this endpoint.\n\n\n\n\nPOST /admin/tests/:testID/sections\n\n\ntestID\n the id for the test to add this section under\n\n\nRequest\n\n\n{\n\n    \nname\n:\n \nsection1\n,\n                     \n    \ntotal_time\n:\n \n500\n\n\n\n}\n\n\n\n\nNote:\n The \ncreated_date\n will be added automatically by the system\n\n\nResponse\n\n\n{\n\n    \nid\n:\n \n12\n    \n#\n \nthe\n \nnewly\n \ncreated\n \nid\n \nfor\n \nthe\n \nsection\n\n\n}\n\n\n\n\n\n\n\nAdmin \u2192 Update a Section\n\n\nUpdate a Section to the system. Only to be performed by an admin.\n\n\nBy updating a Section, it updates the row in the Section database, so\nQuestions belonging to this Section\ncan't be modified using this endpoint.\n\n\n\n\nPUT /admin/tests/sections/:sectionID\n\n\nsectionID\n -- The id of the section to modify\n\n\nNote\n The testID was omitted from the URL because the sectionID is a globally unique ID  . \nAdding testID would be redundant, because a section belongs to exactly 1 Test.\n\n\nRequest\n\n\n{\n\n    \nname\n:\n \nsection2\n,\n                     \n    \ntotal_time\n:\n \n553\n\n\n}\n\n\n\n\n\n\n\nAdmin \u2192 Delete a Section\n\n\nDelete a Section in the system. Only to be performed by an admin.\n\n\nBy deleting a Section, it deletes the row in the Section table, and\n\nall the questions associated with that section.\n  \n\n\nIt is very unlikely that this this endpoint will be called. \n\n\n\n\nDELETE /admin/tests/sections/:sectionID", 
+            "title": "\u3000 \u21b3 Sections"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html#sections", 
+            "text": "Sections are part of tests. Each Section belongs to a  Test , and has many  Questions .", 
+            "title": "Sections"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html#database-table", 
+            "text": "Sections are currently represented in the database like below     Field Name  Data Type  Description      id  int (PK)  Unique identifier for Section    test_id  int (FK to id in Test table)  Which test a section belongs to    name  varchar (50)  Name of section    created_date  datetime  When it was created (by the admin)    total_time  int  Maximum time allowed by the user in this section (in seconds)", 
+            "title": "Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html#list-sections-for-test", 
+            "text": "Get Information about all the Sections under a particular Test.  Sections can only be listed if there exists a Test Attempt by a User\nwhich is not complete yet.    GET /tests/:testID/sections  testID  The id of the test to list sections of", 
+            "title": "List Sections for Test"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html#response-1", 
+            "text": "[ \n     { \n       created_date :   2017-03-27T18:10:56 , \n       id :   73 , \n       name :   Logical Reasoning , \n       test_id :   59 , \n       total_time :   3600 \n     }, \n     { \n       created_date :   2017-03-27T18:15:41 , \n       id :   74 , \n       name :   Quantitative Aptitude , \n       test_id :   59 , \n       total_time :   3600 \n     }, \n     { \n       created_date :   2017-03-27T18:16:04 , \n       id :   75 , \n       name :   English Language , \n       test_id :   59 , \n       total_time :   3600 \n     }  ]", 
+            "title": "Response [1]"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html#response-2", 
+            "text": "If there is no test attempt for the test by the user, this endpoint returns an\nError with  HTTP Code: 403", 
+            "title": "Response [2]"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html#admin-add-a-section", 
+            "text": "Add a Section to the system. Only to be performed by an admin.   This requires the associated Test to already have been created.    By adding a Section, it only creates a row in the Section table, so \nquestions belonging to the section\nshould be added after calling this endpoint.   POST /admin/tests/:testID/sections  testID  the id for the test to add this section under", 
+            "title": "Admin \u2192 Add a Section"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html#request", 
+            "text": "{ \n     name :   section1 ,                      \n     total_time :   500  }   Note:  The  created_date  will be added automatically by the system", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html#response", 
+            "text": "{ \n     id :   12      #   the   newly   created   id   for   the   section  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html#admin-update-a-section", 
+            "text": "Update a Section to the system. Only to be performed by an admin.  By updating a Section, it updates the row in the Section database, so\nQuestions belonging to this Section\ncan't be modified using this endpoint.   PUT /admin/tests/sections/:sectionID  sectionID  -- The id of the section to modify  Note  The testID was omitted from the URL because the sectionID is a globally unique ID  . \nAdding testID would be redundant, because a section belongs to exactly 1 Test.", 
+            "title": "Admin \u2192 Update a Section"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html#request_1", 
+            "text": "{ \n     name :   section2 ,                      \n     total_time :   553  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Sections/index.html#admin-delete-a-section", 
+            "text": "Delete a Section in the system. Only to be performed by an admin.  By deleting a Section, it deletes the row in the Section table, and all the questions associated with that section.     It is very unlikely that this this endpoint will be called.    DELETE /admin/tests/sections/:sectionID", 
+            "title": "Admin \u2192 Delete a Section"
+        }, 
+        {
+            "location": "/api-v0.1/SectionAttempts/index.html", 
+            "text": "Section Attempts\n\n\nA Section Attempt belongs to a \nTestAttempts\n and has \nmultiple \nQuestionAttempts\n.\n\n\nDatabase Table\n\n\nSectionAttempts are currently represented in the database like below\n\n\n\n\n\n\n\n\nField Name\n\n\nData Type\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nid\n\n\nint (PK)\n\n\nUnique Identifier for SectionAttempts\n\n\n\n\n\n\nsection_id\n\n\nint (FK to id in\nSections\ntable)\n\n\nId of the section\n\n\n\n\n\n\ntest_attempt_id\n\n\nint (FK to id in\nTestAttempts\ntable)\n\n\nid of the test attempt\n\n\n\n\n\n\ntime_left\n\n\nint\n\n\nTime in Seconds\n\n\n\n\n\n\nis_complete\n\n\nboolean\n\n\nSection Completeness Status\n\n\n\n\n\n\n\n\nImportant Note\n\n\nThe \ntime_left\n   actually  storing the amount of time spent on the section.\nThe database column is still called \ntime_left\n,but our models use the name\n\ntime_spent\n. \n\n\nThis will be fixed in the future.\n\n\nAPI Reference\n\n\nFinish  a Section \n\n\nMark a section attempt as complete. Should only be called on a section that does\nnot allow sectional jumps (e.g. \nCAT\n type exams)\n\n\nOnce the section is marked complete , the will be unable to make any attempts on the \nquestions under this section.\n\n\nThis endpoint will grant a new \nPinger cookie\n with a new timestamp. The test id \nremains the same as the test id of the current Pinger cookie. The section id of the \npinger cookie is set to the \nnext section's id\n \n(this is required for the user's attempt on the new section to be considered valid.\n\n\nIf the section to be finished was the last section in the test, the pinger cookie\nwill be left untouched. At this point, there is no use for pinger as no section (and its questions)\nwill be modifyable.\n\n\n\n\n \nPOST /tests/\ntestID\n/sections/\nsectionID\n/attempts/finish\n\n\ntestID\n \u2192 The ID of the test that the section belongs to\n\nsectionID\n \u2192 The ID of the section to begin section atempt for\n\n\nThe sectionID and testID field will be ignored from the request.\nThe keys sent in the \nPinger cookie\n will be used instead\n\n\n\n\nAdmin \u2192 Delete a Section Attempt\n\n\nDelete a Section Attempt in the system. Only to be performed by an admin.\n\n\nIt is very unlikely that this this endpoint will be called.\n\n\n\n\nDELETE /admin/tests/section_attempts/:sectionAttemptId", 
+            "title": "\u3000 \u21b3 Section Attempts"
+        }, 
+        {
+            "location": "/api-v0.1/SectionAttempts/index.html#section-attempts", 
+            "text": "A Section Attempt belongs to a  TestAttempts  and has \nmultiple  QuestionAttempts .", 
+            "title": "Section Attempts"
+        }, 
+        {
+            "location": "/api-v0.1/SectionAttempts/index.html#database-table", 
+            "text": "SectionAttempts are currently represented in the database like below     Field Name  Data Type  Description      id  int (PK)  Unique Identifier for SectionAttempts    section_id  int (FK to id in Sections table)  Id of the section    test_attempt_id  int (FK to id in TestAttempts table)  id of the test attempt    time_left  int  Time in Seconds    is_complete  boolean  Section Completeness Status", 
+            "title": "Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/SectionAttempts/index.html#important-note", 
+            "text": "The  time_left    actually  storing the amount of time spent on the section.\nThe database column is still called  time_left ,but our models use the name time_spent .   This will be fixed in the future.", 
+            "title": "Important Note"
+        }, 
+        {
+            "location": "/api-v0.1/SectionAttempts/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/SectionAttempts/index.html#finish-a-section", 
+            "text": "Mark a section attempt as complete. Should only be called on a section that does\nnot allow sectional jumps (e.g.  CAT  type exams)  Once the section is marked complete , the will be unable to make any attempts on the \nquestions under this section.  This endpoint will grant a new  Pinger cookie  with a new timestamp. The test id \nremains the same as the test id of the current Pinger cookie. The section id of the \npinger cookie is set to the  next section's id  \n(this is required for the user's attempt on the new section to be considered valid.  If the section to be finished was the last section in the test, the pinger cookie\nwill be left untouched. At this point, there is no use for pinger as no section (and its questions)\nwill be modifyable.     POST /tests/ testID /sections/ sectionID /attempts/finish  testID  \u2192 The ID of the test that the section belongs to sectionID  \u2192 The ID of the section to begin section atempt for  The sectionID and testID field will be ignored from the request.\nThe keys sent in the  Pinger cookie  will be used instead", 
+            "title": "Finish  a Section"
+        }, 
+        {
+            "location": "/api-v0.1/SectionAttempts/index.html#admin-delete-a-section-attempt", 
+            "text": "Delete a Section Attempt in the system. Only to be performed by an admin.  It is very unlikely that this this endpoint will be called.   DELETE /admin/tests/section_attempts/:sectionAttemptId", 
+            "title": "Admin \u2192 Delete a Section Attempt"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html", 
+            "text": "Test Attempts\n\n\nTest Attempts record the attempt made by a particular User on a particular Test. \nA User can have \nat most 1 Active\n Test attempt for a particular Test.\n\n\nDatabase Table\n\n\nTest Attempts are currently represented in the database like below\n\n\n\n\n\n\n\n\nField Name\n\n\nData Type\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nid\n\n\nint (PK)\n\n\nUnique identifier for test attempt\n\n\n\n\n\n\nuser_id\n\n\nint (FK to id in\nUser\ntable)\n\n\nThe user who is attempting this test\n\n\n\n\n\n\ntest_id ** Vargab Bakshi-Shopify [Harsh]\n\n\n\n\n\n\n\n\n\n\n\n\n** Ekhlaque Bari -- Fullerton [Harsh]\n    | \nint(FK to id in\nTests\ntable)\n | The test that is being attempt       |\n| is_complete | \nboolean\n                               | Is the test marked complete          |\n| score       | \ntinyint(1)\n                              | The score obtained on the test       |\n| date        | \ndatetime\n                                | \nNOT SURE\n                         |\n\n\nAPI Reference\n\n\nBegin Attempt on a Test \n\n\nBegin the attempt on a Test. \nThis will create a row in the Test Attempts table, and rows \nin the section attempts table and question attempts table. \n\n\nThe creation of test attempt and section attempt/question attempts is atomic,\nand the data is in an inconsistent state if one of these exists without the other. \n\n\nNOTES\n \n\n\n\n\n\n\nThis will create the section attempts automatically as well\nas question attempts.\n\n\n\n\n\n\nEven though the endpoint is called start, it is possible to call\nstart test multiple times. \n\n\n\n\n\n\nIf a user has some test attempt that is not complete (\nis_complete=False\n),\n  a new Test Attempt will \nnot be created\n. Instead, that existing test attempt\n will be returned. \n\n\n\n\n\n\nCurrently, if a test is marked complete, the user cannot start another attempt.\n\n\n\n\n\n\nThis requires a User to have access to the Test\n\n\n\n\n \nPOST /tests/:testID/attempts/start\n\n\ntestID\n \u2192 The ID of the test to start the test\n\n\n\n\nGet Test Attempt Details\n\n\nGet the details of Test Attempt. \nThis will also return Section Attempts under the test, and question attempts\nunder each section.\n\n\n\n\n \nPOST /tests/:testID/attempts/start\n\n\ntestID\n \u2192 The ID of the test to start the test\n\n\n\n\nFinish a Test  \n\n\nMark a Test as complete. This is usually done when a user clicks on 'finish test'.\nThe User will be unable to view or attempt questions after performing this action. \n\n\nThis also calculates the score for the User's attempt , and stores it in the \nscore\n Field.\n\n\nThis requires an unfinished Test Attempt to already exist\n\n\n\n\n \nPOST /tests/:testID/attempts/finish\n\n\ntestID\n \u2192 The ID of the test to finish the test\n\n\n\n\nGet Performance Data  \n\n\nGet information about user's performance on the test. \nThis can only be calculated once he has submitted his test.\n\n\n\n\n \nGET /tests/:testID/attempts/performance\n\n\ntestID\n \u2192 The ID of the test\n\n\nResponse\n\n\n    \n{\n\n  \ndate\n:\n \n2019-01-15T06:57:27\n,\n\n  \nid\n:\n \n9564\n,\n\n  \nis_complete\n:\n \ntrue\n,\n\n  \nis_graded\n:\n \ntrue\n,\n\n  \nmax\n:\n \n9.0\n,\n\n  \nmedian\n:\n \n9.0\n,\n\n  \nmin\n:\n \n9.0\n,\n\n  \npercentile\n:\n \n100\n,\n\n  \nrank\n:\n \n1\n,\n\n  \nscore\n:\n \n9\n,\n\n  \nsection_attempts\n:\n \n[\n\n    \n{\n\n      \ncorrect_question_count\n:\n \n4\n,\n\n      \nid\n:\n \n23023\n,\n\n      \nincorrect_question_count\n:\n \n6\n,\n\n      \nis_complete\n:\n \ntrue\n,\n\n      \nquestion_attempts\n:\n \n[\n\n        \n{\n\n          \nquestion\n:\n \n{\n\n            \nid\n:\n \n6979\n,\n\n            \nlod\n:\n \nMedium\n,\n\n            \ntopic\n:\n \nSynoyms\n,\n\n            \ntype\n:\n \nMCQ\n\n          \n},\n\n          \nquestion_id\n:\n \n6979\n,\n\n          \nsection_attempt_id\n:\n \n23023\n,\n\n          \ntime_spent\n:\n \n20\n\n        \n},\n\n        \n{\n\n          \nquestion\n:\n \n{\n\n            \nid\n:\n \n6980\n,\n\n            \nlod\n:\n \nEasy\n,\n\n            \ntopic\n:\n \nAntonyms\n,\n\n            \ntype\n:\n \nMCQ\n\n          \n},\n\n          \nquestion_id\n:\n \n6980\n,\n\n          \nsection_attempt_id\n:\n \n23023\n,\n\n          \ntime_spent\n:\n \n10\n\n        \n}\n\n        \n],\n\n\n      \nscore\n:\n \n4\n,\n\n      \nsection\n:\n \n{\n\n        \ncreated_date\n:\n \n2018-11-10T15:52:00\n,\n\n        \nid\n:\n \n313\n,\n\n        \nname\n:\n \nEnglish Comprehension\n,\n\n        \ntest_id\n:\n \n180\n,\n\n        \ntotal_time\n:\n \n600\n\n      \n},\n\n      \nsection_id\n:\n \n313\n,\n\n      \ntest_attempt_id\n:\n \n9564\n,\n\n      \ntime_spent\n:\n \n145\n,\n\n      \ntotal_question_count\n:\n \n10\n\n    \n},\n\n    \n{\n\n      \ncorrect_question_count\n:\n \n2\n,\n\n      \nid\n:\n \n23024\n,\n\n      \nincorrect_question_count\n:\n \n7\n,\n\n      \nis_complete\n:\n \ntrue\n,\n\n      \nquestion_attempts\n:\n \n[\n\n        \n{\n\n          \nquestion\n:\n \n{\n\n            \nid\n:\n \n6989\n,\n\n            \nlod\n:\n \nMedium\n,\n\n            \ntopic\n:\n \nPuzzles\n,\n\n            \ntype\n:\n \nRC\n\n          \n},\n\n          \nquestion_id\n:\n \n6989\n,\n\n          \nsection_attempt_id\n:\n \n23024\n,\n\n          \ntime_spent\n:\n \n15\n\n        \n},\n\n\n      \n],\n\n      \nscore\n:\n \n2\n,\n\n      \nsection\n:\n \n{\n\n        \ncreated_date\n:\n \n2018-11-10T15:53:00\n,\n\n        \nid\n:\n \n314\n,\n\n        \nname\n:\n \nLogical Reasoning\n,\n\n        \ntest_id\n:\n \n180\n,\n\n        \ntotal_time\n:\n \n600\n\n      \n},\n\n      \nsection_id\n:\n \n314\n,\n\n      \ntest_attempt_id\n:\n \n9564\n,\n\n      \ntime_spent\n:\n \n160\n,\n\n      \ntotal_question_count\n:\n \n9\n\n    \n},\n\n    \n{\n\n      \ncorrect_question_count\n:\n \n3\n,\n\n      \nid\n:\n \n23025\n,\n\n      \nincorrect_question_count\n:\n \n7\n,\n\n      \nis_complete\n:\n \ntrue\n,\n\n      \nquestion_attempts\n:\n \n[\n\n        \n{\n\n          \nquestion\n:\n \n{\n\n            \nid\n:\n \n6998\n,\n\n            \nlod\n:\n \nEasy\n,\n\n            \ntopic\n:\n \nNumber System\n,\n\n            \ntype\n:\n \nMCQ\n\n          \n},\n\n          \nquestion_id\n:\n \n6998\n,\n\n          \nsection_attempt_id\n:\n \n23025\n,\n\n          \ntime_spent\n:\n \n85\n\n        \n}\n\n\n        \n],\n\n      \nscore\n:\n \n3\n,\n\n      \nsection\n:\n \n{\n\n        \ncreated_date\n:\n \n2018-11-10T15:53:00\n,\n\n        \nid\n:\n \n315\n,\n\n        \nname\n:\n \nQuantitative Aptitude\n,\n\n        \ntest_id\n:\n \n180\n,\n\n        \ntotal_time\n:\n \n600\n\n      \n},\n\n      \nsection_id\n:\n \n315\n,\n\n      \ntest_attempt_id\n:\n \n9564\n,\n\n      \ntime_spent\n:\n \n240\n,\n\n      \ntotal_question_count\n:\n \n10\n\n    \n}\n\n  \n],\n\n  \ntest_id\n:\n \n180\n,\n\n  \nuser_id\n:\n \n137\n\n\n}\n\n\n\n\n\n\n\nAdmin \u2192 Reset a Test \n\n\nReset a Test for an User. This is usually done when a user has faced 'technical' difficulties during the Test.\nIt should reset test attempt record, reset section attempt time and delete all Question Attempt rows.\n\n\n\n\n \nPOST /admin/tests/attempts/:testAttemptId/reset\n\n\ntestAttemptId\n \u2192 The ID of the Test Attempt to Reset\n\n\n\n\nAdmin  \u2192 Get Test Attempts \n\n\nReporting endpoint for Admins to get Test Attempts of a Test for a particular User or a category of Users.\nThis helps admin monitor examinations \n performance during Beatest Challenges.\n\n\n\n\n \nGET /admin/test_attempts/:test_id/users\n\n\nSupported Query Params\n\n\n\n\n\n\n\n\nKey\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\ntest_id\n\n\nID for Beatest Exam\n\n\n\n\n\n\nemail\n\n\nEmail Address for the User\n\n\n\n\n\n\ncollege_id\n\n\nCollege ID for Users\n\n\n\n\n\n\n\n\nResponse\n\n\n[\n\n    \n{\n\n        \nid\n:\n \n1\n,\n\n        \nuser_id\n:\n \n12\n,\n\n        \ntest_id\n:\n \n10\n,\n\n        \nis_complete\n:\n \ntrue\n,\n\n        \nscore\n:\n \n24\n\n    \n},\n\n    \n{\n\n        \nid\n:\n \n2\n,\n\n        \nuser_id\n:\n \n12\n,\n\n        \ntest_id\n:\n \n12\n,\n\n        \nis_complete\n:\n \nfalse\n,\n\n        \nscore\n:\n \n0\n\n    \n}\n\n\n]", 
+            "title": "\u3000 \u21b3 Test Attempts"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html#test-attempts", 
+            "text": "Test Attempts record the attempt made by a particular User on a particular Test. \nA User can have  at most 1 Active  Test attempt for a particular Test.", 
+            "title": "Test Attempts"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html#database-table", 
+            "text": "Test Attempts are currently represented in the database like below     Field Name  Data Type  Description      id  int (PK)  Unique identifier for test attempt    user_id  int (FK to id in User table)  The user who is attempting this test    test_id ** Vargab Bakshi-Shopify [Harsh]       ** Ekhlaque Bari -- Fullerton [Harsh]\n    |  int(FK to id in Tests table)  | The test that is being attempt       |\n| is_complete |  boolean                                | Is the test marked complete          |\n| score       |  tinyint(1)                               | The score obtained on the test       |\n| date        |  datetime                                 |  NOT SURE                          |", 
+            "title": "Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html#begin-attempt-on-a-test", 
+            "text": "Begin the attempt on a Test. \nThis will create a row in the Test Attempts table, and rows \nin the section attempts table and question attempts table.   The creation of test attempt and section attempt/question attempts is atomic,\nand the data is in an inconsistent state if one of these exists without the other.   NOTES      This will create the section attempts automatically as well\nas question attempts.    Even though the endpoint is called start, it is possible to call\nstart test multiple times.     If a user has some test attempt that is not complete ( is_complete=False ),\n  a new Test Attempt will  not be created . Instead, that existing test attempt\n will be returned.     Currently, if a test is marked complete, the user cannot start another attempt.    This requires a User to have access to the Test     POST /tests/:testID/attempts/start  testID  \u2192 The ID of the test to start the test", 
+            "title": "Begin Attempt on a Test"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html#get-test-attempt-details", 
+            "text": "Get the details of Test Attempt. \nThis will also return Section Attempts under the test, and question attempts\nunder each section.     POST /tests/:testID/attempts/start  testID  \u2192 The ID of the test to start the test", 
+            "title": "Get Test Attempt Details"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html#finish-a-test", 
+            "text": "Mark a Test as complete. This is usually done when a user clicks on 'finish test'.\nThe User will be unable to view or attempt questions after performing this action.   This also calculates the score for the User's attempt , and stores it in the  score  Field.  This requires an unfinished Test Attempt to already exist     POST /tests/:testID/attempts/finish  testID  \u2192 The ID of the test to finish the test", 
+            "title": "Finish a Test"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html#get-performance-data", 
+            "text": "Get information about user's performance on the test. \nThis can only be calculated once he has submitted his test.     GET /tests/:testID/attempts/performance  testID  \u2192 The ID of the test", 
+            "title": "Get Performance Data"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html#response", 
+            "text": "{ \n   date :   2019-01-15T06:57:27 , \n   id :   9564 , \n   is_complete :   true , \n   is_graded :   true , \n   max :   9.0 , \n   median :   9.0 , \n   min :   9.0 , \n   percentile :   100 , \n   rank :   1 , \n   score :   9 , \n   section_attempts :   [ \n     { \n       correct_question_count :   4 , \n       id :   23023 , \n       incorrect_question_count :   6 , \n       is_complete :   true , \n       question_attempts :   [ \n         { \n           question :   { \n             id :   6979 , \n             lod :   Medium , \n             topic :   Synoyms , \n             type :   MCQ \n           }, \n           question_id :   6979 , \n           section_attempt_id :   23023 , \n           time_spent :   20 \n         }, \n         { \n           question :   { \n             id :   6980 , \n             lod :   Easy , \n             topic :   Antonyms , \n             type :   MCQ \n           }, \n           question_id :   6980 , \n           section_attempt_id :   23023 , \n           time_spent :   10 \n         } \n         ], \n\n       score :   4 , \n       section :   { \n         created_date :   2018-11-10T15:52:00 , \n         id :   313 , \n         name :   English Comprehension , \n         test_id :   180 , \n         total_time :   600 \n       }, \n       section_id :   313 , \n       test_attempt_id :   9564 , \n       time_spent :   145 , \n       total_question_count :   10 \n     }, \n     { \n       correct_question_count :   2 , \n       id :   23024 , \n       incorrect_question_count :   7 , \n       is_complete :   true , \n       question_attempts :   [ \n         { \n           question :   { \n             id :   6989 , \n             lod :   Medium , \n             topic :   Puzzles , \n             type :   RC \n           }, \n           question_id :   6989 , \n           section_attempt_id :   23024 , \n           time_spent :   15 \n         }, \n\n       ], \n       score :   2 , \n       section :   { \n         created_date :   2018-11-10T15:53:00 , \n         id :   314 , \n         name :   Logical Reasoning , \n         test_id :   180 , \n         total_time :   600 \n       }, \n       section_id :   314 , \n       test_attempt_id :   9564 , \n       time_spent :   160 , \n       total_question_count :   9 \n     }, \n     { \n       correct_question_count :   3 , \n       id :   23025 , \n       incorrect_question_count :   7 , \n       is_complete :   true , \n       question_attempts :   [ \n         { \n           question :   { \n             id :   6998 , \n             lod :   Easy , \n             topic :   Number System , \n             type :   MCQ \n           }, \n           question_id :   6998 , \n           section_attempt_id :   23025 , \n           time_spent :   85 \n         } \n\n         ], \n       score :   3 , \n       section :   { \n         created_date :   2018-11-10T15:53:00 , \n         id :   315 , \n         name :   Quantitative Aptitude , \n         test_id :   180 , \n         total_time :   600 \n       }, \n       section_id :   315 , \n       test_attempt_id :   9564 , \n       time_spent :   240 , \n       total_question_count :   10 \n     } \n   ], \n   test_id :   180 , \n   user_id :   137  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html#admin-reset-a-test", 
+            "text": "Reset a Test for an User. This is usually done when a user has faced 'technical' difficulties during the Test.\nIt should reset test attempt record, reset section attempt time and delete all Question Attempt rows.     POST /admin/tests/attempts/:testAttemptId/reset  testAttemptId  \u2192 The ID of the Test Attempt to Reset", 
+            "title": "Admin \u2192 Reset a Test"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html#admin-get-test-attempts", 
+            "text": "Reporting endpoint for Admins to get Test Attempts of a Test for a particular User or a category of Users.\nThis helps admin monitor examinations   performance during Beatest Challenges.     GET /admin/test_attempts/:test_id/users", 
+            "title": "Admin  \u2192 Get Test Attempts"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html#supported-query-params", 
+            "text": "Key  Description      test_id  ID for Beatest Exam    email  Email Address for the User    college_id  College ID for Users", 
+            "title": "Supported Query Params"
+        }, 
+        {
+            "location": "/api-v0.1/TestAttempts/index.html#response_1", 
+            "text": "[ \n     { \n         id :   1 , \n         user_id :   12 , \n         test_id :   10 , \n         is_complete :   true , \n         score :   24 \n     }, \n     { \n         id :   2 , \n         user_id :   12 , \n         test_id :   12 , \n         is_complete :   false , \n         score :   0 \n     }  ]", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/TestAnalysis/index.html", 
+            "text": "Test Analysis\n\n\nIncomplete Article\n\n\nAfter a User finishes a Test, he is allowed to view the answers of the Test and \ncompare it to his own responses.\n\n\nAPI Reference\n\n\nGet Solutions for Section \n\n\nGet all the information for a section. \n\n\nThis will return : \n\n\n\n\nAll Questions for the section, including html\n\n\nChoices for the question (if the question has choices), including html\n\n\nQuestion attempts for the \nLatest\n Test Attempt for the user.\n\n\n\n\nThis response is cached\n\n\n\n\nGET /tests/\ntestID\n/sections/\nsectionID\n/solutions\n\n\ntestID\n \n the Id test \n\n\nsectionID\n the Id section\n\n\nResponse\n\n\nA \nTest\n Object with the following additional keys:\n\n\n\n\n\n\ntest_attempts\n \n array with exactly 1 \nTest Attempt\n object\n\n\n\n\nsection_attempts\n \n array with exactly 1 \nSection Attempt\n object.\n\nThis section attempt's \nsection_id\n will be equal to the \nsectionID\n provided\nin the request\n\n\n\n\n\n\n\n\nSections\n \n array with exactly 1 \nSection\n object\n\n\n\n\nquestions\n \n array of \nQuestion\n objects\n\n\nchoices\n \n array of \nchoice\n objects. \n\nIf the question is not \nMCQ\n type, then this array will be empty.\n\n\n\n\n\n\n\n\n\n\n\n\n{\n\n    \npromo_value\n:\n \n20\n,\n    \n#\n \nmonetary\n \nvalue\n \nfor\n \nthe\n \npromo\n \ncode\n\n\n}", 
+            "title": "\u3000 \u21b3 Test Analysis"
+        }, 
+        {
+            "location": "/api-v0.1/TestAnalysis/index.html#test-analysis", 
+            "text": "", 
+            "title": "Test Analysis"
+        }, 
+        {
+            "location": "/api-v0.1/TestAnalysis/index.html#incomplete-article", 
+            "text": "After a User finishes a Test, he is allowed to view the answers of the Test and \ncompare it to his own responses.", 
+            "title": "Incomplete Article"
+        }, 
+        {
+            "location": "/api-v0.1/TestAnalysis/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/TestAnalysis/index.html#get-solutions-for-section", 
+            "text": "Get all the information for a section.   This will return :    All Questions for the section, including html  Choices for the question (if the question has choices), including html  Question attempts for the  Latest  Test Attempt for the user.   This response is cached   GET /tests/ testID /sections/ sectionID /solutions  testID    the Id test   sectionID  the Id section", 
+            "title": "Get Solutions for Section"
+        }, 
+        {
+            "location": "/api-v0.1/TestAnalysis/index.html#response", 
+            "text": "A  Test  Object with the following additional keys:    test_attempts    array with exactly 1  Test Attempt  object   section_attempts    array with exactly 1  Section Attempt  object. \nThis section attempt's  section_id  will be equal to the  sectionID  provided\nin the request     Sections    array with exactly 1  Section  object   questions    array of  Question  objects  choices    array of  choice  objects.  \nIf the question is not  MCQ  type, then this array will be empty.       { \n     promo_value :   20 ,      #   monetary   value   for   the   promo   code  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/TimeTrack(Pinger)/index.html", 
+            "text": "Time Tracking\n\n\nIn order to capture the amount of time spent on a Question,\n   is is neccessary to send information from the client\n  to the the server periodically. This allows the server\n to update the time spent on each Question/Section. \n\n\nHeartbeat Signal \n\n\nA signal with the required information is sent every 20 seconds to the server.\n To prevent tampering, signed cookies are transferred to and from the client.\n\n\nThe pinger will only perform the time update operation if it receives a cookie \nthat has time of last ping \n= 20 seconds. \n\n\nWhen a successf`ul ping happens, the time update operation is updated to the current\nsystem time of the server. \n\n\nIn order to be able to bootstrap this proccess, an initial time of last update needs \nto be set. The following endpoints can send a cookie with time of issue: \n\n\n\n\nStart/Resume Test \n\n\nStart/Resume Section \n\n\n\n\nThe following endpoints need the time of issue to be \n= 20 seconds in order to proceed: \n\n\n\n\nUpdate Question Attempt\n\n\nSubmit section \n\n\n\n\nsequenceDiagram\nparticipant client\nparticipant server\nparticipant database\nloop every 20 seconds\n    client-\nserver:   Heartbeat Signal \n    server-\ndatabase: update time spent on section\n    server-\ndatabase: update time spent on test\n    server--\nclient:  update cookie with new last ping timestamp\nend\n\n\n\nUpdate Time \n\n\nPerforms the Heartbeat signal\n\n\nUpdates the time spent for a particular question. \nBehind the scenes , it will also update the time spent for the \nSection that the Question belongs to. \n\n\nIf the test doesnt allow sectional jumps, it will automatically \nset the \nis_complete\n flag of the section to False.\n\n\nThis requires the question attempt for the question id to already exist\n\n\n\n\nPOST /tests/\ntestID\n/sections/\nsectionID\n/questions/\nquestion_ID\n/attempts/ping\ntestID\n  \n   The ID of the current test.\n\n\nsectionID\n  \n   The ID of the Section to update time for.\n\n\nquestion_ID\n  \n   The ID of the Question to update time for.", 
+            "title": "\u3000 \u21b3 Time Track(Pinger)"
+        }, 
+        {
+            "location": "/api-v0.1/TimeTrack(Pinger)/index.html#time-tracking", 
+            "text": "In order to capture the amount of time spent on a Question,\n   is is neccessary to send information from the client\n  to the the server periodically. This allows the server\n to update the time spent on each Question/Section.", 
+            "title": "Time Tracking"
+        }, 
+        {
+            "location": "/api-v0.1/TimeTrack(Pinger)/index.html#heartbeat-signal", 
+            "text": "A signal with the required information is sent every 20 seconds to the server.\n To prevent tampering, signed cookies are transferred to and from the client.  The pinger will only perform the time update operation if it receives a cookie \nthat has time of last ping  = 20 seconds.   When a successf`ul ping happens, the time update operation is updated to the current\nsystem time of the server.   In order to be able to bootstrap this proccess, an initial time of last update needs \nto be set. The following endpoints can send a cookie with time of issue:    Start/Resume Test   Start/Resume Section    The following endpoints need the time of issue to be  = 20 seconds in order to proceed:    Update Question Attempt  Submit section    sequenceDiagram\nparticipant client\nparticipant server\nparticipant database\nloop every 20 seconds\n    client- server:   Heartbeat Signal \n    server- database: update time spent on section\n    server- database: update time spent on test\n    server-- client:  update cookie with new last ping timestamp\nend", 
+            "title": "Heartbeat Signal"
+        }, 
+        {
+            "location": "/api-v0.1/TimeTrack(Pinger)/index.html#update-time", 
+            "text": "Performs the Heartbeat signal  Updates the time spent for a particular question. \nBehind the scenes , it will also update the time spent for the \nSection that the Question belongs to.   If the test doesnt allow sectional jumps, it will automatically \nset the  is_complete  flag of the section to False.  This requires the question attempt for the question id to already exist   POST /tests/ testID /sections/ sectionID /questions/ question_ID /attempts/ping testID       The ID of the current test.  sectionID       The ID of the Section to update time for.  question_ID       The ID of the Question to update time for.", 
+            "title": "Update Time"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html", 
+            "text": "Users\n\n\nA user is the core actor in Beatest. He can perform actions like purchasing\nTests, Attempting Tests,etc. \n\n\nFor most actions, a User needs to be logged in. \n\n\nA user may log in by supplying his Email/Password, or by 3\nrd\n party methods such\nas Facebook or Google.\n\n\nA User may have additional roles associated with him (such as Admin)\n\n\nDatabase Table\n\n\nUsers are currently represented in the database like below\n\n\n\n\n\n\n\n\nField Name\n\n\nData Type\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nid\n\n\nint\n\n\nUnique Identifier for User\n\n\n\n\n\n\nfull_name\n\n\nvarchar(50)\n\n\nFull Name\n\n\n\n\n\n\nfb_id\n\n\nvarchar(255), Unique\n\n\nFacebook ID\n\n\n\n\n\n\ngoogle_id\n\n\nvarchar(50)\n\n\nGoogle ID\n\n\n\n\n\n\nfb_oauth_token\n\n\nvarchar(500)\n\n\nFacebook OAuth Token\n\n\n\n\n\n\ngoogle_oauth_token\n\n\nvarchar(500)\n\n\nGoogle OAuth Token\n\n\n\n\n\n\ngoogle_token_id\n\n\nvarchar(4000)\n\n\nGoogle Token ID\n\n\n\n\n\n\nemail\n\n\nvarchar(50), Unique\n\n\nEmail\n\n\n\n\n\n\npassword\n\n\nvarchar(500)\n\n\nHashed Password\n\n\n\n\n\n\nprofile_picture\n\n\nLONGTEXT\n\n\nBase64 String\n\n\n\n\n\n\nreferral_code\n\n\nvarchar(50)\n\n\nReferral Code for User\n\n\n\n\n\n\nreferral_bonus\n\n\nint\n\n\nReferral Bonus received during SignUp\n\n\n\n\n\n\nreferral_code_used\n\n\nvarchar(50)\n\n\nReferral Code used during SignUp\n\n\n\n\n\n\nwallet\n\n\nint\n\n\nWallet Amount (includes refunds and Referral Bonus)\n\n\n\n\n\n\nphone_no\n\n\nint\n\n\nPhone Number\n\n\n\n\n\n\ntype\n\n\nvarchar(50)\n\n\nUserTypes Enum: Standard, Admin\n\n\n\n\n\n\nis_active\n\n\ntinyint(1)\n\n\nActivation Mail acknowledged or not\n\n\n\n\n\n\ncollege_id\n\n\nint (FK to id in college table)\n\n\nCollege that the User is associated with\n\n\n\n\n\n\n\n\nAPI Reference\n\n\nGet User Details \n\n\nGet details of logged in User. This is useful for the client to display information about \nthe user in the UI. \n\n\n\n\nGET /user\n\n\nResponse\n\n\n{\n\n    \ncollege\n:\n \n{\n\n    \nid\n:\n12\n,\n\n    \nname\n:\nDemo College\n,\n\n    \n},\n                             \n#\n \nCollege\n \nobject\n \nthat\n \nthe\n \nuser\n \nis\n \nassociated\n \nwith\n \n(may\n \nbe\n \nnull)\n\n    \nid\n:\n \n13\n,\n                      \n#\n \nPK\n \n/\n \nUnique\n \nIdentifier\n\n    \nname\n:\n \nRam\n,\n                 \n#\n \nUser\n \nFull\n \nName\n\n    \nprofile_picture\n:\n \nnull\n,\n       \n#\n \nProfile\n \nPicture\n \n-\n \nBase64\n \nString\n\n    \nreferralBonus\n:\n \n50\n,\n           \n#\n \nReferral\n \nBonus\n\n    \nreferralCode\n:\n \nAZJASP17\n,\n    \n#\n \nReferral\n \nCode\n\n    \nwallet\n:\n \n0\n                    \n#\n \nWallet\n \nBalance\n\n    \ncorporate\n:\n \n{\n                 \n#\n \nnull\n \nif\n \nuser\n \nis\n \nnot\n \na\n \ncorporate\n \nadmin\n\n        \nid\n:\n \n1\n,\n\n        \nname\n:\n \nApple Inc.\n,\n\n        \ntests\n:\n \n[\n                 \n#\n \nlist\n \nof\n \ntests\n \nthat\n \na\n \ncorporate\n \nis\n \nallowed\n \nto\n \nmonitor\n\n          \n{\n\n            \nallow_section_jumps\n:\n \ntrue\n,\n\n            \ncharacter\n:\n \nMock\n,\n\n            \ncreated_date\n:\n \n2016-11-22T22:43:16\n,\n\n            \nid\n:\n \n1\n,\n\n            \nis_active\n:\n \ntrue\n,\n\n            \nleaderboard_id\n:\n \nnull\n,\n\n            \nlogo\n:\n \nblobs/Test_icons/a_b_c_d_e_f.png\n,\n\n            \nname\n:\n \nBEAT CAT 01\n,\n\n            \nprice\n:\n \n0\n,\n\n            \ntype\n:\n \nCAT\n\n          \n},\n\n          \n{\n\n            \nallow_section_jumps\n:\n \ntrue\n,\n\n            \ncharacter\n:\n \nMock\n,\n\n            \ncreated_date\n:\n \n2016-11-22T22:43:17\n,\n\n            \nid\n:\n \n2\n,\n\n            \nis_active\n:\n \ntrue\n,\n\n            \nleaderboard_id\n:\n \nnull\n,\n\n            \nlogo\n:\n \nnull\n,\n\n            \nname\n:\n \nBEAT IBPS 01\n,\n\n            \nprice\n:\n \n19\n,\n\n            \ntype\n:\n \nIBPS\n\n          \n},\n\n          \n{\n\n            \nallow_section_jumps\n:\n \ntrue\n,\n\n            \ncharacter\n:\n \nMock\n,\n\n            \ncreated_date\n:\n \n2017-07-15T07:20:32\n,\n\n            \nid\n:\n \n105\n,\n\n            \nis_active\n:\n \ntrue\n,\n\n            \nleaderboard_id\n:\n \nnull\n,\n\n            \nlogo\n:\n \nnull\n,\n\n            \nname\n:\n \nBeat Placement #2\n,\n\n            \nprice\n:\n \n0\n,\n\n            \ntype\n:\n \nCOLLEGE\n\n          \n},\n\n          \n{\n\n            \nallow_section_jumps\n:\n \nfalse\n,\n\n            \ncharacter\n:\n \nMock\n,\n\n            \ncreated_date\n:\n \n2018-09-08T11:07:00\n,\n\n            \nid\n:\n \n170\n,\n\n            \nis_active\n:\n \ntrue\n,\n\n            \nleaderboard_id\n:\n \nnull\n,\n\n            \nlogo\n:\n \nnull\n,\n\n            \nname\n:\n \nBeat Placement CTS #1\n,\n\n            \nprice\n:\n \n0\n,\n\n            \ntype\n:\n \nCAT\n\n          \n},\n\n          \n{\n\n            \nallow_section_jumps\n:\n \nfalse\n,\n\n            \ncharacter\n:\n \nMock\n,\n\n            \ncreated_date\n:\n \n2018-11-10T15:52:00\n,\n\n            \nid\n:\n \n180\n,\n\n            \nis_active\n:\n \ntrue\n,\n\n            \nleaderboard_id\n:\n \nnull\n,\n\n            \nlogo\n:\n \nnull\n,\n\n            \nname\n:\n \nBeat Wipro National Elite Mock\n,\n\n            \nprice\n:\n \n0\n,\n\n            \ntype\n:\n \nCAT\n\n          \n}\n\n        \n]\n\n      \n},\n\n\n\n}\n\n\n\n\n\n\n\nLogin \n \n\n\nLogs a User in. This endpoint is supposed to be for cases \nwhen the email and password is supplied.\n\n\nIf a user is a corporate admin, then an additional value in the session \n\ncorporate_id\n with value equal to the id of the corporate is also sent.\n\n\n\n\nPOST /user/login\n\n\nRequest\n\n\n{\n\n\nemail\n:\n \ntest@b.com\n,\n     \n#\n \nUser\n \nEmail\n \nAddress\n\n\npassword\n:\n \ntest123\n      \n#\n \nUser\n \nPassword\n\n\n}\n\n\n\n\n\nResponse\n\n\n{\n\n\n\ncollege\n:\n \n{\n\n\nid\n:\n12\n,\n\n\nname\n:\nDemo College\n,\n\n\n}\n                              \n#\n \nCollege\n \nobject\n \nthat\n \nthe\n \nuser\n \nis\n \nassociated\n \nwith\n\n\nid\n:\n \n13\n,\n\n\nname\n:\n \nRam\n,\n\n\nprofile_picture\n:\n \nnull\n,\n\n\nreferralBonus\n:\n \n50\n,\n\n\nreferralCode\n:\n \nAZJASP17\n,\n\n\nwallet\n:\n \n0\n\n\n}\n\n\n\n\n\n\n\nSignup \n\n\nCreate a new user. \n\n\nThis endpoint will create a new row in the User table and requires an email\nas an input (Unlike other methods like Facebook Login).\n\n\n\n\nPOST /user/signup\n\n\nRequest\n\n\n{\n\n    \nname\n:\n \nRam\n,\n          \n#\n \nUser\n \nFull\n \nName\n\n    \nemail\n:\n \ntest@b.com\n,\n  \n#\n \nEmail\n \nAddress(Must\n \nbe\n \nsomething\n \nthat\n \ndoesnt\n \nalready\n \nexist)\n\n    \npassword\n:\n \ntest123\n,\n  \n#\n \nPassword\n \nfor\n \nAccount\n\n    \nphone_no\n:\n \n9812129001\n,\n \n#\n \nUser\n \nPhone\n \nNumber\n\n    \nwallet\n:\n \n0\n,\n            \n#\n \nWallet\n \nBalance\n \n(unless\n \nReferral\n \nis\n \nused)\n\n    \ncollege_id\n:\n \n12\n         \n#\n \nIf\n \nit\n \nis\n \nNull\n,\n \nUser\n \nhas\n \nnot\n \nCollege\n \nAssociation\n\n    \ncaptcha_token\n:\n \na87s6df5a8s76df58as764afd\n \n#\n \ncaptcha\n \ntoken\n \nfrom\n \nReCAPTCHA\n \n(See\n \nCaptcha\n \nfor\n \ndetails)\n\n\n}\n\n\n\n\n\n\n\nUser Activation \n\n\nIn order to verify that the user has access to an email, \na validation email is sent to the email that was used when the user\nregistered. \n\n\nThat validation email contains a link to this endpoint, along with a\nhashed version of the email (signed using a secret key).\n\n\n\n\nGET /user/activate/\nactivationToken\n\n\nactivationToken\n  \u2192 hashed Email of User \n\n\nResponse\n\n\nThis endpoint returns an \nHTTP 304\n, with a redirect URL to \n\nhttp://beatest.in\n\n\n\n\nFacebook Login \n\n\nUsers may log in using Facebook. \nThe following is our process of handling Facebook login.\n\n\nsequenceDiagram\nparticipant client\nparticipant server\nparticipant facebook\nclient-\nfacebook: Request Login using Facebook\nfacebook--\nclient: Get Access Token \nclient-\nserver: Send Access Token from Facebook\nserver-\nfacebook: Validate Access Token\nNote over server: If Token Validated\nserver--\nclient: Log user in \nNote over server: Else\nserver--\nclient: Return 403 Unauthorized\n\n\n\nThe token received from the client is validated by the server. \nValidation involves sending the token to Facebook, and getting the details.\nIf the Token was issued for Beatest, then it is valid, else it is not. \n\n\nThe validation step also returns a \nuser_id\n field , which is Facebook's \nunique identifier for that user. \n\n\nThe Beatest server creates a new User row if a row with \nfb_id\n equal to the \nreturned \nuser_id\n does not exist. This new user's row is set to active. \n\n\nAfter performing the above steps, this endpoint will assign a session cookie \nto the user. This cookie is similar to the one assigned if the user logs in \nusing email.\n\n\n\n\nPOST /user/facebook_login/\nactivation_token\n\n\nactivation_token\n  \u2192 the token received from facebook \n\n\n\n\nGoogle Login \n\n\nUsers may also log in using Google. \nThe logical flow for Google Login is the same as Facebook login, and the \ndiagram will be omitted here.\n\n\nThe token received from the client is validated by the server. \nThe validation step is also similar to that of Facebook's.\n\n\nThe validation step  returns a \nuser_id\n field , which is Google's \nunique identifier for that user. \n\n\nThe Beatest server creates a new User row if a row with \ngoogle_id\n equal to the \nreturned \nuser_id\n does not exist. This new user's row is set to active. \n\n\nAfter performing the above steps, this endpoint will assign a session cookie \nto the user. This cookie is similar to the one assigned if the user logs in \nusing email.\n\n\n\n\nPOST /user/google_login/\nactivation_token\n\n\nactivation_token\n  \u2192 the token received from google \n\n\n\n\nForgot Password \n\n\nIn case the User has forgotten his password, the client can call this endpoint\nto send an Email to his Email.\n\n\nA Link will be emailed to the User. The User can visit this link to reset \nhis password. (See Reset Password for more information).\n\n\nThis Link will redirect to a Page in the UI.\n\n\n\n\nPOST /user/forgot_password\n\n\nRequest\n\n\n{\n\n\nemail\n:\n \nsome_email@fakemail.com\n,\n\n\ncaptcha_token\n:\n \na87s6df5a8s76df58as764afd\n \n#\n \ncaptcha\n \ntoken\n \nfrom\n \nReCAPTCHA\n \n(See\n \nCaptcha\n \nfor\n \ndetails)\n\n\n}\n\n\n\n\n\nResponse\n\n\nHTTP 200\n \n\n     The server sends an email to the specified email id\n with a link to reset password. It will be in the form:\n \nhttp://beatest.in/reset_password?token=RESET_TOKEN\n \n \n\n \nNOTE\n This is not a link to an API endpoint ,but \n a link to a UI endpoint (see Reset Password for more details).\n\n\n\n\nReset Password \n\n\nWhen the Visits the Link obtained from \nForgot Password\n , the client should \ndisplay a page with new password fields.\n\n\nIf the User submits the form with those fields, the client should call \nthis endpoint. \n\n\n\n\nPOST /user/reset_password/\nReset_Token\n\n\nReset_Token\n \u2192 The token that was emailed to the User\n\n\nRequest\n\n\n{\n\n\nnew_password\n:\n \ntest321\n,\n\n\n}\n\n\n\n\n\n\n\nChange Password \n\n\nIf the User would like to change is password , the client can call this endpoint.\n\n\nNote\n This is different from Reset password. In this case, the User needs to\nbe logged in before performing this action.\n\n\n\n\nPOST /user/change_password/\n\n\nRequest\n\n\n{\n\n\nold_password\n:\n \nold_pass123\n,\n \n#\n \nThis\n \nneeds\n \nto\n \nmatch\n \ncurrent\n \npassword\n\n\nnew_password\n:\n \nnew_pass431\n,\n \n#\n \nSome\n \nnew\n \nPassword\n \n\n}\n\n\n\n\n\n\n\nResend Activation Mail \n\n\nIf for some reason, the verification email was not received by the User, he may\nrequest to be sent another one.\n\n\n\n\nPOST /user/resend_activation\n\n\nRequest\n\n\n{\n\n\nemail\n:\n \nsomeemail@fakemail.com\n,\n\n\ncaptcha_token\n:\n \na87s6df5a8s76df58as764afd\n \n#\n \ncaptcha\n \ntoken\n \nfrom\n \nReCAPTCHA\n \n(See\n \nCaptcha\n \nfor\n \ndetails)\n\n\n}\n\n\n\n\n\n\n\nUser Logout \n\n\nLogs a User out. Should clear cookies. \n\n\n\n\nPOST /user/logout", 
+            "title": "Users"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#users", 
+            "text": "A user is the core actor in Beatest. He can perform actions like purchasing\nTests, Attempting Tests,etc.   For most actions, a User needs to be logged in.   A user may log in by supplying his Email/Password, or by 3 rd  party methods such\nas Facebook or Google.  A User may have additional roles associated with him (such as Admin)", 
+            "title": "Users"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#database-table", 
+            "text": "Users are currently represented in the database like below     Field Name  Data Type  Description      id  int  Unique Identifier for User    full_name  varchar(50)  Full Name    fb_id  varchar(255), Unique  Facebook ID    google_id  varchar(50)  Google ID    fb_oauth_token  varchar(500)  Facebook OAuth Token    google_oauth_token  varchar(500)  Google OAuth Token    google_token_id  varchar(4000)  Google Token ID    email  varchar(50), Unique  Email    password  varchar(500)  Hashed Password    profile_picture  LONGTEXT  Base64 String    referral_code  varchar(50)  Referral Code for User    referral_bonus  int  Referral Bonus received during SignUp    referral_code_used  varchar(50)  Referral Code used during SignUp    wallet  int  Wallet Amount (includes refunds and Referral Bonus)    phone_no  int  Phone Number    type  varchar(50)  UserTypes Enum: Standard, Admin    is_active  tinyint(1)  Activation Mail acknowledged or not    college_id  int (FK to id in college table)  College that the User is associated with", 
+            "title": "Database Table"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#api-reference", 
+            "text": "", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#get-user-details", 
+            "text": "Get details of logged in User. This is useful for the client to display information about \nthe user in the UI.    GET /user", 
+            "title": "Get User Details"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#response", 
+            "text": "{ \n     college :   { \n     id : 12 , \n     name : Demo College , \n     },                               #   College   object   that   the   user   is   associated   with   (may   be   null) \n     id :   13 ,                        #   PK   /   Unique   Identifier \n     name :   Ram ,                   #   User   Full   Name \n     profile_picture :   null ,         #   Profile   Picture   -   Base64   String \n     referralBonus :   50 ,             #   Referral   Bonus \n     referralCode :   AZJASP17 ,      #   Referral   Code \n     wallet :   0                      #   Wallet   Balance \n     corporate :   {                   #   null   if   user   is   not   a   corporate   admin \n         id :   1 , \n         name :   Apple Inc. , \n         tests :   [                   #   list   of   tests   that   a   corporate   is   allowed   to   monitor \n           { \n             allow_section_jumps :   true , \n             character :   Mock , \n             created_date :   2016-11-22T22:43:16 , \n             id :   1 , \n             is_active :   true , \n             leaderboard_id :   null , \n             logo :   blobs/Test_icons/a_b_c_d_e_f.png , \n             name :   BEAT CAT 01 , \n             price :   0 , \n             type :   CAT \n           }, \n           { \n             allow_section_jumps :   true , \n             character :   Mock , \n             created_date :   2016-11-22T22:43:17 , \n             id :   2 , \n             is_active :   true , \n             leaderboard_id :   null , \n             logo :   null , \n             name :   BEAT IBPS 01 , \n             price :   19 , \n             type :   IBPS \n           }, \n           { \n             allow_section_jumps :   true , \n             character :   Mock , \n             created_date :   2017-07-15T07:20:32 , \n             id :   105 , \n             is_active :   true , \n             leaderboard_id :   null , \n             logo :   null , \n             name :   Beat Placement #2 , \n             price :   0 , \n             type :   COLLEGE \n           }, \n           { \n             allow_section_jumps :   false , \n             character :   Mock , \n             created_date :   2018-09-08T11:07:00 , \n             id :   170 , \n             is_active :   true , \n             leaderboard_id :   null , \n             logo :   null , \n             name :   Beat Placement CTS #1 , \n             price :   0 , \n             type :   CAT \n           }, \n           { \n             allow_section_jumps :   false , \n             character :   Mock , \n             created_date :   2018-11-10T15:52:00 , \n             id :   180 , \n             is_active :   true , \n             leaderboard_id :   null , \n             logo :   null , \n             name :   Beat Wipro National Elite Mock , \n             price :   0 , \n             type :   CAT \n           } \n         ] \n       },  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#login", 
+            "text": "Logs a User in. This endpoint is supposed to be for cases \nwhen the email and password is supplied.  If a user is a corporate admin, then an additional value in the session  corporate_id  with value equal to the id of the corporate is also sent.   POST /user/login", 
+            "title": "Login"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#request", 
+            "text": "{  email :   test@b.com ,       #   User   Email   Address  password :   test123        #   User   Password  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#response_1", 
+            "text": "{  college :   {  id : 12 ,  name : Demo College ,  }                                #   College   object   that   the   user   is   associated   with  id :   13 ,  name :   Ram ,  profile_picture :   null ,  referralBonus :   50 ,  referralCode :   AZJASP17 ,  wallet :   0  }", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#signup", 
+            "text": "Create a new user.   This endpoint will create a new row in the User table and requires an email\nas an input (Unlike other methods like Facebook Login).   POST /user/signup", 
+            "title": "Signup"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#request_1", 
+            "text": "{ \n     name :   Ram ,            #   User   Full   Name \n     email :   test@b.com ,    #   Email   Address(Must   be   something   that   doesnt   already   exist) \n     password :   test123 ,    #   Password   for   Account \n     phone_no :   9812129001 ,   #   User   Phone   Number \n     wallet :   0 ,              #   Wallet   Balance   (unless   Referral   is   used) \n     college_id :   12           #   If   it   is   Null ,   User   has   not   College   Association \n     captcha_token :   a87s6df5a8s76df58as764afd   #   captcha   token   from   ReCAPTCHA   (See   Captcha   for   details)  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#user-activation", 
+            "text": "In order to verify that the user has access to an email, \na validation email is sent to the email that was used when the user\nregistered.   That validation email contains a link to this endpoint, along with a\nhashed version of the email (signed using a secret key).   GET /user/activate/ activationToken  activationToken   \u2192 hashed Email of User", 
+            "title": "User Activation"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#response_2", 
+            "text": "This endpoint returns an  HTTP 304 , with a redirect URL to  http://beatest.in", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#facebook-login", 
+            "text": "Users may log in using Facebook. \nThe following is our process of handling Facebook login.  sequenceDiagram\nparticipant client\nparticipant server\nparticipant facebook\nclient- facebook: Request Login using Facebook\nfacebook-- client: Get Access Token \nclient- server: Send Access Token from Facebook\nserver- facebook: Validate Access Token\nNote over server: If Token Validated\nserver-- client: Log user in \nNote over server: Else\nserver-- client: Return 403 Unauthorized  The token received from the client is validated by the server. \nValidation involves sending the token to Facebook, and getting the details.\nIf the Token was issued for Beatest, then it is valid, else it is not.   The validation step also returns a  user_id  field , which is Facebook's \nunique identifier for that user.   The Beatest server creates a new User row if a row with  fb_id  equal to the \nreturned  user_id  does not exist. This new user's row is set to active.   After performing the above steps, this endpoint will assign a session cookie \nto the user. This cookie is similar to the one assigned if the user logs in \nusing email.   POST /user/facebook_login/ activation_token  activation_token   \u2192 the token received from facebook", 
+            "title": "Facebook Login"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#google-login", 
+            "text": "Users may also log in using Google. \nThe logical flow for Google Login is the same as Facebook login, and the \ndiagram will be omitted here.  The token received from the client is validated by the server. \nThe validation step is also similar to that of Facebook's.  The validation step  returns a  user_id  field , which is Google's \nunique identifier for that user.   The Beatest server creates a new User row if a row with  google_id  equal to the \nreturned  user_id  does not exist. This new user's row is set to active.   After performing the above steps, this endpoint will assign a session cookie \nto the user. This cookie is similar to the one assigned if the user logs in \nusing email.   POST /user/google_login/ activation_token  activation_token   \u2192 the token received from google", 
+            "title": "Google Login"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#forgot-password", 
+            "text": "In case the User has forgotten his password, the client can call this endpoint\nto send an Email to his Email.  A Link will be emailed to the User. The User can visit this link to reset \nhis password. (See Reset Password for more information).  This Link will redirect to a Page in the UI.   POST /user/forgot_password", 
+            "title": "Forgot Password"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#request_2", 
+            "text": "{  email :   some_email@fakemail.com ,  captcha_token :   a87s6df5a8s76df58as764afd   #   captcha   token   from   ReCAPTCHA   (See   Captcha   for   details)  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#response_3", 
+            "text": "HTTP 200   \n     The server sends an email to the specified email id\n with a link to reset password. It will be in the form:\n  http://beatest.in/reset_password?token=RESET_TOKEN     \n  NOTE  This is not a link to an API endpoint ,but \n a link to a UI endpoint (see Reset Password for more details).", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#reset-password", 
+            "text": "When the Visits the Link obtained from  Forgot Password  , the client should \ndisplay a page with new password fields.  If the User submits the form with those fields, the client should call \nthis endpoint.    POST /user/reset_password/ Reset_Token  Reset_Token  \u2192 The token that was emailed to the User", 
+            "title": "Reset Password"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#request_3", 
+            "text": "{  new_password :   test321 ,  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#change-password", 
+            "text": "If the User would like to change is password , the client can call this endpoint.  Note  This is different from Reset password. In this case, the User needs to\nbe logged in before performing this action.   POST /user/change_password/", 
+            "title": "Change Password"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#request_4", 
+            "text": "{  old_password :   old_pass123 ,   #   This   needs   to   match   current   password  new_password :   new_pass431 ,   #   Some   new   Password   }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#resend-activation-mail", 
+            "text": "If for some reason, the verification email was not received by the User, he may\nrequest to be sent another one.   POST /user/resend_activation", 
+            "title": "Resend Activation Mail"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#request_5", 
+            "text": "{  email :   someemail@fakemail.com ,  captcha_token :   a87s6df5a8s76df58as764afd   #   captcha   token   from   ReCAPTCHA   (See   Captcha   for   details)  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Users/index.html#user-logout", 
+            "text": "Logs a User out. Should clear cookies.    POST /user/logout", 
+            "title": "User Logout"
+        }, 
+        {
+            "location": "/api-v0.1/Misc/index.html", 
+            "text": "Miscellaneous\n\n\nThis page documents APIs that do not belong to any particular\ncategory.\n\n\nContact Us \n\n\nUsers from the home page can send a contact request. \n\n\nThis endpoint just takes in the input of the forms and sends \nan Email to the admins. \n\n\n\n\nPOST /misc/contact_us\n\n\nRequest\n\n\n{\n\n    \nname\n:\n          \nBen Dover\n,\n\n    \nemail\n:\n         \nben_dover@gmail.com\n,\n\n    \nmessage\n:\n       \nHow do I do this thing?\n,\n\n    \ncaptcha_token\n:\n \nas8d7f69a8s7d6f\n\n\n}\n\n\n\n\n\n\n\nAdmin \u2192 Promo Code Metrics \n\n\nIn order to monitor the status of \nPromo Codes\n \nthis endpoint may be used. \n\n\nIt returns \nHTML\n in the form of a table and is meant \nto be visited in the browser itself.\n\n\nThis endpoint is a quick hack and will be removed soon.\n\n\n\n\nGET /admin/misc/promo_metrics", 
+            "title": "Miscellaneous"
+        }, 
+        {
+            "location": "/api-v0.1/Misc/index.html#miscellaneous", 
+            "text": "This page documents APIs that do not belong to any particular\ncategory.", 
+            "title": "Miscellaneous"
+        }, 
+        {
+            "location": "/api-v0.1/Misc/index.html#contact-us", 
+            "text": "Users from the home page can send a contact request.   This endpoint just takes in the input of the forms and sends \nan Email to the admins.    POST /misc/contact_us", 
+            "title": "Contact Us"
+        }, 
+        {
+            "location": "/api-v0.1/Misc/index.html#request", 
+            "text": "{ \n     name :            Ben Dover , \n     email :           ben_dover@gmail.com , \n     message :         How do I do this thing? , \n     captcha_token :   as8d7f69a8s7d6f  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/api-v0.1/Misc/index.html#admin-promo-code-metrics", 
+            "text": "In order to monitor the status of  Promo Codes  \nthis endpoint may be used.   It returns  HTML  in the form of a table and is meant \nto be visited in the browser itself.  This endpoint is a quick hack and will be removed soon.   GET /admin/misc/promo_metrics", 
+            "title": "Admin \u2192 Promo Code Metrics"
+        }, 
+        {
+            "location": "/rex/index.html", 
+            "text": "Welcome\n\n\nRex is Beatest's corporate facing system that provides a system to track\napplicants.", 
+            "title": "Welcome"
+        }, 
+        {
+            "location": "/rex/index.html#welcome", 
+            "text": "Rex is Beatest's corporate facing system that provides a system to track\napplicants.", 
+            "title": "Welcome"
+        }, 
+        {
+            "location": "/rex/TestAttempts/index.html", 
+            "text": "TestAttempts\n\n\nA rex admin can view the results of test attempts as long he has the right permissions. \nThe permissions are : \n\n\n\n\nRex admin has access to monitor the test\n\n\nRex admin has access to monitor the user\n\n\n\n\nGet Overview \n \n\n\nGet overview data of a list of test attempts. \n\n\n\n\nGET /test/\ntest_id\n/attempts\n\n\nResponse\n\n\n{\n  \nallow_section_jumps\n: false, # These are details about the test itself\n  \ncharacter\n: \nMock\n,\n  \ncreated_date\n: \n2018-09-08T11:07:00\n,\n  \nid\n: 170,\n  \nis_active\n: true,\n  \nleaderboard_id\n: null,\n  \nlogo\n: null,\n  \nname\n: \nBeat Placement CTS #1\n,\n  \nprice\n: 0,\n  \nsections\n: [\n    {\n      \ncreated_date\n: \n2018-09-08T11:08:00\n,\n      \nid\n: 290,\n      \nname\n: \nLogical Reasoning\n,\n      \ntest_id\n: 170,\n      \ntotal_time\n: 840\n    },\n    {\n      \ncreated_date\n: \n2018-09-08T11:09:00\n,\n      \nid\n: 291,\n      \nname\n: \nQuantiative Aptiitude\n,\n      \ntest_id\n: 170,\n      \ntotal_time\n: 960\n    },\n    {\n      \ncreated_date\n: \n2018-09-08T11:09:00\n,\n      \nid\n: 292,\n      \nname\n: \nVerbal Ability\n,\n      \ntest_id\n: 170,\n      \ntotal_time\n: 1500\n    },\n    {\n      \ncreated_date\n: \n2018-09-08T11:09:00\n,\n      \nid\n: 293,\n      \nname\n: \nAutomata Fix\n,\n      \ntest_id\n: 170,\n      \ntotal_time\n: 1200\n    }\n  ],\n  \ntest_attempts\n: [ # only those users who are applicants to the corporate will be displayed\n    {\n      \ndate\n: \n2019-01-17T06:28:23\n,\n      \nid\n: 9569,\n      \nis_complete\n: true,\n      \nis_graded\n: true,\n      \nscore\n: 6,\n      \nsection_attempts\n: [\n        {\n          \ncorrect_question_count\n: 6,\n          \nid\n: 23035,\n          \nincorrect_question_count\n: 0,\n          \nis_complete\n: false,\n          \nscore\n: 6,\n          \nsection_id\n: 290,\n          \ntest_attempt_id\n: 9569,\n          \ntime_spent\n: 350\n        },\n        {\n          \ncorrect_question_count\n: 0,\n          \nid\n: 23036,\n          \nincorrect_question_count\n: 0,\n          \nis_complete\n: false,\n          \nscore\n: 0,\n          \nsection_id\n: 291,\n          \ntest_attempt_id\n: 9569,\n          \ntime_spent\n: 0\n        },\n        {\n          \ncorrect_question_count\n: 0,\n          \nid\n: 23037,\n          \nincorrect_question_count\n: 0,\n          \nis_complete\n: false,\n          \nscore\n: 0,\n          \nsection_id\n: 292,\n          \ntest_attempt_id\n: 9569,\n          \ntime_spent\n: 0\n        },\n        {\n          \ncorrect_question_count\n: 0,\n          \nid\n: 23038,\n          \nincorrect_question_count\n: 0,\n          \nis_complete\n: false,\n          \nscore\n: 0,\n          \nsection_id\n: 293,\n          \ntest_attempt_id\n: 9569,\n          \ntime_spent\n: 0\n        }\n      ],\n      \ntest_id\n: 170,\n      \nuser\n: { # the user who\ns test attempt this is.\n        \napplication\n: { # the user\ns application status \n          \ncorporate_id\n: 1,\n          \ndate\n: null,\n          \ntype\n: \naccepted\n, # his status for this corporate\n          \nuser_id\n: 8847\n        },\n        \ncollege\n: {\n          \ncollege_name\n: \nGreater Kolkata College of Engg and Management\n, # name of user\ns college\n          \nid\n: 109\n        },\n        \nfull_name\n: \nPRASUN MONDAL\n,\n        \nid\n: 8847\n      },\n      \nuser_id\n: 8847\n    }\n  ],\n  \ntype\n: \nCAT\n\n}", 
+            "title": "TestAttempts"
+        }, 
+        {
+            "location": "/rex/TestAttempts/index.html#testattempts", 
+            "text": "A rex admin can view the results of test attempts as long he has the right permissions. \nThe permissions are :    Rex admin has access to monitor the test  Rex admin has access to monitor the user", 
+            "title": "TestAttempts"
+        }, 
+        {
+            "location": "/rex/TestAttempts/index.html#get-overview", 
+            "text": "Get overview data of a list of test attempts.    GET /test/ test_id /attempts", 
+            "title": "Get Overview"
+        }, 
+        {
+            "location": "/rex/TestAttempts/index.html#response", 
+            "text": "{\n   allow_section_jumps : false, # These are details about the test itself\n   character :  Mock ,\n   created_date :  2018-09-08T11:07:00 ,\n   id : 170,\n   is_active : true,\n   leaderboard_id : null,\n   logo : null,\n   name :  Beat Placement CTS #1 ,\n   price : 0,\n   sections : [\n    {\n       created_date :  2018-09-08T11:08:00 ,\n       id : 290,\n       name :  Logical Reasoning ,\n       test_id : 170,\n       total_time : 840\n    },\n    {\n       created_date :  2018-09-08T11:09:00 ,\n       id : 291,\n       name :  Quantiative Aptiitude ,\n       test_id : 170,\n       total_time : 960\n    },\n    {\n       created_date :  2018-09-08T11:09:00 ,\n       id : 292,\n       name :  Verbal Ability ,\n       test_id : 170,\n       total_time : 1500\n    },\n    {\n       created_date :  2018-09-08T11:09:00 ,\n       id : 293,\n       name :  Automata Fix ,\n       test_id : 170,\n       total_time : 1200\n    }\n  ],\n   test_attempts : [ # only those users who are applicants to the corporate will be displayed\n    {\n       date :  2019-01-17T06:28:23 ,\n       id : 9569,\n       is_complete : true,\n       is_graded : true,\n       score : 6,\n       section_attempts : [\n        {\n           correct_question_count : 6,\n           id : 23035,\n           incorrect_question_count : 0,\n           is_complete : false,\n           score : 6,\n           section_id : 290,\n           test_attempt_id : 9569,\n           time_spent : 350\n        },\n        {\n           correct_question_count : 0,\n           id : 23036,\n           incorrect_question_count : 0,\n           is_complete : false,\n           score : 0,\n           section_id : 291,\n           test_attempt_id : 9569,\n           time_spent : 0\n        },\n        {\n           correct_question_count : 0,\n           id : 23037,\n           incorrect_question_count : 0,\n           is_complete : false,\n           score : 0,\n           section_id : 292,\n           test_attempt_id : 9569,\n           time_spent : 0\n        },\n        {\n           correct_question_count : 0,\n           id : 23038,\n           incorrect_question_count : 0,\n           is_complete : false,\n           score : 0,\n           section_id : 293,\n           test_attempt_id : 9569,\n           time_spent : 0\n        }\n      ],\n       test_id : 170,\n       user : { # the user who s test attempt this is.\n         application : { # the user s application status \n           corporate_id : 1,\n           date : null,\n           type :  accepted , # his status for this corporate\n           user_id : 8847\n        },\n         college : {\n           college_name :  Greater Kolkata College of Engg and Management , # name of user s college\n           id : 109\n        },\n         full_name :  PRASUN MONDAL ,\n         id : 8847\n      },\n       user_id : 8847\n    }\n  ],\n   type :  CAT \n}", 
+            "title": "Response"
+        }, 
+        {
+            "location": "/rex/Applications/index.html", 
+            "text": "Applications\n\n\nAn application is a connection between a user and a corporate.\n\n\nUpdate Applications \n \n\n\nUpdate application \ntype\n for a list of users.\n\n\n\n\nGET /applications\n\n\nRequest\n\n\nuser_ids\n: [ # list of user ids to update the applications of\n1,\n2,\n4,\n5\n],\n\nstatus\n: \naccepted\n # must be one of \naccepted,rejected,shortlisted,null", 
+            "title": "Applications"
+        }, 
+        {
+            "location": "/rex/Applications/index.html#applications", 
+            "text": "An application is a connection between a user and a corporate.", 
+            "title": "Applications"
+        }, 
+        {
+            "location": "/rex/Applications/index.html#update-applications", 
+            "text": "Update application  type  for a list of users.   GET /applications", 
+            "title": "Update Applications"
+        }, 
+        {
+            "location": "/rex/Applications/index.html#request", 
+            "text": "user_ids : [ # list of user ids to update the applications of\n1,\n2,\n4,\n5\n], status :  accepted  # must be one of  accepted,rejected,shortlisted,null", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/CASS/index.html", 
+            "text": "CASS\n\n\nCASS (Compiler As A Service) is a set of isolated APIs that accept and interface with user \nsubmitted code in a secure manner.", 
+            "title": "Welcome"
+        }, 
+        {
+            "location": "/CASS/index.html#cass", 
+            "text": "CASS (Compiler As A Service) is a set of isolated APIs that accept and interface with user \nsubmitted code in a secure manner.", 
+            "title": "CASS"
+        }, 
+        {
+            "location": "/CASS/run/index.html", 
+            "text": "Running Code APIs\n\n\nRun Code Against tests (UNSTABLE)\n\n\nRun a code snippet against a list of provided tests.\n\n\n\n\n \nPOST /api/snippet/run\n\n\nRequest\n\n\nThis endpoint requires \n\n\n{\n\n    \nlang\n:\npython3.6\n   \n#\n \nmust\n \nbe\n \none\n \nof\n \nsupported\n \nlanguages\n\n    \nsnippet\n:\n \nfor i in range(10): print(i)\n,\n     \n#\n \ncode\n \nsnippet.\n \nMust\n \nNOT\n \nBe\n \nminified.\n\n    \ntest_cases\n:\n \n[\n      \n#\n \nlist\n \nof\n \ntest\n \ncases\n,\n \nmust\n \nNOT\n \nbe\n \nminified\n\n\n          \n1,2,3,4,\n\n          \n8,1,2,41\n\n    \n]\n\n\n}\n\n\n\n\n\nResponse\n\n\nAfter running the snippet against the test cases, the following response is returned.\n\n\nIt is an array containing the output of each test case , in the same order as the test cases.\n\n[\n\n\n1,2,3,4,\n\n          \n8,1,2,4\n\n\n]", 
+            "title": "Run"
+        }, 
+        {
+            "location": "/CASS/run/index.html#running-code-apis", 
+            "text": "", 
+            "title": "Running Code APIs"
+        }, 
+        {
+            "location": "/CASS/run/index.html#run-code-against-tests-unstable", 
+            "text": "Run a code snippet against a list of provided tests.     POST /api/snippet/run", 
+            "title": "Run Code Against tests (UNSTABLE)"
+        }, 
+        {
+            "location": "/CASS/run/index.html#request", 
+            "text": "This endpoint requires   { \n     lang : python3.6     #   must   be   one   of   supported   languages \n     snippet :   for i in range(10): print(i) ,       #   code   snippet.   Must   NOT   Be   minified. \n     test_cases :   [        #   list   of   test   cases ,   must   NOT   be   minified \n\n           1,2,3,4, \n           8,1,2,41 \n     ]  }", 
+            "title": "Request"
+        }, 
+        {
+            "location": "/CASS/run/index.html#response", 
+            "text": "After running the snippet against the test cases, the following response is returned.  It is an array containing the output of each test case , in the same order as the test cases. [  1,2,3,4, \n           8,1,2,4  ]", 
+            "title": "Response"
+        }
+    ]
+}

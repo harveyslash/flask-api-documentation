@@ -1,0 +1,1421 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Beatest Core Documentation">
+      
+      
+        <link rel="canonical" href="http://beatest-docs.s3-website.ap-south-1.amazonaws.com/api-v0.1/Tests/index.html">
+      
+      
+        <meta name="author" content="Harshvardhan Gupta">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.1">
+    
+    
+      
+        <title>Tests - Beatest Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.78aab2dc.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../scss/customcss.css">
+    
+      <link rel="stylesheet" href="../../scss/uml.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#tests" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://beatest-docs.s3-website.ap-south-1.amazonaws.com/" title="Beatest Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Beatest Docs
+              </span>
+              <span class="md-header-nav__topic">
+                Tests
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="General" class="md-tabs__link">
+        General
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../Guidelines/index.html" title="api-v0.1" class="md-tabs__link md-tabs__link--active">
+          api-v0.1
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../rex/index.html" title="Rex" class="md-tabs__link">
+          Rex
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../CASS/index.html" title="CASS" class="md-tabs__link">
+          CASS
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    Beatest Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" title="General" class="md-nav__link">
+      General
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      api-v0.1
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        api-v0.1
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Guidelines/index.html" title="Api Guidelines" class="md-nav__link">
+      Api Guidelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Database/index.html" title="Database" class="md-nav__link">
+      Database
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Colleges/index.html" title="Colleges" class="md-nav__link">
+      Colleges
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Captcha/index.html" title="Captcha" class="md-nav__link">
+      Captcha
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Courses/index.html" title="Courses" class="md-nav__link">
+      Courses
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Certificates/index.html" title="　 ↳ Certificates" class="md-nav__link">
+      　 ↳ Certificates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Instructors/index.html" title="　 ↳ Instructors" class="md-nav__link">
+      　 ↳ Instructors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Discourse/index.html" title="Discourse" class="md-nav__link">
+      Discourse
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FileUploads/index.html" title="File Uploads" class="md-nav__link">
+      File Uploads
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Orders/index.html" title="Orders" class="md-nav__link">
+      Orders
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../PromoCodes/index.html" title="Promo Codes" class="md-nav__link">
+      Promo Codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Tests
+      </label>
+    
+    <a href="index.html" title="Tests" class="md-nav__link md-nav__link--active">
+      Tests
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#database-table" title="Database Table" class="md-nav__link">
+    Database Table
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-types" title="Test Types" class="md-nav__link">
+    Test Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-character" title="Test Character" class="md-nav__link">
+    Test Character
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activeinactive-tests" title="Active/Inactive Tests" class="md-nav__link">
+    Active/Inactive Tests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" title="API Reference" class="md-nav__link">
+    API Reference
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-list-of-tests" title="Get List of Tests" class="md-nav__link">
+    Get List of Tests
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supported-query-params" title="Supported Query Params" class="md-nav__link">
+    Supported Query Params
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" title="Response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-college-tests-white_check_mark" title="Get College Tests :white_check_mark" class="md-nav__link">
+    Get College Tests :white_check_mark
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response_1" title="Response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-details-of-one-test" title="Get Details of one test" class="md-nav__link">
+    Get Details of one test
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response_2" title="Response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-add-a-test" title="Admin → Add a Test" class="md-nav__link">
+    Admin → Add a Test
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" title="Request" class="md-nav__link">
+    Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response_3" title="Response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-update-a-test" title="Admin → Update a Test" class="md-nav__link">
+    Admin → Update a Test
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_1" title="Request" class="md-nav__link">
+    Request
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-delete-a-test" title="Admin → Delete a Test" class="md-nav__link">
+    Admin → Delete a Test
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Questions/index.html" title="　 ↳ Questions" class="md-nav__link">
+      　 ↳ Questions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../QuestionAttempts/index.html" title="　 ↳ Question Attempts" class="md-nav__link">
+      　 ↳ Question Attempts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Sections/index.html" title="　 ↳ Sections" class="md-nav__link">
+      　 ↳ Sections
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../SectionAttempts/index.html" title="　 ↳ Section Attempts" class="md-nav__link">
+      　 ↳ Section Attempts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TestAttempts/index.html" title="　 ↳ Test Attempts" class="md-nav__link">
+      　 ↳ Test Attempts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TestAnalysis/index.html" title="　 ↳ Test Analysis" class="md-nav__link">
+      　 ↳ Test Analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TimeTrack(Pinger)/index.html" title="　 ↳ Time Track(Pinger)" class="md-nav__link">
+      　 ↳ Time Track(Pinger)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Users/index.html" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Misc/index.html" title="Miscellaneous" class="md-nav__link">
+      Miscellaneous
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Rex
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Rex
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rex/index.html" title="Welcome" class="md-nav__link">
+      Welcome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rex/TestAttempts/index.html" title="TestAttempts" class="md-nav__link">
+      TestAttempts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rex/Applications/index.html" title="Applications" class="md-nav__link">
+      Applications
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      CASS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        CASS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CASS/index.html" title="Welcome" class="md-nav__link">
+      Welcome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CASS/run/index.html" title="Run" class="md-nav__link">
+      Run
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#database-table" title="Database Table" class="md-nav__link">
+    Database Table
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-types" title="Test Types" class="md-nav__link">
+    Test Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-character" title="Test Character" class="md-nav__link">
+    Test Character
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activeinactive-tests" title="Active/Inactive Tests" class="md-nav__link">
+    Active/Inactive Tests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" title="API Reference" class="md-nav__link">
+    API Reference
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-list-of-tests" title="Get List of Tests" class="md-nav__link">
+    Get List of Tests
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supported-query-params" title="Supported Query Params" class="md-nav__link">
+    Supported Query Params
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" title="Response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-college-tests-white_check_mark" title="Get College Tests :white_check_mark" class="md-nav__link">
+    Get College Tests :white_check_mark
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response_1" title="Response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-details-of-one-test" title="Get Details of one test" class="md-nav__link">
+    Get Details of one test
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response_2" title="Response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-add-a-test" title="Admin → Add a Test" class="md-nav__link">
+    Admin → Add a Test
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" title="Request" class="md-nav__link">
+    Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response_3" title="Response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-update-a-test" title="Admin → Update a Test" class="md-nav__link">
+    Admin → Update a Test
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_1" title="Request" class="md-nav__link">
+    Request
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-delete-a-test" title="Admin → Delete a Test" class="md-nav__link">
+    Admin → Delete a Test
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h1>
+<p>Tests make up the core unit of Beatest. They need to be purchased by the user. 
+Each test can have many <a href="../Sections/index.html">Sections</a>, and each sections can have many <a href="../Questions/index.html">Questions</a>.</p>
+<p>A user may have multiple attempts on the same test, but at any given point 
+in time, there can be at <strong>at most 1</strong> active test. </p>
+<p>An active test is a test for which the <em>is_complete</em> attribute is <em>false</em>.
+If there are multiple test attempts by the same user for the same test,
+   the <em>is_complete</em> attribute of all but 1 must be <em>true</em>.</p>
+<h2 id="database-table">Database Table<a class="headerlink" href="#database-table" title="Permanent link">&para;</a></h2>
+<p>Tests are currently represented in the database like below</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code class="codehilite">int (PK)</code></td>
+<td>Unique identifier for test</td>
+</tr>
+<tr>
+<td>leaderboard_id</td>
+<td><code class="codehilite">int (FK to id in leaderboard table)</code></td>
+<td><strong>NOT SURE</strong></td>
+</tr>
+<tr>
+<td>name</td>
+<td><code class="codehilite">varchar (50)</code></td>
+<td>Name of test</td>
+</tr>
+<tr>
+<td>created_date</td>
+<td><code class="codehilite">datetime</code></td>
+<td>When it was created (by the admin)</td>
+</tr>
+<tr>
+<td>is_active</td>
+<td><code class="codehilite">tinyint(1)</code></td>
+<td>Is the test active</td>
+</tr>
+<tr>
+<td>type</td>
+<td><code class="codehilite">varchar(50)</code></td>
+<td>If possible to jump between sections(See below)</td>
+</tr>
+<tr>
+<td>character</td>
+<td><code class="codehilite">varchar(50)</code></td>
+<td>Mock or Topic type test (See below)</td>
+</tr>
+<tr>
+<td>price</td>
+<td><code class="codehilite">int(11)</code></td>
+<td>Price of a test</td>
+</tr>
+<tr>
+<td>instruction_html</td>
+<td><code class="codehilite">longtext</code></td>
+<td>The instruction html associated with the test</td>
+</tr>
+</tbody>
+</table>
+<h4 id="test-types">Test Types<a class="headerlink" href="#test-types" title="Permanent link">&para;</a></h4>
+<p>A Test 'type', can be <em>CAT</em> , <em>College</em> or <em>IBPS</em>. </p>
+<p>It is possible to jump between sections in any non <em>CAT</em> types exams. There
+is also no section time limit for these tests.</p>
+<p>For <em>CAT</em>, the current section is locked once the time is up (each section has its own time limit), or when the user submits that section. It will not be
+accessible after that.</p>
+<h4 id="test-character">Test Character<a class="headerlink" href="#test-character" title="Permanent link">&para;</a></h4>
+<p>A Test can have one of two 'characters' : <em>Mock</em> and <em>Topic</em>. </p>
+<h4 id="activeinactive-tests">Active/Inactive Tests<a class="headerlink" href="#activeinactive-tests" title="Permanent link">&para;</a></h4>
+<p>A Test can be active or inactive. If it is Inactive, a user cannot take the test. It will also not show up to the user. </p>
+<h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
+<h3 id="get-list-of-tests">Get List of Tests <img alt="✅" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/64/2705.png" title=":white_check_mark:" /><a class="headerlink" href="#get-list-of-tests" title="Permanent link">&para;</a></h3>
+<p>Get information about all tests in the system. 
+Note that this does NOT return Sections or Questions.
+It is meant to return general information about tests so that it can be 'browsed' from UI.</p>
+<p><strong>This will only list active tests</strong></p>
+<div class="admonition get_req">
+<p class="admonition-title"><code class="codehilite"><span class="err">GET /tests</span></code></p>
+<h5 id="supported-query-params">Supported Query Params<a class="headerlink" href="#supported-query-params" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><code class="codehilite">string</code> the <em>type</em> of the test to filter by</td>
+</tr>
+<tr>
+<td>character</td>
+<td><code class="codehilite">string</code> the <em>character</em> of the test to filter by</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code class="codehilite">is_purchased</code> will be <code class="codehilite">false</code> for not logged in Users</strong></p>
+<h5 id="response">Response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>                 <span class="err">#</span> <span class="err">test</span> <span class="err">id</span> <span class="err">is</span> <span class="err">globally</span> <span class="err">unique</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;test1&quot;</span><span class="p">,</span>          <span class="err">#</span> <span class="err">name</span> <span class="err">of</span> <span class="err">the</span> <span class="err">test</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CAT&quot;</span><span class="p">,</span>   
+        <span class="nt">&quot;is_purchased&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>    <span class="err">#</span> <span class="err">whether</span> <span class="err">or</span> <span class="err">not</span> <span class="err">the</span> <span class="err">user</span> <span class="err">has</span> <span class="err">purchased</span> <span class="err">this</span> <span class="err">test</span> 
+                                  <span class="err">#</span> <span class="err">(this</span> <span class="err">is</span> <span class="err">an</span> <span class="err">artificially</span> <span class="err">generated</span> <span class="err">field)</span> 
+
+        <span class="nt">&quot;is_complete&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>     <span class="err">#</span> <span class="err">whether</span> <span class="err">or</span> <span class="err">not</span> <span class="err">the</span> <span class="err">user</span> <span class="err">has</span> <span class="err">completed</span> <span class="err">the</span> <span class="err">test</span>
+                                  <span class="err">#</span> <span class="err">(this</span> <span class="err">is</span> <span class="err">an</span> <span class="err">artificially</span> <span class="err">generated</span> <span class="err">field)</span> 
+        <span class="nt">&quot;character&quot;</span><span class="p">:</span> <span class="s2">&quot;Mock&quot;</span><span class="p">,</span>      <span class="err">#</span> <span class="err">can</span> <span class="err">be</span> <span class="err">mock</span> <span class="err">or</span> <span class="err">topic</span> 
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+        <span class="nt">&quot;total_time&quot;</span><span class="p">:</span> <span class="mi">18000</span><span class="p">,</span>      <span class="err">#</span> <span class="err">total</span> <span class="err">time</span> <span class="err">of</span> <span class="err">test</span> <span class="err">in</span> <span class="err">seconds</span>
+                                  <span class="err">#</span> <span class="err">(this</span> <span class="err">is</span> <span class="err">an</span> <span class="err">artificially</span> <span class="err">generated</span> <span class="err">field)</span>
+        <span class="nt">&quot;section_count&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>       <span class="err">#</span> <span class="err">number</span> <span class="err">of</span> <span class="err">sections</span> <span class="err">in</span> <span class="err">test</span>
+        <span class="nt">&quot;quesiton_count&quot;</span><span class="p">:</span> <span class="mi">38</span><span class="p">,</span>      <span class="err">#</span> <span class="err">number</span> <span class="err">of</span> <span class="err">questions</span> <span class="err">in</span> <span class="err">test</span>
+                                  <span class="err">#</span> <span class="err">(this</span> <span class="err">is</span> <span class="err">an</span> <span class="err">artificially</span> <span class="err">generated</span> <span class="err">field)</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>                 <span class="err">#</span> <span class="err">test</span> <span class="err">id</span> <span class="err">is</span> <span class="err">globally</span> <span class="err">unique</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;test2&quot;</span><span class="p">,</span>          <span class="err">#</span> <span class="err">name</span> <span class="err">of</span> <span class="err">the</span> <span class="err">test</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CAT&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;is_purchased&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>     <span class="err">#</span> <span class="err">whether</span> <span class="err">or</span> <span class="err">not</span> <span class="err">the</span> <span class="err">user</span> <span class="err">has</span> <span class="err">purchased</span> <span class="err">this</span> <span class="err">test</span> 
+                                  <span class="err">#</span> <span class="err">(this</span> <span class="err">is</span> <span class="err">an</span> <span class="err">artificially</span> <span class="err">generated</span> <span class="err">field)</span> 
+
+        <span class="nt">&quot;is_complete&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>     <span class="err">#</span> <span class="err">whether</span> <span class="err">or</span> <span class="err">not</span> <span class="err">the</span> <span class="err">user</span> <span class="err">has</span> <span class="err">completed</span> <span class="err">the</span> <span class="err">test</span>
+                                  <span class="err">#</span> <span class="err">(this</span> <span class="err">is</span> <span class="err">an</span> <span class="err">artificially</span> <span class="err">generated</span> <span class="err">field)</span> 
+        <span class="nt">&quot;character&quot;</span><span class="p">:</span> <span class="s2">&quot;Mock&quot;</span><span class="p">,</span>      <span class="err">#</span> <span class="err">can</span> <span class="err">be</span> <span class="err">mock</span> <span class="err">or</span> <span class="err">topic</span> 
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+        <span class="nt">&quot;total_time&quot;</span><span class="p">:</span> <span class="mi">18000</span><span class="p">,</span>      <span class="err">#</span> <span class="err">total</span> <span class="err">time</span> <span class="err">of</span> <span class="err">test</span> <span class="err">in</span> <span class="err">seconds</span>
+                                  <span class="err">#</span> <span class="err">(this</span> <span class="err">is</span> <span class="err">an</span> <span class="err">artificially</span> <span class="err">generated</span> <span class="err">field)</span>
+        <span class="nt">&quot;section_count&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>       <span class="err">#</span> <span class="err">number</span> <span class="err">of</span> <span class="err">sections</span> <span class="err">in</span> <span class="err">test</span>
+        <span class="nt">&quot;quesiton_count&quot;</span><span class="p">:</span> <span class="mi">81</span><span class="p">,</span>      <span class="err">#</span> <span class="err">number</span> <span class="err">of</span> <span class="err">questions</span> <span class="err">in</span> <span class="err">test</span>
+                                  <span class="err">#</span> <span class="err">(this</span> <span class="err">is</span> <span class="err">an</span> <span class="err">artificially</span> <span class="err">generated</span> <span class="err">field)</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+
+</div>
+<h3 id="get-college-tests-white_check_mark">Get College Tests :white_check_mark<a class="headerlink" href="#get-college-tests-white_check_mark" title="Permanent link">&para;</a></h3>
+<p>Get information about all tests specific to colleges in the system. 
+Note that this does NOT return Sections or Questions.
+It is meant to return general information about tests so that it can be 'browsed' from UI.</p>
+<p>If the user is not mapped to a college, all the tests of type COLLEGE from the 
+test table will be returned. The conditions for access to those tests are same as other tests. </p>
+<p>If the user is mapped to a college, all the tests that are listed for his college only will be
+displayed. 
+The user may access that college if: 
+1. That test is free (price = 0)
+2. That test is free for his college 
+3. A payment has been made for that test for the user. </p>
+<div class="admonition get_req">
+<p class="admonition-title"><code class="codehilite"><span class="err">GET /tests/college</span></code></p>
+<p><strong><code class="codehilite">is_purchased</code> will be <code class="codehilite">false</code> for not logged in Users</strong></p>
+<h5 id="response_1">Response<a class="headerlink" href="#response_1" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>                 <span class="err">#</span> <span class="err">test</span> <span class="err">id</span> <span class="err">is</span> <span class="err">globally</span> <span class="err">unique</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;test1&quot;</span><span class="p">,</span>          <span class="err">#</span> <span class="err">name</span> <span class="err">of</span> <span class="err">the</span> <span class="err">test</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CAT&quot;</span><span class="p">,</span>   
+        <span class="nt">&quot;is_purchased&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>    <span class="err">#</span> <span class="err">whether</span> <span class="err">or</span> <span class="err">not</span> <span class="err">the</span> <span class="err">user</span> <span class="err">has</span> <span class="err">purchased</span> <span class="err">this</span> <span class="err">test</span> 
+                                  <span class="err">#</span> <span class="err">(this</span> <span class="err">is</span> <span class="err">an</span> <span class="err">artificially</span> <span class="err">generated</span> <span class="err">field)</span> 
+
+        <span class="nt">&quot;is_complete&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>     <span class="err">#</span> <span class="err">whether</span> <span class="err">or</span> <span class="err">not</span> <span class="err">the</span> <span class="err">user</span> <span class="err">has</span> <span class="err">completed</span> <span class="err">the</span> <span class="err">test</span>
+                                  <span class="err">#</span> <span class="err">(this</span> <span class="err">is</span> <span class="err">an</span> <span class="err">artificially</span> <span class="err">generated</span> <span class="err">field)</span> 
+        <span class="nt">&quot;character&quot;</span><span class="p">:</span> <span class="s2">&quot;Mock&quot;</span><span class="p">,</span>      <span class="err">#</span> <span class="err">can</span> <span class="err">be</span> <span class="err">mock</span> <span class="err">or</span> <span class="err">topic</span> 
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>                 <span class="err">#</span> <span class="err">test</span> <span class="err">id</span> <span class="err">is</span> <span class="err">globally</span> <span class="err">unique</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;test2&quot;</span><span class="p">,</span>          <span class="err">#</span> <span class="err">name</span> <span class="err">of</span> <span class="err">the</span> <span class="err">test</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CAT&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;is_purchased&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>     <span class="err">#</span> <span class="err">whether</span> <span class="err">or</span> <span class="err">not</span> <span class="err">the</span> <span class="err">user</span> <span class="err">has</span> <span class="err">purchased</span> <span class="err">this</span> <span class="err">test</span> 
+                                  <span class="err">#</span> <span class="err">(this</span> <span class="err">is</span> <span class="err">an</span> <span class="err">artificially</span> <span class="err">generated</span> <span class="err">field)</span> 
+
+        <span class="nt">&quot;is_complete&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>      <span class="err">#</span> <span class="err">whether</span> <span class="err">or</span> <span class="err">not</span> <span class="err">the</span> <span class="err">user</span> <span class="err">has</span> <span class="err">completed</span> <span class="err">the</span> <span class="err">test</span>
+                                  <span class="err">#</span> <span class="err">(this</span> <span class="err">is</span> <span class="err">an</span> <span class="err">artificially</span> <span class="err">generated</span> <span class="err">field)</span> 
+        <span class="nt">&quot;character&quot;</span><span class="p">:</span> <span class="s2">&quot;Mock&quot;</span><span class="p">,</span>      <span class="err">#</span> <span class="err">can</span> <span class="err">be</span> <span class="err">mock</span> <span class="err">or</span> <span class="err">topic</span> 
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+
+</div>
+<h3 id="get-details-of-one-test">Get Details of one test <img alt="✅" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/64/2705.png" title=":white_check_mark:" /><a class="headerlink" href="#get-details-of-one-test" title="Permanent link">&para;</a></h3>
+<p>Get information about a single test. 
+This returns all the information (including <code class="codehilite">instruction_html</code>) for the test id.</p>
+<p>This requires the user to be logged in and have access to the Test.</p>
+<div class="admonition get_req">
+<p class="admonition-title"><code class="codehilite"><span class="err">GET /tests/:testID</span></code></p>
+<p><code class="codehilite">testID</code> The id of the test.</p>
+<h5 id="response_2">Response<a class="headerlink" href="#response_2" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span>    <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>                 <span class="err">#</span> <span class="err">test</span> <span class="err">id</span> <span class="err">is</span> <span class="err">globally</span> <span class="err">unique</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;test1&quot;</span><span class="p">,</span>          <span class="err">#</span> <span class="err">name</span> <span class="err">of</span> <span class="err">the</span> <span class="err">test</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CAT&quot;</span><span class="p">,</span>   
+        <span class="nt">&quot;instruction_html&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;html&gt;&lt;/html&gt;&quot;</span> <span class="err">#</span> <span class="err">long</span> <span class="err">html</span> <span class="err">of</span> <span class="err">the</span> <span class="err">test</span>
+
+        <span class="s2">&quot;character&quot;</span><span class="p">:</span> <span class="s2">&quot;Mock&quot;</span><span class="p">,</span>      <span class="err">#</span> <span class="err">can</span> <span class="err">be</span> <span class="err">mock</span> <span class="err">or</span> <span class="err">topic</span> 
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+
+</div>
+<h3 id="admin-add-a-test">Admin → Add a Test<img alt="❓" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/64/2753.png" title=":question:" /><a class="headerlink" href="#admin-add-a-test" title="Permanent link">&para;</a></h3>
+<p>Add a Test to the system. Only to be performed by an admin. </p>
+<p>By adding a Test, it only creates a row in the Test database, so 
+sections belonging to the test (and questions belonging to those sections)
+should be added after calling this endpoint.</p>
+<div class="admonition post_req">
+<p class="admonition-title"><code class="codehilite"><span class="err">POST /admin/tests</span></code></p>
+<h5 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h5>
+<p><div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;test1&quot;</span><span class="p">,</span>                      <span class="err">#</span> <span class="err">name</span> <span class="err">of</span> <span class="err">the</span> <span class="err">test</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CAT&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;character&quot;</span><span class="p">:</span> <span class="s2">&quot;Mock&quot;</span><span class="p">,</span>                  <span class="err">#</span> <span class="err">can</span> <span class="err">be</span> <span class="err">mock</span> <span class="err">or</span> <span class="err">topic</span>
+    <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+    <span class="nt">&quot;is_active&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;instruction_html&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;long_html&gt;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+<strong>Note:</strong> The <code class="codehilite">created_date</code> will be added automatically by the system</p>
+<h5 id="response_3">Response<a class="headerlink" href="#response_3" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+<h3 id="admin-update-a-test">Admin → Update a Test<img alt="❓" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/3.1/png/64/2753.png" title=":question:" /><a class="headerlink" href="#admin-update-a-test" title="Permanent link">&para;</a></h3>
+<p>Update a Test to the system. Only to be performed by an admin.</p>
+<p>By updating a Test, it updates the row in the Test database, so
+sections belonging to the test (and questions belonging to those sections)
+can't be modified using this endpoint.</p>
+<div class="admonition put_req">
+<p class="admonition-title"><code class="codehilite"><span class="err">PUT /admin/tests/:testId</span></code></p>
+<h5 id="request_1">Request<a class="headerlink" href="#request_1" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;test1&quot;</span><span class="p">,</span>                      <span class="err">#</span> <span class="err">name</span> <span class="err">of</span> <span class="err">the</span> <span class="err">test</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CAT&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;character&quot;</span><span class="p">:</span> <span class="s2">&quot;Mock&quot;</span><span class="p">,</span>                  <span class="err">#</span> <span class="err">can</span> <span class="err">be</span> <span class="err">mock</span> <span class="err">or</span> <span class="err">topic</span>
+    <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+    <span class="nt">&quot;is_active&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;instruction_html&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;long_html&gt;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+<h3 id="admin-delete-a-test">Admin → Delete a Test<a class="headerlink" href="#admin-delete-a-test" title="Permanent link">&para;</a></h3>
+<p>Delete a Test to the system. Only to be performed by an admin.</p>
+<p>By deleting a Test, it deletes the row in the Test database, and
+<strong>all the sections (and all the questions of each section) associated
+with that test.</strong></p>
+<p>It is very unlikely that this this endpoint will be called. </p>
+<div class="admonition del_req">
+<p class="admonition-title"><code class="codehilite"><span class="err">DELETE /admin/tests/:testId</span></code></p>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+  <h2 id="__comments">Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://beatest-docs.s3-website.ap-south-1.amazonaws.com/api-v0.1/Tests/index.html";
+      this.page.identifier =
+        "api-v0.1/Tests/index.html";
+    };
+    (function() {
+      var d = document, s = d.createElement("script");
+      s.src = "//docs-beatest-in.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../PromoCodes/index.html" title="Promo Codes" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Promo Codes
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Questions/index.html" title="　 ↳ Questions" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                　 ↳ Questions
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.8eb9be28.js"></script>
+      
+      <script>app.initialize({version:"0.17.3",url:{base:"../.."}})</script>
+      
+        <script src="https://unpkg.com/mermaid@8.0.0-beta.2/dist/mermaid.min.js"></script>
+      
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="../../js/uml-loader.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>

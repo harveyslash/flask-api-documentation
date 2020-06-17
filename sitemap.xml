@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Guidelines/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Database/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Colleges/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Captcha/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Courses/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Certificates/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Instructors/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Discourse/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/FileUploads/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Orders/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/PromoCodes/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Tests/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Questions/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/QuestionAttempts/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Sections/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/SectionAttempts/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/TestAttempts/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/TestAnalysis/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/TimeTrack(Pinger)/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Users/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//api-v0.1/Misc/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//rex/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//rex/TestAttempts/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//rex/Applications/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//CASS/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://beatest-docs.s3-website.ap-south-1.amazonaws.com//CASS/run/index.html</loc>
+     <lastmod>2020-05-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+</urlset>
